@@ -8,5 +8,5 @@
       "@models/*" : ["src/models/*"]
     }
   },
-  "include": ["src/**/*", "src"]
+  "include": ["src/**/*","src"]
 }
