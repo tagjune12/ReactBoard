@@ -4,6 +4,7 @@ import Router from 'koa-router';
 import bodyParser from 'koa-bodyparser';
 import db from 'mongoose';
 import api from './api';
+import jwtMiddleware from './lib/jwtMiddleware';
 
 const app = new Koa();
 const router = new Router();
@@ -19,7 +20,7 @@ db.connect(MONGO_URI).then(() => {
 router.use('/api', api.routes());
 
 app.use(bodyParser());
-
+app.use(jwtMiddleware)
 // app인스턴스에 router 적용
 app.use(router.routes()).use(router.allowedMethods());
 
