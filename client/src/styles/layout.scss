@@ -1,0 +1,22 @@
+@import "normalize.css";
+
+.title {
+  text-align: center;
+}
+
+.navbar {
+  // float: left;
+  width: 150px;
+  // max-width: 287px;
+  height: 100vh;
+  margin-right: 10px;
+}
+
+.nav-item-wrapper {
+  /*  */
+}
+
+.main-content{
+  display: flex;
+  justify-content: center;
+}

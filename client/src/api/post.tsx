@@ -1,0 +1,3 @@
+const getPostList = () => {};
+
+export { getPostList };

@@ -1,0 +1,79 @@
+main {
+  width: 100%;
+}
+
+.post-wrapper{
+  margin-right: 30px;
+}
+
+.post-item-wrapper{
+  max-width: 803px;
+}
+
+.post-item{
+  display: grid;
+  width: 100%;
+  margin-right: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  
+  grid-template-columns: 1fr 3fr 10fr 3fr 2fr ;
+  .like{
+    margin: 0 10px;
+  }
+  .category{
+    margin: 0 10px;
+  }
+  .title{
+    width: 300px;
+    text-align: left;
+  }
+  .author{
+    margin: 0 10px;
+  }
+  .date{
+    margin: 0 10px;
+  }
+}
+
+// Post
+.post {
+  .header{
+    display: flex;
+    flex-direction: column;
+
+    .title{
+      text-align: left;
+      font-size: 1.5em;
+    }
+    .post-info{
+      margin-left: auto;
+      
+      .author, .date, .comments, .likes{
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .body{
+    min-height: 300px;
+  }
+}
+
+// Comment
+.comment {
+  margin: 10px 0;
+  .header{
+    display: flex;
+    .username {
+      flex-grow:1
+    }
+    .edit, .delete, .likes, .sub-comment, .date {
+      margin-right: 10px;
+    }
+  }
+
+  .body{
+    margin: 10px 0;
+  }
+}
