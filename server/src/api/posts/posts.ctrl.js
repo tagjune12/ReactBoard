@@ -39,7 +39,7 @@ export const checkOwnPost = (ctx, next) => {
   return next();
 }
 
-// GET /api/posts?username=&tags=&page=
+// GET /api/posts?username=&category=&page=
 // 글 목록 가져오기
 export const list = async ctx => {
   const { page } = parseInt(ctx.request.query.page || '1', 10);
@@ -51,10 +51,10 @@ export const list = async ctx => {
     return;
   }
 
-  const { tag, username } = ctx.request.query;
+  const { category, username } = ctx.request.query;
   const query = {
     ...(username ? { username } : {}),
-    ...(tag ? { tags: tag } : {})
+    ...(category ? { category } : {})
   };
 
   try {
@@ -86,9 +86,9 @@ export const read = async ctx => {
 export const write = async ctx => {
   // body값 유효성 체크
   const schema = Joi.object().keys({
+    category: Joi.string().required(),
     title: Joi.string().required(),
-    content: Joi.string().required(),
-    tags: Joi.array().items(Joi.string())
+    content: Joi.string().required()
   })
 
   const validationResult = schema.validate(ctx.request.body);
@@ -99,13 +99,14 @@ export const write = async ctx => {
     return;
   }
 
-  const { title, content, tags } = ctx.request.body;
+  const { title, content, category } = ctx.request.body;
   const post = new Post({
+    category,
     title,
     content,
-    tags,
-    user: ctx.state.user
+    author: ctx.state.user
   });
+
   try {
     await post.save();
     ctx.response.body = post;
@@ -120,7 +121,7 @@ export const update = async ctx => {
   const schema = Joi.object().keys({
     title: Joi.string().required(),
     content: Joi.string().required(),
-    tags: Joi.array().items(Joi.string())
+    category: Joi.string().required()
   });
 
   const validationResult = schema.validate(ctx.request.body);
