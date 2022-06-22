@@ -1,0 +1,28 @@
+.post-wrapper {
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  align-items: center;
+}
+
+.post-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px;
+  .thumb-up {
+    margin: 0 10px;
+  }
+  .post-category{
+    margin: 0 10px;
+  }
+  .post-title{
+    margin: 0 10px;
+  }
+  .post-author{
+    margin: 0 10px;
+  }
+  .post-date{
+    margin: 0 10px;
+  }
+}
