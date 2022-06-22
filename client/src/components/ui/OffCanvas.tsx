@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 
-type page = {
+type Page = {
   name: string;
   path: string;
 };
 
 type OffCanvasProps = {
-  pages: page[];
+  pages: Page[];
 };
 
 const OffCanvas = ({ pages }: OffCanvasProps) => {

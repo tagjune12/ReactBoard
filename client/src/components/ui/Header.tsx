@@ -1,6 +1,4 @@
-import '@styles/header.scss';
-import OffCanvas from './OffCanvas';
-import pages from '@assets/data/page.json';
+import '@styles/layout.scss';
 
 const Header = () => {
   return (
@@ -8,7 +6,6 @@ const Header = () => {
       <div>
         <h1 className="title">Title</h1>
       </div>
-      <OffCanvas pages={pages} />
     </div>
   );
 };

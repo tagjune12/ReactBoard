@@ -1,17 +1,21 @@
 import { Routes, Route } from 'react-router';
 import PostList from '@pages/PostList';
 import Header from '@components/ui/Header';
-import Post from '@components/PostList/Post';
+import OffCanvas from '@components/ui/OffCanvas';
+import pages from '@assets/data/page.json';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <main>
-        <Routes>
-          <Route path="/*" element={<PostList />} />
-        </Routes>
-      </main>
+      <div className="main-content">
+        <OffCanvas pages={pages} />
+        <main>
+          <Routes>
+            <Route path="/*" element={<PostList />} />
+          </Routes>
+        </main>
+      </div>
     </div>
   );
 }

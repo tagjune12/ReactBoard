@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom';
 
-const PostItem = () => {
+type PostItemProps = {
+  postId: string;
+};
+
+const PostItem = ({ postId }: PostItemProps) => {
   return (
     <div className="post-item">
-      <span className="thumb-up">5</span>
-      <span className="post-category">카테고리</span>
-      <Link className="post-title" to=":id">
-        타이틀({5})
+      <span className="like">5</span>
+      <span className="category">카테고리</span>
+      <Link to={`/post/${postId}`}>
+        <span className="title">타이틀({5})</span>
       </Link>
-      <span className="post-author">작성자</span>
-      <span className="post-date">06-21</span>
+      <span className="author">작성자</span>
+      <span className="date">06-21</span>
     </div>
   );
 };
