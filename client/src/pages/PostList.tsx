@@ -3,10 +3,17 @@ import { Routes, Route } from 'react-router';
 import PostItem from '@components/PostList/PostItem';
 import PostView from '@components/PostList/PostView';
 import * as postAPI from '@api/post';
+import { useEffect, useState } from 'react';
+import { Post } from '@components/PostList/types';
 
 const PostList = () => {
-  const postList = postAPI.getPostList('1', undefined, undefined);
+  const [postList, setPostList] = useState<Post[]>([]);
 
+  useEffect(() => {
+    postAPI.getPostList('1').then((response) => {
+      setPostList(response);
+    });
+  }, []);
   return (
     <div className="post-wrapper">
       <div>
@@ -16,9 +23,9 @@ const PostList = () => {
           </Routes>
         </div>
         <div className="post-item-wrapper">
-          <PostItem postId="1" />
-          <PostItem postId="2" />
-          <PostItem postId="3" />
+          {postList?.map((post, index) => (
+            <PostItem key={post._id} postNumber={index + 1} post={post} />
+          ))}
         </div>
       </div>
     </div>

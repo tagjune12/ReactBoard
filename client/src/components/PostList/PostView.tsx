@@ -1,6 +1,6 @@
 import React from 'react';
-import Post from './Post';
-import Comment from './Comment';
+import Post from '@components/PostList/Post';
+import Comment from '@components/PostList/Comment';
 
 const PostView = () => {
   return (

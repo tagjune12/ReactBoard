@@ -1,19 +1,21 @@
 import { Link } from 'react-router-dom';
+import { Post } from '@components/PostList/types';
 
 type PostItemProps = {
-  postId: string;
+  postNumber: number;
+  post: Post;
 };
 
-const PostItem = ({ postId }: PostItemProps) => {
+const PostItem = ({ postNumber, post }: PostItemProps) => {
   return (
     <div className="post-item">
-      <span className="like">5</span>
-      <span className="category">카테고리</span>
-      <Link to={`/post/${postId}`}>
-        <span className="title">타이틀({5})</span>
+      <span className="like">{post.like}</span>
+      <span className="category">{post.category}</span>
+      <Link to={`/post/${postNumber}`}>
+        <span className="title">{`${post.title}(${post.comments.length})`}</span>
       </Link>
-      <span className="author">작성자</span>
-      <span className="date">06-21</span>
+      <span className="author">{post.author}</span>
+      <span className="date">{post.publishedDate.split('T')[0]}</span>
     </div>
   );
 };
