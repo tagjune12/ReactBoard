@@ -1,15 +1,6 @@
 import { Link } from 'react-router-dom';
 
-type Page = {
-  name: string;
-  path: string;
-};
-
-type OffCanvasProps = {
-  pages: Page[];
-};
-
-const OffCanvas = ({ pages }: OffCanvasProps) => {
+const OffCanvas = ({ pages }) => {
   return (
     <nav className="navbar">
       <h3>Title</h3>

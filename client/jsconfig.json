@@ -7,7 +7,12 @@
 			"@ui/*":["src/components/ui/*"],
 			"@assets/*":["src/assets/*"],
 			"@styles/*":["src/styles/*"],
-			"@api/*":["src/api/*"]
+			"@api/*":["src/api/*"],
+			"@modules/*":["src/modules/*"]
 		}
-	}
+	},
+	"include": [
+		"src",
+		"craco.config.js"
+	]
 }

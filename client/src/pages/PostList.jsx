@@ -4,10 +4,9 @@ import PostItem from '@components/PostList/PostItem';
 import PostView from '@components/PostList/PostView';
 import * as postAPI from '@api/post';
 import { useEffect, useState } from 'react';
-import { Post } from '@components/PostList/types';
 
 const PostList = () => {
-  const [postList, setPostList] = useState<Post[]>([]);
+  const [postList, setPostList] = useState([]);
 
   useEffect(() => {
     postAPI.getPostList('1').then((response) => {
