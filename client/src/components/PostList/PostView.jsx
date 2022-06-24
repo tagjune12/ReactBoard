@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Post from '@components/PostList/Post';
 import Comment from '@components/PostList/Comment';
-import { useSelector } from 'react-redux/es/exports';
+import { useParams } from 'react-router';
+import { getPostById } from '@api/post';
 
 const PostView = () => {
-  const curerntPost = useSelector((state) => state.post.currentPost);
-  console.log('PostView: ', curerntPost);
+  const { id: postId } = useParams();
+  const [post, setPost] = useState();
+
+  useEffect(() => {
+    getPostById(postId).then((response) => {
+      setPost(response);
+    });
+  }, []);
+
   return (
     <div className="post-view">
-      <Post post={curerntPost} />
+      <Post post={post} />
       <Comment />
     </div>
   );

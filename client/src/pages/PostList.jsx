@@ -1,9 +1,8 @@
 import '@styles/post/postlist.scss';
-import { Routes, Route } from 'react-router';
 import PostItem from '@components/PostList/PostItem';
-import PostView from '@components/PostList/PostView';
 import * as postAPI from '@api/post';
 import { useEffect, useState } from 'react';
+import { Outlet } from 'react-router';
 
 const PostList = () => {
   const [postList, setPostList] = useState([]);
@@ -16,14 +15,10 @@ const PostList = () => {
   return (
     <div className="post-wrapper">
       <div>
-        <div>
-          <Routes>
-            <Route path="/post/:id" element={<PostView />} />
-          </Routes>
-        </div>
+        <Outlet />
         <div className="post-item-wrapper">
           {postList?.map((post, index) => (
-            <PostItem key={post._id} postNumber={index + 1} post={post} />
+            <PostItem key={post._id} post={post} postIndex={index} />
           ))}
         </div>
       </div>
