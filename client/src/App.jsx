@@ -3,6 +3,8 @@ import PostList from '@pages/PostList';
 import Header from '@components/ui/Header';
 import OffCanvas from '@components/ui/OffCanvas';
 import PostView from '@components/PostList/PostView';
+import Login from '@pages/Login';
+import SignUp from '@pages/SignUp';
 import pages from '@assets/data/page.json';
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
             <Route path="/" element={<PostList />}>
               <Route path="/post/:id" element={<PostView />} />
             </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
           </Routes>
         </main>
       </div>

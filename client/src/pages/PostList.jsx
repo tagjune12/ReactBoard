@@ -1,4 +1,4 @@
-import '@styles/post/postlist.scss';
+import '@styles/postlist.scss';
 import PostItem from '@components/PostList/PostItem';
 import * as postAPI from '@api/post';
 import { useEffect, useState } from 'react';

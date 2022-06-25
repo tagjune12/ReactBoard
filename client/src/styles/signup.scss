@@ -1,0 +1,25 @@
+.signup{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .signup-form{
+    display:grid;
+    // max-width: 280px;
+    grid-template-columns: auto 250px;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 10px;
+    
+    label{
+      padding: 5px 0;
+    }
+
+    input{
+      margin-left: 10px;
+    }
+
+    .signup-btn{
+      // width: 250px;
+      grid-column: 1/3;
+    }
+  }
+}
