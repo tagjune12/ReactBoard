@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 const UserSchema = new Schema({
   userId: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  username: { type: String, unique: true }
+  nickname: { type: String, unique: true }
 });
 
 
@@ -45,8 +45,8 @@ UserSchema.methods.generateToken = function () {
 
 
 // 스태틱 메서드
-UserSchema.statics.findByUsername = async function (username) {
-  return this.findOne({ username });
+UserSchema.statics.findByNickname = async function (nickname) {
+  return this.findOne({ nickname });
 }
 
 UserSchema.statics.findByUserId = async function (userId) {

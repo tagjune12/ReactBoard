@@ -7,7 +7,7 @@ export const register = async ctx => {
   const schema = Joi.object().keys({
     userId: Joi.string().alphanum().min(3).max(20).required(),
     password: Joi.string().required(),
-    username: Joi.string(),
+    nickname: Joi.string(),
   })
 
   const validationResult = schema.validate(ctx.request.body);
@@ -18,12 +18,12 @@ export const register = async ctx => {
     return;
   }
 
-  const { userId, password, username } = ctx.request.body;
+  const { userId, password, nickname } = ctx.request.body;
   try {
     const exsistUserId = await User.findByUserId(userId);
-    const exsistUsername = username === ('' || undefined) ? false : await User.findByUsername(userId);
+    const exsistNickname = nickname === ('' || undefined) ? false : await User.findByNickname(userId);
 
-    if (exsistUserId || exsistUsername) {
+    if (exsistUserId || exsistNickname) {
       ctx.response.status = 409; // conflict
       ctx.response.body = "already exsist";
       return;
@@ -32,7 +32,7 @@ export const register = async ctx => {
     const user = new User({
       userId,
       // 닉네임을 입력하지 않았다면 id를 닉네임으로 set
-      username: username === ('' || undefined) ? userId : username
+      nickname: nickname === ('' || undefined) ? userId : nickname
     });
     // 비밀번호 설정
     await user.setPassword(password);
