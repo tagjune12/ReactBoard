@@ -39,7 +39,7 @@ export const checkOwnPost = (ctx, next) => {
   return next();
 }
 
-// GET /api/posts?username=&category=&page=
+// GET /api/posts?nickname=&category=&page=
 // 글 목록 가져오기
 export const list = async ctx => {
   const { page } = parseInt(ctx.request.query.page || '1', 10);
@@ -51,9 +51,9 @@ export const list = async ctx => {
     return;
   }
 
-  const { category, username } = ctx.request.query;
+  const { category, nickname } = ctx.request.query;
   const query = {
-    ...(username ? { username } : {}),
+    ...(nickname ? { nickname } : {}),
     ...(category ? { category } : {})
   };
 
