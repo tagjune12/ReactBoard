@@ -2,15 +2,17 @@ import axios from 'axios';
 
 const API_URL = `/api/posts`;
 
-const getPostList = async (page = '1', username, category) => {
+const getPostList = async (page = 1, username, category) => {
   try {
-    const { data } = await axios.get(
+    const response = await axios.get(
+      // const { data } = await axios.get(
       `${API_URL}?page=${page}${username ? `&username=${username}` : ''}${
         category ? `&category=${category}` : ''
       }`,
     );
-
-    return data;
+    // console.log(response);
+    return response;
+    // return data;
   } catch (error) {
     console.log(error);
   }

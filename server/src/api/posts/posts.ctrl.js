@@ -42,7 +42,7 @@ export const checkOwnPost = (ctx, next) => {
 // GET /api/posts?nickname=&category=&page=
 // 글 목록 가져오기
 export const list = async ctx => {
-  const { page } = parseInt(ctx.request.query.page || '1', 10);
+  const page = parseInt(ctx.request.query.page || '1', 10);
 
   if (page < 1) {
     ctx.response.status = 400;
@@ -58,14 +58,16 @@ export const list = async ctx => {
   };
 
   try {
+    const POST_PER_PAGE = 5;
     const posts = await Post.find(query)
       .sort({ _id: -1 })
-      .skip((page - 1) * 10)
+      .limit(POST_PER_PAGE)
+      .skip((page - 1) * POST_PER_PAGE)
       .lean()
       .exec();
 
     const postCount = await Post.countDocuments(query).exec();
-    ctx.response.set('Last-Page', Math.ceil(postCount / 10));
+    ctx.response.set('Last-Page', Math.ceil(postCount / POST_PER_PAGE));
     ctx.response.body = posts.map(post => ({
       ...post,
       body: post.content.length > 200 ? post.content : `${post.content.slice(0, 200)}...`
