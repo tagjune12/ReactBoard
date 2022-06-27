@@ -1,13 +1,20 @@
 import '@styles/layout.scss';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { logout } from '@api/auth';
+import { useState, useEffect } from 'react';
 
 const Header = () => {
-  const user = useSelector((state) => {
-    // console.log(state);
-    // console.log(state.login);
-    return state.user.user;
-  });
+  const userState = useSelector((state) => state.user.user);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+
+  const onLogOutClick = () => {
+    logout(user).then(() => setUser());
+  };
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('user')));
+  }, [userState]);
 
   return (
     <div className="layout-header">
@@ -16,7 +23,7 @@ const Header = () => {
         {user ? (
           <>
             <span>{`${user.nickname}님 환영합니다`}</span>
-            <button>로그아웃</button>
+            <button onClick={onLogOutClick}>로그아웃</button>
           </>
         ) : (
           <>

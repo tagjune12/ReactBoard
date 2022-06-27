@@ -28,6 +28,7 @@ const Login = () => {
       if (response.status === 200) {
         alert('로그인 성공');
         dispatch(loginSuccess(response.data));
+        localStorage.setItem('user', JSON.stringify(response.data));
         navigate(-1);
       }
     });
