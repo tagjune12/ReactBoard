@@ -2,6 +2,8 @@ import '@styles/login.scss';
 import { login } from '@api/auth';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { loginSuccess, loginFail } from '@modules/user';
 
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({
@@ -10,6 +12,7 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onChange = (event) => {
     const { value, id } = event.target;
@@ -24,6 +27,7 @@ const Login = () => {
     login(loginInfo).then((response) => {
       if (response.status === 200) {
         alert('로그인 성공');
+        dispatch(loginSuccess(response.data));
         navigate(-1);
       }
     });

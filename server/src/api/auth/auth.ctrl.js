@@ -32,7 +32,7 @@ export const register = async ctx => {
     const user = new User({
       userId,
       // 닉네임을 입력하지 않았다면 id를 닉네임으로 set
-      nickname: nickname === ('' || undefined) ? userId : nickname
+      nickname: nickname ? nickname : userId
     });
     // 비밀번호 설정
     await user.setPassword(password);

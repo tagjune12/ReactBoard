@@ -14,4 +14,15 @@ const login = async ({ userId, password }) => {
   }
 };
 
-export { login };
+const register = async (registerInfo) => {
+  try {
+    console.log(registerInfo);
+    const response = await axios.post(`${API_URL}/register`, registerInfo);
+
+    return response;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export { login, register };
