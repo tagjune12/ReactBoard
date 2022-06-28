@@ -5,6 +5,7 @@ import OffCanvas from '@components/ui/OffCanvas';
 import PostView from '@components/PostList/PostView';
 import Login from '@pages/Login';
 import SignUp from '@pages/SignUp';
+import WritePost from '@pages/WritePost';
 import pages from '@assets/data/page.json';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/writepost" element={<WritePost />} />
           </Routes>
         </main>
       </div>

@@ -5,8 +5,8 @@ const PostHeader = ({ postInfo }) => {
     <div className="header">
       <h3 className="title">{postInfo.title}</h3>
       <div className="post-info">
-        <span className="author">{postInfo.title}</span>
-        <span className="date">{postInfo.date}</span>
+        <span className="author">{postInfo.author}</span>
+        <span className="date">{postInfo.date.split('T')[0]}</span>
         <span className="comments">{postInfo.numOfComments} </span>
         <span className="likes">{postInfo.like} </span>
       </div>
@@ -15,7 +15,15 @@ const PostHeader = ({ postInfo }) => {
 };
 
 const PostBody = ({ content }) => {
-  return <div className="body">{content}</div>;
+  return (
+    <>
+      <div className="body">{content}</div>
+      <div>
+        <button>수정</button>
+        <button>삭제</button>
+      </div>
+    </>
+  );
 };
 
 const Post = ({ post }) => {

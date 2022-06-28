@@ -3,6 +3,7 @@ import PostItem from '@components/PostList/PostItem';
 import * as postAPI from '@api/post';
 import { useEffect, useState, useRef } from 'react';
 import { Outlet } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const PostList = () => {
   const [postList, setPostList] = useState([]);
@@ -56,7 +57,10 @@ const PostList = () => {
             next
           </button>
         </div>
-        <button className="post-write">글쓰기</button>
+        {/* <button className="post-write">글쓰기</button> */}
+        <Link to="/writepost">
+          <button className="post-write">글쓰기</button>
+        </Link>
       </div>
     </div>
   );
