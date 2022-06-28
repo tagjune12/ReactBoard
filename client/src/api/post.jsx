@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_URL = `/api/posts`;
 
-const getPostList = async (page = 1, username, category) => {
+export const getPostList = async (page = 1, username, category) => {
   try {
     const response = await axios.get(
       // const { data } = await axios.get(
@@ -18,7 +18,7 @@ const getPostList = async (page = 1, username, category) => {
   }
 };
 
-const getPostById = async (postId) => {
+export const getPostById = async (postId) => {
   try {
     const { data } = await axios.get(API_URL + '/' + postId);
 
@@ -28,4 +28,15 @@ const getPostById = async (postId) => {
   }
 };
 
-export { getPostList, getPostById };
+export const writePost = async (content) => {
+  console.log(content);
+  try {
+    const response = await axios.post(API_URL, content);
+
+    if (response.status === 200) {
+      return response;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

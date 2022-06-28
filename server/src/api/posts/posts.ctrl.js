@@ -90,12 +90,14 @@ export const write = async ctx => {
   const schema = Joi.object().keys({
     category: Joi.string().required(),
     title: Joi.string().required(),
-    content: Joi.string().required()
+    content: Joi.string().required(),
+    author: Joi.string().required()
   })
-
+  // console.log(ctx.request.body);
   const validationResult = schema.validate(ctx.request.body);
 
   if (validationResult.error) {
+    // console.log("validation error");
     ctx.response.status = 400; // Bad Request
     ctx.response.body = validationResult.error;
     return;
