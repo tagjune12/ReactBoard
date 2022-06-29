@@ -55,8 +55,7 @@ const PostList = () => {
             next
           </button>
         </div>
-        {/* <button className="post-write">글쓰기</button> */}
-        <Link to="/writepost">
+        <Link to="/write">
           <button className="post-write">글쓰기</button>
         </Link>
       </div>

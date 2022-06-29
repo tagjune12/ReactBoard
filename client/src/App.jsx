@@ -7,6 +7,7 @@ import Login from '@pages/Login';
 import SignUp from '@pages/SignUp';
 import WritePost from '@pages/WritePost';
 import pages from '@assets/data/page.json';
+import ModifyPost from '@pages/ModifyPost';
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/writepost" element={<WritePost />} />
+            <Route path="/write" element={<WritePost />} />
+            <Route path="/modify/:id" element={<ModifyPost />} />
           </Routes>
         </main>
       </div>

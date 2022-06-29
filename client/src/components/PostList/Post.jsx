@@ -14,7 +14,7 @@ const PostHeader = ({ postInfo }) => {
   );
 };
 
-const PostBody = ({ content, isMyPost, onDeleteClick }) => {
+const PostBody = ({ content, isMyPost, onDeleteClick, onEditClick }) => {
   return (
     <>
       <div
@@ -25,7 +25,7 @@ const PostBody = ({ content, isMyPost, onDeleteClick }) => {
       />
       {isMyPost && (
         <div>
-          <button>수정</button>
+          <button onClick={onEditClick}>수정</button>
           <button onClick={onDeleteClick}>삭제</button>
         </div>
       )}
@@ -33,7 +33,7 @@ const PostBody = ({ content, isMyPost, onDeleteClick }) => {
   );
 };
 
-const Post = ({ post, isMyPost, onDeleteClick }) => {
+const Post = ({ post, isMyPost, onDeleteClick, onEditClick }) => {
   const postHeader = {
     title: post?.title,
     author: post?.author,
@@ -50,6 +50,7 @@ const Post = ({ post, isMyPost, onDeleteClick }) => {
         content={postBody}
         isMyPost={isMyPost}
         onDeleteClick={onDeleteClick}
+        onEditClick={onEditClick}
       />
     </div>
   );

@@ -25,7 +25,6 @@ const PostView = () => {
 
   const onDeletePostClick = () => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
-      // console.log(postId);
       deletePost(postId).then((response) => {
         if (response === 204) {
           navigate('/');
@@ -34,9 +33,21 @@ const PostView = () => {
     }
   };
 
+  const onEditPostClick = () => {
+    // editPost(postId, post).then((data) => {
+    //   setPost((prev) => ({ ...prev, ...data }));
+    // });
+    navigate(`/modify/${postId}`);
+  };
+
   return (
     <div className="post-view">
-      <Post post={post} isMyPost={isMyPost} onDeleteClick={onDeletePostClick} />
+      <Post
+        post={post}
+        isMyPost={isMyPost}
+        onDeleteClick={onDeletePostClick}
+        onEditClick={onEditPostClick}
+      />
       <Comment />
     </div>
   );
