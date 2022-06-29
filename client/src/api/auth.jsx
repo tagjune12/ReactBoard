@@ -35,3 +35,12 @@ export const logout = async (userInfo) => {
     console.log(e);
   }
 };
+
+export const check = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/check`);
+    return response;
+  } catch (e) {
+    console.log(e);
+  }
+};

@@ -31,7 +31,8 @@ export const getPostById = async (ctx, next) => {
 // 자신이 쓴 post인지 확인
 export const checkOwnPost = (ctx, next) => {
   const { user, post } = ctx.state;
-  if (post.user._id.toString() !== user._id) {
+
+  if (post.author !== user._id) {
     ctx.response.status = 403; // Forbidden
     return;
   }
@@ -93,11 +94,9 @@ export const write = async ctx => {
     content: Joi.string().required(),
     author: Joi.string().required()
   })
-  // console.log(ctx.request.body);
   const validationResult = schema.validate(ctx.request.body);
 
   if (validationResult.error) {
-    // console.log("validation error");
     ctx.response.status = 400; // Bad Request
     ctx.response.body = validationResult.error;
     return;

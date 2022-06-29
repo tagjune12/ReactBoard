@@ -14,7 +14,7 @@ const PostHeader = ({ postInfo }) => {
   );
 };
 
-const PostBody = ({ content }) => {
+const PostBody = ({ content, isMyPost, onDeleteClick }) => {
   return (
     <>
       <div
@@ -23,15 +23,17 @@ const PostBody = ({ content }) => {
           __html: content,
         }}
       />
-      <div>
-        <button>수정</button>
-        <button>삭제</button>
-      </div>
+      {isMyPost && (
+        <div>
+          <button>수정</button>
+          <button onClick={onDeleteClick}>삭제</button>
+        </div>
+      )}
     </>
   );
 };
 
-const Post = ({ post }) => {
+const Post = ({ post, isMyPost, onDeleteClick }) => {
   const postHeader = {
     title: post?.title,
     author: post?.author,
@@ -40,10 +42,15 @@ const Post = ({ post }) => {
     like: post?.like,
   };
   const postBody = post?.content;
+
   return (
     <div className="post">
       <PostHeader postInfo={postHeader} />
-      <PostBody content={postBody} />
+      <PostBody
+        content={postBody}
+        isMyPost={isMyPost}
+        onDeleteClick={onDeleteClick}
+      />
     </div>
   );
 };

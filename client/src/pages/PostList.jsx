@@ -15,7 +15,7 @@ const PostList = () => {
       lastPage.current = parseInt(response.headers['last-page']);
       setPostList(response.data);
     });
-  }, [curPage]);
+  }, [curPage, postList]);
   const onPageChange = (event) => {
     setCurPage(parseInt(event.target.innerText));
   };
@@ -38,13 +38,11 @@ const PostList = () => {
             prev
           </button>
           <div className="page-list">
-            {Array.from(Array(lastPage.current), (_, index) => index + 1).map(
-              (pageNumber) => (
-                <button key={pageNumber} onClick={onPageChange}>
-                  {pageNumber}
-                </button>
-              ),
-            )}
+            {Array.from(Array(lastPage.current), (_, index) => (
+              <button key={index + 1} onClick={onPageChange}>
+                {index + 1}
+              </button>
+            ))}
           </div>
           <button
             className="next"

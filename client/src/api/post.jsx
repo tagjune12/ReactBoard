@@ -40,3 +40,12 @@ export const writePost = async (content) => {
     console.log(error);
   }
 };
+
+export const deletePost = async (postId) => {
+  try {
+    const response = await axios.delete(`${API_URL}/${postId}`);
+    if (response.status === 204) return response.status;
+  } catch (e) {
+    console.log(e);
+  }
+};
