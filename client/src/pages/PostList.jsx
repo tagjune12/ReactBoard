@@ -15,7 +15,7 @@ const PostList = () => {
       lastPage.current = parseInt(response.headers['last-page']);
       setPostList(response.data);
     });
-  }, [curPage, postList]);
+  }, [curPage]);
   const onPageChange = (event) => {
     setCurPage(parseInt(event.target.innerText));
   };

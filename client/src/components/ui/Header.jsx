@@ -23,7 +23,9 @@ const Header = () => {
         {user ? (
           <>
             <span>{`${user.nickname}님 환영합니다`}</span>
-            <button onClick={onLogOutClick}>로그아웃</button>
+            <button className="logout-btn" onClick={onLogOutClick}>
+              로그아웃
+            </button>
           </>
         ) : (
           <>
