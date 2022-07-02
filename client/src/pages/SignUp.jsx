@@ -1,6 +1,6 @@
 import '@styles/signup.scss';
 import React, { useState, useRef } from 'react';
-import { register } from '@api/auth';
+import { register } from '@lib/api/auth';
 import { useNavigate } from 'react-router';
 
 const SignUp = () => {

@@ -1,7 +1,7 @@
 import '@styles/layout.scss';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { logout } from '@api/auth';
+import { logout } from '@lib/api/auth';
 import { useState, useEffect } from 'react';
 
 const Header = () => {

@@ -1,5 +1,5 @@
 import '@styles/login.scss';
-import { login } from '@api/auth';
+import { login } from '@lib/api/auth';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';

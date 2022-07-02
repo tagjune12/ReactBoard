@@ -7,7 +7,7 @@
 			"@ui/*":["src/components/ui/*"],
 			"@assets/*":["src/assets/*"],
 			"@styles/*":["src/styles/*"],
-			"@api/*":["src/api/*"],
+			"@lib/*":["src/lib/*"],
 			"@modules/*":["src/modules/*"]
 		}
 	},

@@ -1,21 +1,23 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
-import { writePost } from '@api/post';
+import { writePost } from '@lib/api/post';
 import { useNavigate, useParams } from 'react-router';
-import { editPost, getPostById } from '@api/post';
+import { useDispatch, useSelector } from 'react-redux';
+import { modifyPost } from '@modules/modify';
 
 // 글 제목 작성
-const EditorHeader = ({ content }) => {
+const EditorHead = ({ content }) => {
+  const [title, setTitle] = useState(content.current.title);
   const onChange = (event) => {
     content.current.title = event.target.value;
+    setTitle(event.target.value);
+    // console.log(content.current.title);
   };
 
-  //
-  useEffect(() => {
-    console.log('헤더 렌더');
-  }, [content.current]);
-  //
+  // useEffect(() => {
+  //   console.log(title);
+  // }, [title]);
 
   return (
     <>
@@ -38,6 +40,10 @@ const EditorBody = ({ content, className }) => {
   const editorInstance = useRef(null);
   const editorContainer = useRef(null);
 
+  const dispatch = useDispatch();
+  const params = useParams();
+  const { loading, post } = useSelector(({ modify }) => modify);
+
   useEffect(() => {
     editorInstance.current = new Quill(editorContainer.current, {
       theme: 'snow',
@@ -54,9 +60,9 @@ const EditorBody = ({ content, className }) => {
     });
     editorInstance.current.focus();
     const quillEditor = editorInstance.current;
-    console.log('content확인', content.current);
+    // console.log('content확인', content.current);
     if (content.current['content']) {
-      console.log(content.current);
+      // console.log(content.current);
       quillEditor.root.innerHTML = content.current['content'];
     }
 
@@ -65,8 +71,6 @@ const EditorBody = ({ content, className }) => {
         content.current['content'] = quillEditor.root.innerHTML;
       }
     });
-
-    console.log('바디 렌더');
   }, [content.current]);
 
   const onWriteBtnClick = (event) => {
@@ -77,11 +81,19 @@ const EditorBody = ({ content, className }) => {
     });
   };
 
+  const onModifyBtnClick = (event) => {
+    event.preventDefault();
+    dispatch(modifyPost(params.id, content.current));
+    if (!loading) {
+      navigation(`/post/${params.id}`);
+    }
+  };
+
   return (
     <>
       <div ref={editorContainer} />
       {className === 'modify' ? (
-        <button>수정 완료</button>
+        <button onClick={onModifyBtnClick}>수정 완료</button>
       ) : (
         <button onClick={onWriteBtnClick}>글 작성</button>
       )}
@@ -99,33 +111,13 @@ const EditorBody = ({ content, className }) => {
 };
 
 // 본 컴포넌트
-const Editor = ({ className }) => {
-  const content = useRef({
-    category: 'post',
-    title: null,
-    content: null,
-  });
-  const { id } = useParams();
-
-  useEffect(() => {
-    const fetchPost = async () => {
-      if (className === 'modify') {
-        console.log('useEffect and modify');
-        await getPostById(id).then((post) => {
-          content.current = { ...post };
-          console.log(content.current);
-        });
-      }
-    };
-    fetchPost();
-  }, []);
-
+const Editor = ({ className, content }) => {
   return (
     <div>
       <br />
       <br />
       <form>
-        <EditorHeader className={className} content={content} />
+        <EditorHead className={className} content={content} />
         <EditorBody className={className} content={content} />
       </form>
     </div>
