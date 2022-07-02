@@ -9,7 +9,8 @@ const jwtMiddleware = async (ctx, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     ctx.state.user = {
       _id: decoded._id,
-      userId: decoded.userId
+      userId: decoded.userId,
+      nickname: decoded.nickname
     };
 
     // 토큰 유효기간이 3.5일 미만이면 재발급

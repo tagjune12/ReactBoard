@@ -6,7 +6,12 @@ const PostSchema = new Schema({
   title: { type: String, required: true },
   content: { type: String, required: true },
   comments: [String],
-  author: { type: String, required: true },
+  author: {
+    type: {
+      userId: { type: String, required: true },
+      nickname: { type: String, required: true }
+    }, required: true
+  },
   publishedDate: {
     type: Date,
     default: Date.now

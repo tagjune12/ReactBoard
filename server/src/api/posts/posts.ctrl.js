@@ -92,7 +92,10 @@ export const write = async ctx => {
     category: Joi.string().required(),
     title: Joi.string().required(),
     content: Joi.string().required(),
-    author: Joi.string()
+    author: Joi.object().keys({
+      userId: Joi.string().required(),
+      nickname: Joi.string().required(),
+    })
   })
   const validationResult = schema.validate(ctx.request.body);
 

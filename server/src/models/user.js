@@ -32,6 +32,7 @@ UserSchema.methods.generateToken = function () {
     {
       _id: this.id,
       userId: this.userId,
+      nickname: this.nickname
     },
     process.env.JWT_SECRET,
     {
