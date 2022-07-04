@@ -1,3 +1,5 @@
+import '@styles/editor.scss';
+
 import React, { useState, useRef, useEffect } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
@@ -23,12 +25,13 @@ const EditorHead = ({ content }) => {
     <>
       {content.current.title ? (
         <input
+          className="title-input"
           placeholder="제목"
           value={content.current.title}
           onChange={onChange}
         />
       ) : (
-        <input placeholder="제목" onChange={onChange} />
+        <input className="title-input" placeholder="제목" onChange={onChange} />
       )}
     </>
   );
@@ -92,7 +95,24 @@ const EditorBody = ({ content, className }) => {
   return (
     <>
       <div ref={editorContainer} />
-      {className === 'modify' ? (
+      <div className="editor-btn-wrapper">
+        {className === 'modify' ? (
+          <button onClick={onModifyBtnClick}>수정 완료</button>
+        ) : (
+          <button onClick={onWriteBtnClick}>글 작성</button>
+        )}
+
+        <button
+          className="cancel-btn"
+          onClick={(event) => {
+            event.preventDefault();
+            navigation(-1);
+          }}
+        >
+          작성 취소
+        </button>
+      </div>
+      {/* {className === 'modify' ? (
         <button onClick={onModifyBtnClick}>수정 완료</button>
       ) : (
         <button onClick={onWriteBtnClick}>글 작성</button>
@@ -105,7 +125,7 @@ const EditorBody = ({ content, className }) => {
         }}
       >
         작성 취소
-      </button>
+      </button> */}
     </>
   );
 };
@@ -113,9 +133,9 @@ const EditorBody = ({ content, className }) => {
 // 본 컴포넌트
 const Editor = ({ className, content }) => {
   return (
-    <div>
-      <br />
-      <br />
+    <div className="write-form">
+      {/* <br />
+      <br /> */}
       <form>
         <EditorHead className={className} content={content} />
         <EditorBody className={className} content={content} />

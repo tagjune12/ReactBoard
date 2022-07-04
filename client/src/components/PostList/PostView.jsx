@@ -20,7 +20,7 @@ const PostView = () => {
 
   useEffect(() => {
     check().then((response) => {
-      setIsMyPost(post?.author === response?.data._id);
+      setIsMyPost(post?.author._id === response?.data._id);
     });
   }, [post]);
 

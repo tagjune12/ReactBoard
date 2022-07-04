@@ -1,33 +1,69 @@
 @import "normalize.css";
+@import 'variables.css';
 
 .layout-header {
-  .title {
-    text-align: center;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding-left:20px;
+  padding-right:10px;
+  align-items: center;
+  color: white;
+
+  // background-color: #00ACA0;
+  background-color: var(--bg-color1);
+  .title{
+
+  }
+  .search-bar{
+    grid-column: 2/5;
+    .search-form{
+      input{
+        width:70%;
+        height: 30px;
+        border-radius: 7px;
+      }
+    }
   }
   .button-wrapper{
-    margin: 0 30px;
-    float: right;
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+    // margin-bottom: 20px;
+    // margin-right: 20px;
 
     .sign-up-btn, .logout-btn {
       margin-left: 15px;
+      border-radius: 5px;
     }
   }
+}
+
+.main-content{
+  display: flex;
+  justify-content: center;
+  // width: fit-content;
 }
 
 .navbar {
   // float: left;
   width: 150px;
   // max-width: 287px;
-  height: 100vh;
-  margin-right: 10px;
-  margin-left: 30px;
+  // height: 100vh;
+  
+  // margin-right: 10px;
+  padding-right: 10px;
+  // margin-left: 10px;
+  padding-left: 40px;
+  background-color: var(--bg-color2);
+  border: 1px solid black;
+
+  // position: sticky;
 }
 
 .nav-item-wrapper {
   /*  */
 }
 
-.main-content{
-  display: flex;
-  justify-content: center;
+.page-view {
+  width: 723px;
 }

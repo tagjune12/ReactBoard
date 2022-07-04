@@ -24,11 +24,28 @@ const PostList = () => {
       <div>
         <Outlet />
         <div className="post-item-wrapper">
+          {/* <div className="post-list-head">
+            <div className="like">
+              <span>추천</span>
+            </div>
+            <div className="category">
+              <span>카테고리</span>
+            </div>
+            <div className="title">
+              <span>제목</span>
+            </div>
+            <div className="author">
+              <span>작성자</span>
+            </div>
+            <div className="date">
+              <span>작성일</span>
+            </div>
+          </div> */}
           {postList?.map((post, index) => (
             <PostItem key={post._id} post={post} postIndex={index} />
           ))}
         </div>
-        <div className="pagenation">
+        <div className="pagination">
           <button
             className="prev"
             onClick={() => {
@@ -55,9 +72,14 @@ const PostList = () => {
             next
           </button>
         </div>
-        <Link to="/write">
+        <div className="test">
+          <Link to="/write">
+            <button className="post-write">글쓰기</button>
+          </Link>
+        </div>
+        {/* <Link to="/write">
           <button className="post-write">글쓰기</button>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

@@ -31,11 +31,20 @@ export const getPostById = async (ctx, next) => {
 // 자신이 쓴 post인지 확인
 export const checkOwnPost = (ctx, next) => {
   const { user, post } = ctx.state;
-
-  if (post.author !== user._id) {
+  // console.log("checkOwnPost", post.author._id)
+  // console.log("checkOwnPost", typeof post.author._id)
+  // console.log("checkOwnPost", post.author._id.toString())
+  // console.log("checkOwnPost", typeof post.author._id.toString())
+  // console.log("checkOwnPost", user._id)
+  // console.log("checkOwnPost", typeof user._id)
+  if (post.author._id.toString() !== user._id) {
     ctx.response.status = 403; // Forbidden
     return;
   }
+  // if (post.author._id !== user._id) {
+  //   ctx.response.status = 403; // Forbidden
+  //   return;
+  // }
 
   return next();
 }
@@ -110,7 +119,12 @@ export const write = async ctx => {
     category,
     title,
     content,
-    author: ctx.state.user
+    author: {
+      ...ctx.state.user,
+      _id: ctx.state.user._id
+      // _id: ctx.state.user._id.toString()
+      // _id: ctx.state.user.get("_id").toString()
+    }
   });
 
   try {

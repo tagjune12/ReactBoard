@@ -1,0 +1,23 @@
+.write-form{
+  border: 1px solid black;
+  padding: 20px 10px;
+}
+
+.title-input {
+  // width가 사이즈 줄어들면 이상하게 보임
+  margin-bottom : 15px;
+  width: 100%;
+  max-width: 668px;
+  padding: 10px 15px;
+  margin-right: 10px;
+}
+
+.editor-btn-wrapper {
+  margin-top: 15px;
+  display:flex;
+  justify-content: flex-end;
+
+  .cancel-btn{
+    margin-left:10px;
+  }
+}

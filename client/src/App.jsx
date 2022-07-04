@@ -15,7 +15,7 @@ function App() {
       <Header />
       <div className="main-content">
         <OffCanvas pages={pages} />
-        <main>
+        <div className="page-view">
           <Routes>
             <Route path="/" element={<PostList />}>
               <Route path="/post/:id" element={<PostView />} />
@@ -25,7 +25,18 @@ function App() {
             <Route path="/write" element={<WritePost />} />
             <Route path="/modify/:id" element={<ModifyPost />} />
           </Routes>
-        </main>
+        </div>
+        {/* <main>
+          <Routes>
+            <Route path="/" element={<PostList />}>
+              <Route path="/post/:id" element={<PostView />} />
+            </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/write" element={<WritePost />} />
+            <Route path="/modify/:id" element={<ModifyPost />} />
+          </Routes>
+        </main> */}
       </div>
     </div>
   );

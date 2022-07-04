@@ -19,10 +19,15 @@ const Header = () => {
   return (
     <div className="layout-header">
       <h1 className="title">Title</h1>
+      <div className="search-bar">
+        <form className="search-form">
+          <input placeholder="search..." />
+        </form>
+      </div>
       <div className="button-wrapper">
         {user ? (
           <>
-            <span>{`${user.nickname}님 환영합니다`}</span>
+            <span>{`${user.nickname}님`}</span>
             <button className="logout-btn" onClick={onLogOutClick}>
               로그아웃
             </button>

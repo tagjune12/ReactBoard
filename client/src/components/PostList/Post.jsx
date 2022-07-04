@@ -1,14 +1,22 @@
 import React from 'react';
 
-const PostHeader = ({ postInfo }) => {
+const PostHeader = ({
+  postInfo: { title, nickname, publishedDate, numOfComments, like },
+}) => {
+  const getMonthAndDate = () => {
+    const dateFormat = new Date(publishedDate);
+    const month = (dateFormat.getMonth() + 1).toString().padStart(2, '0');
+    const date = dateFormat.getDate().toString().padStart(2, '0');
+    return `${month}-${date}`;
+  };
   return (
     <div className="header">
-      <h3 className="title">{postInfo.title}</h3>
+      <h3 className="title">{title}</h3>
       <div className="post-info">
-        <span className="author">{postInfo.author}</span>
-        <span className="date">{postInfo.date}</span>
-        <span className="comments">{postInfo.numOfComments} </span>
-        <span className="likes">{postInfo.like} </span>
+        <span className="author">{nickname}</span>
+        <span className="date">{getMonthAndDate()}</span>
+        <span className="comments">{numOfComments} </span>
+        <span className="likes">{like} </span>
       </div>
     </div>
   );
@@ -36,8 +44,8 @@ const PostBody = ({ content, isMyPost, onDeleteClick, onEditClick }) => {
 const Post = ({ post, isMyPost, onDeleteClick, onEditClick }) => {
   const postHeader = {
     title: post?.title,
-    author: post?.author,
-    date: post?.publishedDate,
+    nickname: post?.author.nickname,
+    publishedDate: post?.publishedDate,
     numOfComments: post?.comments.length,
     like: post?.like,
   };
