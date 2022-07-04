@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { logout } from '@lib/api/auth';
 import { useState, useEffect } from 'react';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 const Header = () => {
   const userState = useSelector((state) => state.user.user);
@@ -18,10 +19,18 @@ const Header = () => {
 
   return (
     <div className="layout-header">
-      <h1 className="title">Title</h1>
+      <Link to="/">
+        <h1 className="title">Title</h1>
+      </Link>
       <div className="search-bar">
         <form className="search-form">
-          <input placeholder="search..." />
+          <input placeholder="검색" />
+          <AiOutlineSearch
+            className="search-btn"
+            onClick={() => {
+              console.log('onClick');
+            }}
+          />
         </form>
       </div>
       <div className="button-wrapper">
@@ -34,11 +43,11 @@ const Header = () => {
           </>
         ) : (
           <>
-            <Link className="login-btn" to="/login">
-              로그인
+            <Link to="/login">
+              <button className="login-btn">로그인</button>
             </Link>
-            <Link className="sign-up-btn" to="/signup">
-              회원가입
+            <Link to="/signup">
+              <button className="sign-up-btn">회원가입</button>
             </Link>
           </>
         )}

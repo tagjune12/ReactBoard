@@ -40,8 +40,8 @@ const Login = () => {
       <div className="login-form-wrapper">
         <BsPersonCircle className="login-icon" />
         <h1>로그인</h1>
-        {/* <form className="login-form" onSubmit={onSubmit}> */}
-        <form className="login-form">
+        <form className="login-form" onSubmit={onSubmit}>
+          {/* <form className="login-form"> */}
           <div className="id">
             <BsPersonFill />
             {/* <label htmlFor="userId">
@@ -68,10 +68,11 @@ const Login = () => {
               required
             />
           </div>
+          <button className="login-btn">로그인</button>
         </form>
-        <button className="login-btn" onClick={onSubmit}>
+        {/* <button className="login-btn" onClick={onSubmit}>
           로그인
-        </button>
+        </button> */}
       </div>
     </div>
   );

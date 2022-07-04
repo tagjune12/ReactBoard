@@ -2,6 +2,7 @@ import '@styles/signup.scss';
 import React, { useState, useRef } from 'react';
 import { register } from '@lib/api/auth';
 import { useNavigate } from 'react-router';
+import { IoNewspaperOutline } from 'react-icons/io5';
 
 const SignUp = () => {
   const [signUpInfo, setSignUpInfo] = useState({
@@ -47,28 +48,38 @@ const SignUp = () => {
 
   return (
     <div className="signup">
-      <h1>회원가입</h1>
-      <form className="signup-form" onSubmit={onSubmit}>
-        <label htmlFor="userId">ID</label>
-        <input id="userId" onChange={onChange} required></input>
-        <label htmlFor="nickname">Nickname</label>
-        <input id="nickname" onChange={onChange}></input>
-        <label htmlFor="password">PW</label>
-        <input
-          id="password"
-          onChange={onChange}
-          type="password"
-          required
-        ></input>
-        <label htmlFor="password-check">PW Check</label>
-        <input
-          id="password-check"
-          type="password"
-          ref={passwordCheck}
-          required
-        ></input>
-        <button className="signup-btn">회원가입</button>
-      </form>
+      <div className="signup-form-wrapper">
+        <IoNewspaperOutline className="signup-icon" />
+        <h1>회원가입</h1>
+        <form className="signup-form" onSubmit={onSubmit}>
+          {/* <label htmlFor="userId">아이디</label> */}
+          <input
+            id="userId"
+            placeholder="아이디"
+            onChange={onChange}
+            required
+          ></input>
+          {/* <label htmlFor="nickname">닉네임</label> */}
+          <input id="nickname" placeholder="닉네임" onChange={onChange}></input>
+          {/* <label htmlFor="password">비밀번호</label> */}
+          <input
+            id="password"
+            placeholder="비밀번호"
+            onChange={onChange}
+            type="password"
+            required
+          ></input>
+          {/* <label htmlFor="password-check">비밀번호 확인</label> */}
+          <input
+            id="password-check"
+            placeholder="비밀번호 확인"
+            type="password"
+            ref={passwordCheck}
+            required
+          ></input>
+          <button className="signup-btn">회원가입</button>
+        </form>
+      </div>
     </div>
   );
 };

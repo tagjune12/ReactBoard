@@ -3,78 +3,48 @@ main {
 }
 
 .post-wrapper{
-  padding:50px 30px;
-  border: 1px solid black;
-  padding-bottom: 30px;
+  // padding:50px 30px 30px 30px;
+  margin:50px 30px 30px 30px;
+  border: none;
+  border-radius: 7px;
+  background-color: white;
+  padding: 20px 10px;
+  // padding-bottom: 30px;
 }
 
 .post-item-wrapper{
   max-width: 803px;
 }
 
-// .post-list-head{
-//   display: grid;
-//   width: 100%;
-//   // margin-right: 30px;
-//   padding-top:10px;
-//   padding-bottom: 10px;
-//   border: 1px solid black;
-  
-//   grid-template-columns: 1fr 3fr 14fr 2fr 3fr ;
-//   .like{
-//     margin: 0 10px;
-//     text-align: center;
-//   }
-//   .category{
-//     margin: 0 10px;
-//     text-align: center;
-//   }
-//   .title{
-//     width: 300px;
-//     text-align: left;
-//     padding-left: 5px;
-//   }
-//   .author{
-//     margin: 0 10px;
-//     text-align: center;
-//   }
-//   .date{
-//     margin-left: 10px;
-//     text-align: center;
-//   }
-// }
+.post-list-header{
+  display: grid;
+  width: 100%;
+  padding-top:10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid gray;
+  grid-template-columns: 2fr 3fr 14fr 2fr 3fr ;
+  text-align: center;
+}
 
 .post-item{
   display: grid;
   width: 100%;
-  // margin-right: 30px;
   padding-top:10px;
   padding-bottom: 10px;
-  border: 1px solid black;
+  border-bottom: 1px solid gray;
   
-  grid-template-columns: 1fr 3fr 14fr 2fr 3fr ;
-  // text-align: center;
-  .like{
+  grid-template-columns: 2fr 3fr 14fr 2fr 3fr ;
+  .like, .category, .author, .date{
     margin: 0 10px;
     text-align: center;
   }
-  .category{
-    margin: 0 10px;
-    text-align: center;
-  }
+
   .title{
     width: 300px;
     text-align: left;
     padding-left: 5px;
   }
-  .author{
-    margin: 0 10px;
-    text-align: center;
-  }
-  .date{
-    margin-left: 10px;
-    text-align: center;
-  }
+
 }
 
 // Post
@@ -128,9 +98,10 @@ main {
   display:flex;
   justify-content: center;
   margin: 20px 0;
+  
 }
 
-.test{
+.write-btn-wrapper{
   display:flex;
   justify-content: flex-end;
 }

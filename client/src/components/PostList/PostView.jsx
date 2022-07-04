@@ -42,7 +42,7 @@ const PostView = () => {
     <>
       {loading && '불러오는 중...'}
       {!loading && (
-        <div className="post-view">
+        <div className="post-area">
           <Post
             post={post}
             isMyPost={isMyPost}
