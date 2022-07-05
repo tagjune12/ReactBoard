@@ -5,6 +5,8 @@ import { useEffect, useState, useRef } from 'react';
 import { Outlet } from 'react-router';
 import { Link } from 'react-router-dom';
 import Button from '@components/common/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { getPosts } from '@modules/postlist';
 
 const PostListHead = () => {
   return (
@@ -19,15 +21,16 @@ const PostListHead = () => {
 };
 
 const PostList = () => {
-  const [postList, setPostList] = useState([]);
   const [curPage, setCurPage] = useState(1);
-  const lastPage = useRef();
+  const dispatch = useDispatch();
+
+  const { posts, lastPage } = useSelector(({ postlist }) => ({
+    posts: postlist.posts,
+    lastPage: postlist.lastPage,
+  }));
 
   useEffect(() => {
-    postAPI.getPostList(curPage).then((response) => {
-      lastPage.current = parseInt(response.headers['last-page']);
-      setPostList(response.data);
-    });
+    dispatch(getPosts(curPage));
   }, [curPage]);
   const onPageChange = (event) => {
     setCurPage(parseInt(event.target.innerText));
@@ -38,7 +41,7 @@ const PostList = () => {
       <div className="post-list">
         <PostListHead />
         <div className="post-item-wrapper">
-          {postList?.map((post, index) => (
+          {posts?.map((post, index) => (
             <PostItem key={post._id} post={post} postIndex={index} />
           ))}
         </div>
@@ -52,10 +55,7 @@ const PostList = () => {
             prev
           </Button>
           <div className="page-list">
-            {Array.from(Array(lastPage.current), (_, index) => (
-              // <button key={index + 1} onClick={onPageChange}>
-              //   {index + 1}
-              // </button>
+            {Array.from(Array(lastPage), (_, index) => (
               <Button key={index + 1} onClick={onPageChange}>
                 {index + 1}
               </Button>
@@ -64,9 +64,7 @@ const PostList = () => {
           <Button
             className="next"
             onClick={() => {
-              setCurPage((prev) =>
-                prev === lastPage.current ? prev : prev + 1,
-              );
+              setCurPage((prev) => (prev === lastPage ? prev : prev + 1));
             }}
           >
             next
