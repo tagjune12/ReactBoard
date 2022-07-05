@@ -7,6 +7,7 @@ import { writePost } from '@lib/api/post';
 import { useNavigate, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { modifyPost } from '@modules/modify';
+import Button from './common/Button';
 
 // 글 제목 작성
 const EditorHead = ({ content }) => {
@@ -97,35 +98,20 @@ const EditorBody = ({ content, className }) => {
       <div ref={editorContainer} />
       <div className="editor-btn-wrapper">
         {className === 'modify' ? (
-          <button onClick={onModifyBtnClick}>수정 완료</button>
+          <Button onClick={onModifyBtnClick}>수정 완료</Button>
         ) : (
-          <button onClick={onWriteBtnClick}>글 작성</button>
+          <Button onClick={onWriteBtnClick}>작성</Button>
         )}
-
-        <button
+        <Button
           className="cancel-btn"
           onClick={(event) => {
             event.preventDefault();
             navigation(-1);
           }}
         >
-          작성 취소
-        </button>
+          취소
+        </Button>
       </div>
-      {/* {className === 'modify' ? (
-        <button onClick={onModifyBtnClick}>수정 완료</button>
-      ) : (
-        <button onClick={onWriteBtnClick}>글 작성</button>
-      )}
-
-      <button
-        onClick={(event) => {
-          event.preventDefault();
-          navigation(-1);
-        }}
-      >
-        작성 취소
-      </button> */}
     </>
   );
 };

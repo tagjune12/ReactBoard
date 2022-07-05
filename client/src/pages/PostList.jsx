@@ -34,8 +34,8 @@ const PostList = () => {
   };
   return (
     <div className="post-wrapper">
+      <Outlet />
       <div className="post-list">
-        <Outlet />
         <PostListHead />
         <div className="post-item-wrapper">
           {postList?.map((post, index) => (
@@ -43,22 +43,25 @@ const PostList = () => {
           ))}
         </div>
         <div className="pagination">
-          <button
+          <Button
             className="prev"
             onClick={() => {
               setCurPage((prev) => (prev === 1 ? prev : prev - 1));
             }}
           >
             prev
-          </button>
+          </Button>
           <div className="page-list">
             {Array.from(Array(lastPage.current), (_, index) => (
-              <button key={index + 1} onClick={onPageChange}>
+              // <button key={index + 1} onClick={onPageChange}>
+              //   {index + 1}
+              // </button>
+              <Button key={index + 1} onClick={onPageChange}>
                 {index + 1}
-              </button>
+              </Button>
             ))}
           </div>
-          <button
+          <Button
             className="next"
             onClick={() => {
               setCurPage((prev) =>
@@ -67,7 +70,7 @@ const PostList = () => {
             }}
           >
             next
-          </button>
+          </Button>
         </div>
         <div className="write-btn-wrapper">
           <Link to="/write">

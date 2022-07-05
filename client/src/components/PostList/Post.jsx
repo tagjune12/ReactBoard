@@ -1,4 +1,7 @@
+import Button from '@components/common/Button';
 import React from 'react';
+import { AiOutlineLike } from 'react-icons/ai';
+import { BiMessageDetail } from 'react-icons/bi';
 
 const PostHeader = ({
   postInfo: { title, nickname, publishedDate, numOfComments, like },
@@ -15,8 +18,15 @@ const PostHeader = ({
       <div className="post-info">
         <span className="author">{nickname}</span>
         <span className="date">{getMonthAndDate()}</span>
-        <span className="comments">{numOfComments} </span>
-        <span className="likes">{like} </span>
+
+        <span className="comments">
+          <BiMessageDetail />
+          {numOfComments}
+        </span>
+        <span className="likes">
+          <AiOutlineLike />
+          {like}
+        </span>
       </div>
     </div>
   );
@@ -31,12 +41,16 @@ const PostBody = ({ content, isMyPost, onDeleteClick, onEditClick }) => {
           __html: content,
         }}
       />
-      {isMyPost && (
-        <div>
-          <button onClick={onEditClick}>수정</button>
-          <button onClick={onDeleteClick}>삭제</button>
-        </div>
-      )}
+
+      <div className="button-wrapper">
+        <AiOutlineLike className="like-btn" />
+        {isMyPost && (
+          <div className="isMyPost">
+            <Button onClick={onEditClick}>수정</Button>
+            <Button onClick={onDeleteClick}>삭제</Button>
+          </div>
+        )}
+      </div>
     </>
   );
 };
