@@ -1,9 +1,8 @@
 import '@styles/login.scss';
-import { login } from '@lib/api/auth';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useDispatch } from 'react-redux';
-import { loginSuccess, loginFail } from '@modules/user';
+import { useDispatch, useSelector } from 'react-redux';
+import { userlogin } from '@modules/user';
 import { BsPersonCircle, BsPersonFill, BsLockFill } from 'react-icons/bs';
 
 const Login = () => {
@@ -11,6 +10,8 @@ const Login = () => {
     userId: '',
     password: '',
   });
+
+  const { user, loading, error } = useSelector(({ user }) => user);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,14 +26,15 @@ const Login = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    login(loginInfo).then((response) => {
-      if (response.status === 200) {
-        alert('로그인 성공');
-        dispatch(loginSuccess(response.data));
-        localStorage.setItem('user', JSON.stringify(response.data));
+    dispatch(userlogin(loginInfo));
+    if (!loading) {
+      if (error) {
+        alert('로그인 실패');
+      } else {
+        localStorage.setItem('user', JSON.stringify(user));
         navigate(-1);
       }
-    });
+    }
   };
 
   return (
@@ -41,12 +43,8 @@ const Login = () => {
         <BsPersonCircle className="login-icon" />
         <h1>로그인</h1>
         <form className="login-form" onSubmit={onSubmit}>
-          {/* <form className="login-form"> */}
           <div className="id">
             <BsPersonFill />
-            {/* <label htmlFor="userId">
-              <BsPersonFill />
-            </label> */}
             <input
               id="userId"
               placeholder="아이디"
@@ -54,12 +52,8 @@ const Login = () => {
               required
             />
           </div>
-          {/* <br /> */}
           <div className="password">
             <BsLockFill />
-            {/* <label htmlFor="password">
-              <BsLockFill />
-            </label> */}
             <input
               id="password"
               type="password"
@@ -70,9 +64,6 @@ const Login = () => {
           </div>
           <button className="login-btn">로그인</button>
         </form>
-        {/* <button className="login-btn" onClick={onSubmit}>
-          로그인
-        </button> */}
       </div>
     </div>
   );

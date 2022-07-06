@@ -1,26 +1,55 @@
 import { createAction, handleActions } from 'redux-actions';
+import { login } from '@lib/api/auth';
 
 // 액션 타입
+const LOGIN_START = 'auth/LOGIN';
 const LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS';
-const LOGIN_FAIL = 'auth/LOGIN_SUCCESS';
+const LOGIN_FAILURE = 'auth/LOGIN_FAILURE';
 
 // 액션 생성
-export const loginSuccess = createAction(LOGIN_SUCCESS);
-export const loginFail = createAction(LOGIN_FAIL);
+const loginStart = createAction(LOGIN_START);
+const loginSuccess = createAction(LOGIN_SUCCESS, (loginInfo) => loginInfo);
+const loginFail = createAction(LOGIN_FAILURE);
+
+// dispatch
+export const userlogin =
+  ({ userId, password }) =>
+  async (dispatch) => {
+    try {
+      dispatch(loginStart());
+      const { data } = await login({ userId, password });
+      dispatch(loginSuccess(data));
+    } catch (e) {
+      dispatch(loginFail());
+      throw e;
+    }
+  };
 
 // 초기 상태
-
 const initialState = {
+  loading: false,
+  error: false,
   user: null,
 };
 
 const user = handleActions(
   {
-    [LOGIN_SUCCESS]: (state, action) => ({
+    [LOGIN_START]: (state) => ({
       ...state,
-      user: { ...action.payload },
+      loading: true,
+      error: false,
     }),
-    // [LOGIN_FAIL]: (state, action) => initialState,
+    [LOGIN_SUCCESS]: (state, { payload: user }) => ({
+      ...state,
+      loading: false,
+      user,
+      error: false,
+    }),
+    [LOGIN_FAILURE]: (state) => ({
+      ...state,
+      loading: false,
+      error: true,
+    }),
   },
   initialState,
 );

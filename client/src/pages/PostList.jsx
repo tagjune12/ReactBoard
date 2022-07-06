@@ -1,7 +1,7 @@
 import '@styles/postlist.scss';
 import PostItem from '@components/PostList/PostItem';
-import * as postAPI from '@lib/api/post';
-import { useEffect, useState, useRef } from 'react';
+
+import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 import { Link } from 'react-router-dom';
 import Button from '@components/common/Button';
