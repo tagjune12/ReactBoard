@@ -1,5 +1,5 @@
 import '@styles/login.scss';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { userlogin } from '@modules/user';
@@ -10,11 +10,9 @@ const Login = () => {
     userId: '',
     password: '',
   });
-
-  const { user, loading, error } = useSelector(({ user }) => user);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { user, loading, error } = useSelector(({ user }) => user);
 
   const onChange = (event) => {
     const { value, id } = event.target;

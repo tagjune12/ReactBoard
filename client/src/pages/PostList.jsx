@@ -1,11 +1,11 @@
 import '@styles/postlist.scss';
 import PostItem from '@components/PostList/PostItem';
-
+import Button from '@components/common/Button';
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router';
 import { Link } from 'react-router-dom';
-import Button from '@components/common/Button';
 import { useDispatch, useSelector } from 'react-redux';
+// import { userlogin } from '@modules/user';
 import { getPosts } from '@modules/postlist';
 
 const PostListHead = () => {
@@ -32,6 +32,15 @@ const PostList = () => {
   useEffect(() => {
     dispatch(getPosts(curPage));
   }, [curPage]);
+
+  // useEffect(() => {
+  //   const userInfo = JSON.parse(localStorage.getItem('user'));
+  //   console.log('useEffect', userInfo);
+  //   if (userInfo) {
+  //     dispatch(userlogin(userInfo));
+  //   }
+  // }, []);
+
   const onPageChange = (event) => {
     setCurPage(parseInt(event.target.innerText));
   };

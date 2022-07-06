@@ -42,8 +42,8 @@ const user = handleActions(
     [LOGIN_SUCCESS]: (state, { payload: user }) => ({
       ...state,
       loading: false,
-      user,
       error: false,
+      user,
     }),
     [LOGIN_FAILURE]: (state) => ({
       ...state,
