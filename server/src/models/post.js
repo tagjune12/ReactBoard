@@ -5,7 +5,7 @@ const PostSchema = new Schema({
   category: { type: String, required: true },
   title: { type: String, required: true },
   content: { type: String, required: true },
-  comments: [String],
+  comments: { type: Number, default: 0 },
   author: {
     type: {
       userId: { type: mongoose.Types.ObjectId, required: true },
