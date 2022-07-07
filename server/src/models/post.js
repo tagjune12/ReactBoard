@@ -8,7 +8,7 @@ const PostSchema = new Schema({
   comments: [String],
   author: {
     type: {
-      userId: { type: String, required: true },
+      userId: { type: mongoose.Types.ObjectId, required: true },
       nickname: { type: String, required: true }
     }, required: true
   },
