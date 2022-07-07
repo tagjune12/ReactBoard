@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const API_URL = `/api/auth`;
 
-export const login = ({ userId, password }) => {
+export const requestLogin = ({ userId, password }) => {
   return axios.post(`${API_URL}/login`, {
     userId,
     password,
@@ -19,16 +19,8 @@ export const register = async (registerInfo) => {
   }
 };
 
-export const logout = async (userInfo) => {
-  try {
-    const response = await axios.post(`${API_URL}/logout`, userInfo);
-    if (response.status === 204) {
-      localStorage.removeItem('user');
-      alert('로그아웃 완료');
-    }
-  } catch (e) {
-    console.log(e);
-  }
+export const requestLogout = async (userInfo) => {
+  return axios.post(`${API_URL}/logout`, userInfo);
 };
 
 export const check = async () => {

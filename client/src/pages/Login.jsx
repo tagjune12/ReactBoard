@@ -2,7 +2,7 @@ import '@styles/login.scss';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { userlogin } from '@modules/user';
+import { userLogin } from '@modules/user';
 import { BsPersonCircle, BsPersonFill, BsLockFill } from 'react-icons/bs';
 
 const Login = () => {
@@ -12,7 +12,10 @@ const Login = () => {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user, loading, error } = useSelector(({ user }) => user);
+  const { user, loading, error } = useSelector(({ user }) => {
+    console.log(user);
+    return user;
+  });
 
   const onChange = (event) => {
     const { value, id } = event.target;
@@ -24,14 +27,15 @@ const Login = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    dispatch(userlogin(loginInfo));
-    if (!loading) {
-      if (error) {
-        alert('로그인 실패');
-      } else {
-        localStorage.setItem('user', JSON.stringify(user));
-        navigate(-1);
-      }
+    dispatch(userLogin(loginInfo));
+    if (error) {
+      alert('로그인 실패');
+      return;
+    } else {
+      alert('로그인 성공');
+      console.log(user);
+      localStorage.setItem('user', JSON.stringify(user));
+      navigate(-1);
     }
   };
 

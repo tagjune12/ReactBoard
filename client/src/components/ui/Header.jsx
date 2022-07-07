@@ -1,16 +1,28 @@
 import '@styles/layout.scss';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { logout } from '@lib/api/auth';
+import { useSelector, useDispatch } from 'react-redux';
+// import { logout } from '@lib/api/auth';
 import { useState, useEffect } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { userLogout } from '@modules/user';
 
 const Header = () => {
-  const userState = useSelector((state) => state.user.user);
+  const {
+    user: userState,
+    error,
+    loading,
+  } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
   const onLogOutClick = () => {
-    logout(user).then(() => setUser());
+    dispatch(userLogout(user));
+    if (error) {
+      alert('오류가 발생하였습니다. 관리자에게 문의 하세요');
+      return;
+    }
+    localStorage.removeItem('user');
+    setUser(null);
   };
 
   useEffect(() => {
