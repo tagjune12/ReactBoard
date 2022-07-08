@@ -1,6 +1,7 @@
 import Joi from 'joi';
 import Comment from '../../models/comment';
 import { mongoose } from 'mongoose';
+import Post from './../../models/post';
 
 const { ObjectId } = mongoose.Types;
 export const getCommentById = async (ctx, next) => {
@@ -59,7 +60,7 @@ export const list = async ctx => {
   }
 };
 
-// POST /api/comments/:id
+// POST /api/comments/:id ==> id는 post의 id
 /*
   {
     content
@@ -84,6 +85,9 @@ export const write = async ctx => {
     content,
     author: ctx.state.user
   });
+  await Post.findByIdAndUpdate(ctx.state.post._id, {
+    comments: ctx.state.post.comments + 1
+  }, { new: true }).exec();
 
   try {
     await comment.save();
@@ -97,11 +101,25 @@ export const write = async ctx => {
 // 댓글 삭제
 export const remove = async ctx => {
   const { id } = ctx.request.params;
+  // console.log("comment remove", typeof ctx.state.comment.postId);
+  const postId = ctx.state.comment.postId;
+  // console.log("comment remove", postId);
   try {
+    const post = await Post.findById(postId).exec();
     await Comment.findByIdAndRemove(id).exec();
+    // await Post.findByIdAndUpdate(ctx.state.comment.postId, {
+    //   comments: comments - 1
+    // }, { new: true }).exec();
+    // console.log("comment remove", typeof post);
+    post.updateOne({
+      comments: post.comments - 1
+    }).exec();
+    // post.findByIdAndUpdate(postId, {
+    //   comments: post.comments - 1
+    // }, { new: true }).exec();
     ctx.response.status = 204;
   } catch (e) {
-    ctx.response.throw(500, e);
+    ctx.throw(500, e);
   }
 }
 
@@ -129,6 +147,26 @@ export const update = async ctx => {
   const { id } = ctx.request.params;
   try {
     const comment = await Comment.findByIdAndUpdate(id, ctx.request.body, {
+      new: true
+    }).exec();
+    ctx.response.body = comment;
+  } catch (e) {
+    ctx.throw(500, e);
+  }
+}
+
+// PATCH /api/posts/like/:id
+// 좋아요 수정
+export const like = async ctx => {
+
+  const { id } = ctx.request.params;
+  const userObjectId = ctx.state.user._id;
+  const likeUsers = ctx.state.comment.like === [] ? [...ctx.state.comment.like, userObjectId] : ctx.state.comment.like.filter(_id => _id !== userObjectId);
+
+  try {
+    const comment = await Comment.findByIdAndUpdate(id, {
+      like: likeUsers
+    }, {
       new: true
     }).exec();
     ctx.response.body = comment;

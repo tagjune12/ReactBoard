@@ -9,6 +9,7 @@ posts.get('/:id', postCtrl.getPostById, postCtrl.read);
 
 posts.post('/', checkLoggedIn, postCtrl.write);
 posts.patch('/:id', postCtrl.getPostById, checkLoggedIn, postCtrl.checkOwnPost, postCtrl.update);
+posts.patch('/like/:id', postCtrl.getPostById, checkLoggedIn, postCtrl.checkOwnPost, postCtrl.like);
 
 posts.delete('/:id', postCtrl.getPostById, checkLoggedIn, postCtrl.checkOwnPost, postCtrl.remove);
 
