@@ -51,6 +51,12 @@ export const register = async ctx => {
 
 // POST /api/auth/login
 // 로그인
+/*
+  {
+    userId,
+    password
+  }
+*/
 export const login = async ctx => {
   const { userId, password } = ctx.request.body;
 
@@ -58,7 +64,7 @@ export const login = async ctx => {
   if (!userId || !password) {
     ctx.response.status = 401; // Unauthorized
     ctx.response.body = "Unauthorized";
-
+    console.log("아이디 혹은 비밀번호 오류");
     return;
   }
 
@@ -68,7 +74,7 @@ export const login = async ctx => {
     if (!user) {
       ctx.response.status = 401;
       ctx.response.body = "Unauthorized";
-
+      console.log("없는 계정")
       return;
     }
 
@@ -77,7 +83,7 @@ export const login = async ctx => {
     if (!valid) {
       ctx.response.status = 401;
       ctx.response.body = "Unauthorized";
-
+      console.log("비밀번호 오류")
       return;
     }
 

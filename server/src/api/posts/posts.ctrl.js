@@ -32,7 +32,7 @@ export const getPostById = async (ctx, next) => {
 export const checkOwnPost = (ctx, next) => {
   const { user, post } = ctx.state;
 
-  if (post.author !== user._id) {
+  if (post.author._id.toString() !== user._id) {
     ctx.response.status = 403; // Forbidden
     return;
   }
@@ -81,21 +81,25 @@ export const list = async ctx => {
 // GET /api/posts/:id
 // 특정 글 읽기
 export const read = async ctx => {
+  console.log('read post', ctx.state);
   ctx.response.body = ctx.state.post;
 }
 
 // POST /api/posts
 // 글 쓰기
+/*
+  {
+    category,
+    title,
+    content
+  }
+*/
 export const write = async ctx => {
   // body값 유효성 체크
   const schema = Joi.object().keys({
     category: Joi.string().required(),
     title: Joi.string().required(),
     content: Joi.string().required(),
-    author: Joi.object().keys({
-      userId: Joi.string().required(),
-      nickname: Joi.string().required(),
-    })
   })
   const validationResult = schema.validate(ctx.request.body);
 

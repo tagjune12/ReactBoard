@@ -4,7 +4,8 @@ const ReplySchema = new Schema({
   commentId: { type: mongoose.Types.ObjectId, required: true },
   author: {
     type: {
-      userId: { type: mongoose.Types.ObjectId, required: true },
+      _id: { type: mongoose.Types.ObjectId, required: true },
+      userId: { type: String, required: true },
       nickname: { type: String, required: true }
     }, required: true
   },
@@ -16,4 +17,5 @@ const ReplySchema = new Schema({
 });
 
 const Reply = mongoose.model('Reply', ReplySchema);
+
 export default Reply;

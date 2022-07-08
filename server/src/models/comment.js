@@ -4,7 +4,8 @@ const CommentSchema = new Schema({
   postId: { type: mongoose.Types.ObjectId, required: true },
   author: {
     type: {
-      userId: { type: mongoose.Types.ObjectId, required: true },
+      _id: { type: mongoose.Types.ObjectId, required: true },
+      userId: { type: String, required: true },
       nickname: { type: String, required: true }
     }, required: true
   },
@@ -18,4 +19,5 @@ const CommentSchema = new Schema({
 });
 
 const Comment = mongoose.model('Comment', CommentSchema);
+
 export default Comment;
