@@ -31,12 +31,6 @@ export const getPostById = async (ctx, next) => {
 // 자신이 쓴 post인지 확인
 export const checkOwnPost = (ctx, next) => {
   const { user, post } = ctx.state;
-  // console.log("checkOwnPost", post.author._id)
-  // console.log("checkOwnPost", typeof post.author._id)
-  // console.log("checkOwnPost", post.author._id.toString())
-  // console.log("checkOwnPost", typeof post.author._id.toString())
-  // console.log("checkOwnPost", user._id)
-  // console.log("checkOwnPost", typeof user._id)
   if (post.author._id.toString() !== user._id) {
     ctx.response.status = 403; // Forbidden
     return;
@@ -90,21 +84,25 @@ export const list = async ctx => {
 // GET /api/posts/:id
 // 특정 글 읽기
 export const read = async ctx => {
+  console.log('read post', ctx.state);
   ctx.response.body = ctx.state.post;
 }
 
 // POST /api/posts
 // 글 쓰기
+/*
+  {
+    category,
+    title,
+    content
+  }
+*/
 export const write = async ctx => {
   // body값 유효성 체크
   const schema = Joi.object().keys({
     category: Joi.string().required(),
     title: Joi.string().required(),
     content: Joi.string().required(),
-    author: Joi.object().keys({
-      userId: Joi.string().required(),
-      nickname: Joi.string().required(),
-    })
   })
   const validationResult = schema.validate(ctx.request.body);
 
@@ -175,3 +173,24 @@ export const remove = async ctx => {
   }
 }
 
+// PATCH /api/posts/like/:id
+// 좋아요 
+export const like = async ctx => {
+
+  const { id } = ctx.request.params;
+  const userObjectId = ctx.state.user._id;
+  const likeUsers = ctx.state.post.like.findIndex(_id => _id === userObjectId) < 0 ?
+    [...ctx.state.post.like, userObjectId] : // 새로 추가
+    ctx.state.post.like.filter(_id => _id !== userObjectId); // 제거
+
+  try {
+    const post = await Post.findByIdAndUpdate(id, {
+      like: likeUsers
+    }, {
+      new: true
+    }).exec();
+    ctx.response.body = post;
+  } catch (e) {
+    ctx.throw(500, e);
+  }
+}
