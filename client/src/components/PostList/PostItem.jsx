@@ -12,10 +12,10 @@ const PostItem = ({
 
   return (
     <div className="post-item">
-      <span className="like">{like}</span>
+      <span className="like">{like.length}</span>
       <span className="category">{category}</span>
       <Link to={`/post/${_id}`}>
-        <span className="title">{`${title}(${comments.length})`}</span>
+        <span className="title">{`${title}(${comments})`}</span>
       </Link>
       <span className="author">{author.nickname}</span>
       <span className="date">{getMonthAndDate()}</span>

@@ -4,7 +4,7 @@ import { AiOutlineLike } from 'react-icons/ai';
 import { BiMessageDetail } from 'react-icons/bi';
 
 const PostHeader = ({
-  postInfo: { title, nickname, publishedDate, numOfComments, like },
+  postInfo: { title, nickname, publishedDate, comments, like },
 }) => {
   const getMonthAndDate = () => {
     const dateFormat = new Date(publishedDate);
@@ -12,6 +12,7 @@ const PostHeader = ({
     const date = dateFormat.getDate().toString().padStart(2, '0');
     return `${month}-${date}`;
   };
+
   return (
     <div className="header">
       <h3 className="title">{title}</h3>
@@ -21,7 +22,7 @@ const PostHeader = ({
 
         <span className="comments">
           <BiMessageDetail />
-          {numOfComments}
+          {comments}
         </span>
         <span className="likes">
           <AiOutlineLike />
@@ -60,8 +61,8 @@ const Post = ({ post, isMyPost, onDeleteClick, onEditClick }) => {
     title: post?.title,
     nickname: post?.author.nickname,
     publishedDate: post?.publishedDate,
-    numOfComments: post?.comments.length,
-    like: post?.like,
+    comments: post?.comments,
+    like: post?.like.length,
   };
   const postBody = post?.content;
 

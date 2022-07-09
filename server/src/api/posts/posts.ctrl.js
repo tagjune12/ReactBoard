@@ -84,7 +84,6 @@ export const list = async ctx => {
 // GET /api/posts/:id
 // 특정 글 읽기
 export const read = async ctx => {
-  console.log('read post', ctx.state);
   ctx.response.body = ctx.state.post;
 }
 
