@@ -166,16 +166,18 @@ export const remove = async ctx => {
 }
 
 // PATCH /api/posts/like/:id
-// 좋아요 수정
+// 좋아요 
 export const like = async ctx => {
 
   const { id } = ctx.request.params;
   const userObjectId = ctx.state.user._id;
-
+  const likeUsers = ctx.state.post.like.findIndex(_id => _id === userObjectId) < 0 ?
+    [...ctx.state.post.like, userObjectId] : // 새로 추가
+    ctx.state.post.like.filter(_id => _id !== userObjectId); // 제거
 
   try {
     const post = await Post.findByIdAndUpdate(id, {
-      like: [...ctx.state.post.like, userObjectId]
+      like: likeUsers
     }, {
       new: true
     }).exec();

@@ -40,12 +40,12 @@ export const checkOwnReply = (ctx, next) => {
 }
 
 
-// GET /api/replies?commentId=
+// GET /api/replies?comment=
 // 답글 리스트 가져오기
 export const list = async ctx => {
-  const commentId = ctx.request.query.commentId;
+  const comment = ctx.request.query.commentId;
   const query = {
-    ...commentId
+    ...comment
   };
 
   try {
@@ -86,6 +86,9 @@ export const write = async ctx => {
     content,
     author: ctx.state.user
   });
+  await Comment.findByIdAndUpdate(ctx.state.comment._id, {
+    reply: ctx.state.comment.reply + 1
+  }, { new: true }).exec();
 
   try {
     await reply.save();

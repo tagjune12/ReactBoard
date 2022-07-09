@@ -41,11 +41,11 @@ export const checkOwnComment = (ctx, next) => {
 }
 
 
-// GET /api/comments?postId=
+// GET /api/comments?post=
 export const list = async ctx => {
-  const postId = ctx.request.query.postId;
+  const post = ctx.request.query.postId;
   const query = {
-    ...postId
+    ...post
   };
 
   try {
@@ -101,22 +101,14 @@ export const write = async ctx => {
 // 댓글 삭제
 export const remove = async ctx => {
   const { id } = ctx.request.params;
-  // console.log("comment remove", typeof ctx.state.comment.postId);
   const postId = ctx.state.comment.postId;
-  // console.log("comment remove", postId);
+
   try {
     const post = await Post.findById(postId).exec();
     await Comment.findByIdAndRemove(id).exec();
-    // await Post.findByIdAndUpdate(ctx.state.comment.postId, {
-    //   comments: comments - 1
-    // }, { new: true }).exec();
-    // console.log("comment remove", typeof post);
     post.updateOne({
       comments: post.comments - 1
     }).exec();
-    // post.findByIdAndUpdate(postId, {
-    //   comments: post.comments - 1
-    // }, { new: true }).exec();
     ctx.response.status = 204;
   } catch (e) {
     ctx.throw(500, e);
@@ -155,13 +147,15 @@ export const update = async ctx => {
   }
 }
 
-// PATCH /api/posts/like/:id
-// 좋아요 수정
+// PATCH /api/comments/like/:id ==> comment id
+// 좋아요
 export const like = async ctx => {
 
   const { id } = ctx.request.params;
   const userObjectId = ctx.state.user._id;
-  const likeUsers = ctx.state.comment.like === [] ? [...ctx.state.comment.like, userObjectId] : ctx.state.comment.like.filter(_id => _id !== userObjectId);
+  const likeUsers = ctx.state.comment.like.findIndex(_id => _id === userObjectId) < 0 ?
+    [...ctx.state.comment.like, userObjectId] : // 새로 추가
+    ctx.state.comment.like.filter(_id => _id !== userObjectId); // 제거
 
   try {
     const comment = await Comment.findByIdAndUpdate(id, {
