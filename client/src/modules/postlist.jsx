@@ -5,13 +5,10 @@ import createRequestThunk, {
 } from '@lib/createRequestThunk';
 
 // 액션
-const [LOAD_POSTS, LOAD_POSTS_SUCCESS, LOAD_POSTS_FAILURE] =
-  createRequestActionTypes('postlist/LOAD_POSTS');
+const loadPostsActions = createRequestActionTypes('postlist/LOAD_POSTS');
+const [LOAD_POSTS, LOAD_POSTS_SUCCESS, LOAD_POSTS_FAILURE] = loadPostsActions;
 
-export const getPosts = createRequestThunk(
-  [LOAD_POSTS, LOAD_POSTS_SUCCESS, LOAD_POSTS_FAILURE],
-  getPostList,
-);
+export const getPosts = createRequestThunk(loadPostsActions, getPostList);
 
 // 초기 상태
 const initialState = {
