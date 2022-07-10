@@ -31,10 +31,8 @@ const Login = () => {
     if (error) {
       alert('로그인 실패');
       return;
-    } else {
+    } else if (!loading) {
       alert('로그인 성공');
-      console.log(user);
-      localStorage.setItem('user', JSON.stringify(user));
       navigate(-1);
     }
   };

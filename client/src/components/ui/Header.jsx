@@ -20,9 +20,10 @@ const Header = () => {
     if (error) {
       alert('오류가 발생하였습니다. 관리자에게 문의 하세요');
       return;
+    } else if (!loading) {
+      localStorage.removeItem('user');
+      setUser(null);
     }
-    localStorage.removeItem('user');
-    setUser(null);
   };
 
   useEffect(() => {

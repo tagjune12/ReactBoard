@@ -27,7 +27,7 @@ const CommentFooter = () => {
 const Comment = () => {
   return (
     <div className="comment">
-      <div className="image-area">이미지</div>
+      {/* <div className="image-area">이미지</div> */}
       <div className="content-area">
         <CommentHeader />
         <CommentBody />

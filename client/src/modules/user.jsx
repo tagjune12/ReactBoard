@@ -1,49 +1,19 @@
-import { createAction, handleActions } from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import { requestLogin, requestLogout } from '@lib/api/auth';
-import { createRequestActionTypes } from '@lib/createRequestThunk';
+import createRequestThunk, {
+  createRequestActionTypes,
+} from '@lib/createRequestThunk';
 
 // 액션 타입
-const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] =
-  createRequestActionTypes('user/LOGIN');
-const [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILURE] =
-  createRequestActionTypes('user/LOGOUT');
+const loginActions = createRequestActionTypes('user/LOGIN');
+const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] = loginActions;
 
-// 액션 생성
-
-// 로그인
-const login = createAction(LOGIN);
-const loginSuccess = createAction(LOGIN_SUCCESS, (loginInfo) => loginInfo);
-const loginFail = createAction(LOGIN_FAILURE);
-
-// 로그아웃
-const logout = createAction(LOGOUT);
-const logoutSuccess = createAction(LOGOUT_SUCCESS);
-const logoutFail = createAction(LOGOUT_FAILURE);
+const logoutActions = createRequestActionTypes('user/LOGOUT');
+const [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILURE] = logoutActions;
 
 // dispatch
-export const userLogin =
-  ({ userId, password }) =>
-  async (dispatch) => {
-    dispatch(login());
-    try {
-      const { data } = await requestLogin({ userId, password });
-      dispatch(loginSuccess(data));
-    } catch (e) {
-      dispatch(loginFail());
-      throw e;
-    }
-  };
-
-export const userLogout = (user) => async (dispatch) => {
-  dispatch(logout());
-  try {
-    await requestLogout(user);
-    dispatch(logoutSuccess());
-  } catch (e) {
-    dispatch(logoutFail());
-    throw e;
-  }
-};
+export const userLogin = createRequestThunk(loginActions, requestLogin);
+export const userLogout = createRequestThunk(logoutActions, requestLogout);
 
 // 초기 상태
 const initialState = {
@@ -59,12 +29,16 @@ const user = handleActions(
       loading: true,
       error: false,
     }),
-    [LOGIN_SUCCESS]: (state, { payload: user }) => ({
-      ...state,
-      loading: false,
-      error: false,
-      user,
-    }),
+    [LOGIN_SUCCESS]: (state, { payload: { data: user } }) => {
+      localStorage.setItem('user', JSON.stringify(user));
+
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        user,
+      };
+    },
     [LOGIN_FAILURE]: (state) => ({
       ...state,
       loading: false,

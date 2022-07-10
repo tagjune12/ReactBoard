@@ -1,32 +1,17 @@
-import { createAction, handleActions } from 'redux-actions';
+import { handleActions } from 'redux-actions';
 import { getPostList } from '@lib/api/post';
+import createRequestThunk, {
+  createRequestActionTypes,
+} from '@lib/createRequestThunk';
 
 // 액션
-const LOAD_POSTS = 'postlist/LOAD_POSTS';
-const LOAD_POSTS_SUCCESS = 'postlist/LOAD_POSTS_SUCCESS';
-const LOAD_POSTS_FAILURE = 'postlist/LOAD_POSTS_FAILURE';
+const [LOAD_POSTS, LOAD_POSTS_SUCCESS, LOAD_POSTS_FAILURE] =
+  createRequestActionTypes('postlist/LOAD_POSTS');
 
-// 액션 생성
-const loadPosts = createAction(LOAD_POSTS);
-const loadPostsSuccess = createAction(
-  LOAD_POSTS_SUCCESS,
-  (response) => response,
+export const getPosts = createRequestThunk(
+  [LOAD_POSTS, LOAD_POSTS_SUCCESS, LOAD_POSTS_FAILURE],
+  getPostList,
 );
-const loadPostsFailure = createAction(LOAD_POSTS_FAILURE);
-
-// dispatch
-export const getPosts =
-  (page = 1, username, category) =>
-  async (dispatch) => {
-    dispatch(loadPosts());
-    try {
-      const response = await getPostList(page, username, category);
-      dispatch(loadPostsSuccess(response));
-    } catch (e) {
-      dispatch(loadPostsFailure());
-      throw e;
-    }
-  };
 
 // 초기 상태
 const initialState = {

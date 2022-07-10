@@ -44,6 +44,8 @@ const PostList = () => {
   const onPageChange = (event) => {
     setCurPage(parseInt(event.target.innerText));
   };
+  // const onPostItemClick =
+
   return (
     <div className="post-wrapper">
       <Outlet />
