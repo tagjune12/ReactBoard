@@ -2,7 +2,7 @@ import '@styles/login.scss';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { userLogin } from '@modules/user';
+import { userLogin } from '@modules/users/user';
 import { BsPersonCircle, BsPersonFill, BsLockFill } from 'react-icons/bs';
 
 const Login = () => {

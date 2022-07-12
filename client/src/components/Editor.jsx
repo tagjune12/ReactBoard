@@ -3,32 +3,30 @@ import '@styles/editor.scss';
 import React, { useState, useRef, useEffect } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
-import { writePost } from '@lib/api/post';
 import { useNavigate, useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { modifyPost } from '@modules/modify';
+import {
+  changeField,
+  updatePost,
+  writeNewPost,
+} from '@modules/posts/writepost';
 import Button from './common/Button';
+import { initialize } from '@modules/posts/writepost';
 
 // 글 제목 작성
-const EditorHead = ({ content }) => {
-  const [title, setTitle] = useState(content.current.title);
+const EditorHead = ({ content: { title } }) => {
+  const dispatch = useDispatch();
   const onChange = (event) => {
-    content.current.title = event.target.value;
-    setTitle(event.target.value);
-    // console.log(content.current.title);
+    dispatch(changeField('title', event.target.value));
   };
-
-  // useEffect(() => {
-  //   console.log(title);
-  // }, [title]);
 
   return (
     <>
-      {content.current.title ? (
+      {title ? (
         <input
           className="title-input"
           placeholder="제목"
-          value={content.current.title}
+          value={title}
           onChange={onChange}
         />
       ) : (
@@ -46,7 +44,11 @@ const EditorBody = ({ content, className }) => {
 
   const dispatch = useDispatch();
   const params = useParams();
-  const { loading, post } = useSelector(({ modify }) => modify);
+  const { loading, error, post } = useSelector(({ writePost }) => ({
+    loading: writePost.loading,
+    error: writePost.error,
+    post: writePost.post,
+  }));
 
   useEffect(() => {
     editorInstance.current = new Quill(editorContainer.current, {
@@ -64,33 +66,37 @@ const EditorBody = ({ content, className }) => {
     });
     editorInstance.current.focus();
     const quillEditor = editorInstance.current;
-    // console.log('content확인', content.current);
-    if (content.current['content']) {
-      // console.log(content.current);
-      quillEditor.root.innerHTML = content.current['content'];
-    }
 
     quillEditor.on('text-change', (delta, oldContent, source) => {
       if (source === 'user') {
-        content.current['content'] = quillEditor.root.innerHTML;
+        dispatch(changeField('content', quillEditor.root.innerHTML));
       }
     });
-  }, [content.current]);
+  }, []);
+
+  const mounted = useRef(false);
+  useEffect(() => {
+    if (mounted.current) return;
+    mounted.current = true;
+    editorInstance.current.root.innerHTML = content['content'];
+  }, [content]);
+
+  useEffect(() => {
+    if (post) {
+      navigation(`/post/${post._id}`);
+    } else if (error) {
+      alert('오류가 발생했습니다. 다시 시도해주세요.');
+    }
+  });
 
   const onWriteBtnClick = (event) => {
     event.preventDefault();
-    writePost(content.current).then((response) => {
-      const postId = response.data._id;
-      navigation(`/post/${postId}`);
-    });
+    dispatch(writeNewPost(content));
   };
 
   const onModifyBtnClick = (event) => {
     event.preventDefault();
-    dispatch(modifyPost(params.id, content.current));
-    if (!loading) {
-      navigation(`/post/${params.id}`);
-    }
+    dispatch(updatePost([params.id, content]));
   };
 
   return (
@@ -118,6 +124,17 @@ const EditorBody = ({ content, className }) => {
 
 // 본 컴포넌트
 const Editor = ({ className, content }) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // dispatch(initialize());
+
+    return () => {
+      console.log('초기화');
+      dispatch(initialize());
+    };
+  }, []);
+
   return (
     <div className="write-form">
       {/* <br />

@@ -4,8 +4,9 @@ import Comment from '@components/PostList/Comment';
 import { useParams, useNavigate } from 'react-router';
 import { deletePost } from '@lib/api/post';
 import { check } from '@lib/api/auth';
-import { getPost } from '@modules/post';
+import { getPost } from '@modules/posts/post';
 import { useDispatch, useSelector } from 'react-redux';
+import { initialize } from '@modules/posts/writepost';
 
 const PostView = () => {
   const { id: postId } = useParams();
@@ -35,6 +36,13 @@ const PostView = () => {
   };
 
   const onEditPostClick = () => {
+    dispatch(
+      initialize({
+        category: post.category,
+        title: post.title,
+        content: post.content,
+      }),
+    );
     navigate(`/modify/${postId}`);
   };
 

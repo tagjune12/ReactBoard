@@ -23,7 +23,7 @@ export const deletePost = async (postId) => {
   }
 };
 
-export const writePost = async (content) => {
+export const write = async (content) => {
   try {
     const response = await axios.post(API_URL, content);
 
@@ -36,6 +36,6 @@ export const writePost = async (content) => {
   }
 };
 
-export const editPost = async (postId, post) => {
+export const update = async (postId, post) => {
   return axios.patch(`${API_URL}/${postId}`, post);
 };

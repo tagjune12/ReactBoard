@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import post from '@modules/post';
-import user from '@modules/user';
-import modify from '@modules/modify';
-import postlist from '@modules/postlist';
+import post from '@modules/posts/post';
+import postlist from '@modules/posts/postlist';
+import writePost from '@modules/posts/writepost';
+import user from '@modules/users/user';
 
-const rootReducer = combineReducers({ post, user, modify, postlist });
+const rootReducer = combineReducers({ user, post, postlist, writePost });
 
 export default rootReducer;

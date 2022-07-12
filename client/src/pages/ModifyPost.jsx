@@ -1,18 +1,17 @@
-import React, { useRef } from 'react';
 import Editor from '@components/Editor';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ModifyPost = () => {
-  const { loading, post } = useSelector(({ post }) => post);
-  const content = useRef({
-    category: post.category,
-    title: post.title,
-    content: post.content,
-  });
+  const content = useSelector(({ writePost }) => ({
+    category: writePost.category,
+    title: writePost.title,
+    content: writePost.content,
+  }));
+
   return (
     <>
-      {loading && '로딩중'}
-      {!loading && <Editor className="modify" content={content} />}
+      {/* {loading && '로딩중'} */}
+      {!false && <Editor className="modify" content={content} />}
     </>
   );
 };

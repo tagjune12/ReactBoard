@@ -6,7 +6,7 @@ import { Outlet } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // import { userlogin } from '@modules/user';
-import { getPosts } from '@modules/postlist';
+import { getPosts } from '@modules/posts/postlist';
 
 const PostListHead = () => {
   return (

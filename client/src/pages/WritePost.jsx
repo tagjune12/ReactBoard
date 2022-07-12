@@ -1,12 +1,13 @@
-import React, { useRef } from 'react';
 import Editor from '@components/Editor';
+import { useSelector } from 'react-redux';
 
 const WritePost = () => {
-  const content = useRef({
+  const content = useSelector(({ writePost }) => ({
     category: 'post',
-    title: null,
-    content: null,
-  });
+    title: writePost.title,
+    content: writePost.content,
+  }));
+
   return <Editor className="write" content={content} />;
 };
 

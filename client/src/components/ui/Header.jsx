@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { logout } from '@lib/api/auth';
 import { useState, useEffect } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { userLogout } from '@modules/user';
+import { userLogout } from '@modules/users/user';
 
 const Header = () => {
   const {
