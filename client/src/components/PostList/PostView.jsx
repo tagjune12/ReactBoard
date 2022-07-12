@@ -61,13 +61,10 @@ const PostView = () => {
             onDeleteClick={onDeletePostClick}
             onEditClick={onEditPostClick}
           />
-          {/* {comments?.map((comment, index) => (
-            <Comment key={index} comment={comment}/>
-          ))} */}
-          {comments?.map((comment, index) => {
-            console.log('check', comment);
-            return <Comment key={index} comment={comment} />;
-          })}
+          {comments?.map((comment, index) => (
+            <Comment key={index} comment={comment} />
+          ))}
+
           {/* <CommentEditor /> */}
         </div>
       )}
