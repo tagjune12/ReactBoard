@@ -2,13 +2,9 @@ import Editor from '@components/Editor';
 import { useSelector } from 'react-redux';
 
 const WritePost = () => {
-  const content = useSelector(({ writePost }) => ({
-    category: 'post',
-    title: writePost.title,
-    content: writePost.content,
-  }));
+  const post = useSelector(({ writePost }) => writePost);
 
-  return <Editor className="write" content={content} />;
+  return <Editor className="write" article={post} type="post" />;
 };
 
 export default WritePost;

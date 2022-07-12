@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 import { useNavigate, useParams } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   changeField,
   updatePost,
@@ -12,10 +12,10 @@ import {
 } from '@modules/posts/writepost';
 import Button from './common/Button';
 import { initialize } from '@modules/posts/writepost';
-import clsx from 'clsx';
+// import clsx from 'clsx';
 
 // 글 제목 작성
-const EditorHead = ({ content: { title } }) => {
+const EditorHead = ({ article: { title, category } }) => {
   const dispatch = useDispatch();
   const onChange = (event) => {
     dispatch(changeField('title', event.target.value));
@@ -23,6 +23,12 @@ const EditorHead = ({ content: { title } }) => {
 
   return (
     <>
+      <input
+        className="category-input"
+        placeholder="카테고리"
+        value={'post'}
+        // onChange={onChange}
+      />
       {title ? (
         <input
           className="title-input"
@@ -38,18 +44,16 @@ const EditorHead = ({ content: { title } }) => {
 };
 
 // 글 내용 작성
-const EditorBody = ({ content, className }) => {
+const EditorBody = ({
+  article: { loading, error, content, post, comment, reply },
+  className,
+  onModifyBtnClick,
+  onWriteBtnClick,
+}) => {
   const navigation = useNavigate();
   const editorInstance = useRef(null);
   const editorContainer = useRef(null);
-
   const dispatch = useDispatch();
-  const params = useParams();
-  const { loading, error, post } = useSelector(({ writePost }) => ({
-    loading: writePost.loading,
-    error: writePost.error,
-    post: writePost.post,
-  }));
 
   useEffect(() => {
     editorInstance.current = new Quill(editorContainer.current, {
@@ -79,8 +83,8 @@ const EditorBody = ({ content, className }) => {
   useEffect(() => {
     if (mounted.current) return;
     mounted.current = true;
-    editorInstance.current.root.innerHTML = content['content'];
-  }, [content]);
+    editorInstance.current.root.innerHTML = content;
+  }, []);
 
   useEffect(() => {
     if (post) {
@@ -89,16 +93,6 @@ const EditorBody = ({ content, className }) => {
       alert('오류가 발생했습니다. 다시 시도해주세요.');
     }
   });
-
-  const onWriteBtnClick = (event) => {
-    event.preventDefault();
-    dispatch(writeNewPost(content));
-  };
-
-  const onModifyBtnClick = (event) => {
-    event.preventDefault();
-    dispatch(updatePost([params.id, content]));
-  };
 
   return (
     <>
@@ -124,25 +118,55 @@ const EditorBody = ({ content, className }) => {
 };
 
 // 본 컴포넌트
-const Editor = ({ className, content }) => {
+const Editor = ({ className, article, type }) => {
   const dispatch = useDispatch();
+  const params = useParams();
 
   useEffect(() => {
-    // dispatch(initialize());
-
     return () => {
-      console.log('초기화');
+      // console.log('초기화');
       dispatch(initialize());
     };
   }, []);
 
+  const onWriteBtnClick = (event) => {
+    event.preventDefault();
+    dispatch(
+      writeNewPost({
+        title: article.title,
+        category: article.category,
+        content: article.content,
+      }),
+    );
+  };
+
+  const onModifyBtnClick = (event) => {
+    event.preventDefault();
+    dispatch(
+      updatePost([
+        params.id,
+        {
+          title: article.title,
+          category: article.category,
+          content: article.content,
+        },
+      ]),
+    );
+  };
+
   return (
     <div className="write-form">
-      {/* <br />
-      <br /> */}
+      {console.log(article)}
       <form>
-        <EditorHead className={className} content={content} />
-        <EditorBody className={className} content={content} />
+        {type === 'post' && (
+          <EditorHead className={className} article={article} />
+        )}
+        <EditorBody
+          className={className}
+          article={article}
+          onWriteBtnClick={onWriteBtnClick}
+          onModifyBtnClick={onModifyBtnClick}
+        />
       </form>
     </div>
   );

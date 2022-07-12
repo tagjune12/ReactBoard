@@ -28,7 +28,7 @@ export const updatePost = createRequestThunk(updateActions, update);
 const initialState = {
   loading: false,
   error: false,
-  category: '',
+  category: 'post',
   title: '',
   content: '',
   post: null,
@@ -50,12 +50,21 @@ const writePost = handleActions(
       loading: true,
       error: false,
     }),
-    [WRITE_POST_SUCCCESS]: (state, { payload: response }) => ({
-      ...state,
-      loading: false,
-      error: false,
-      post: response.data,
-    }),
+    [WRITE_POST_SUCCCESS]: (state, { payload: response }) => {
+      console.log(response);
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        post: response.data,
+      };
+    },
+    // [WRITE_POST_SUCCCESS]: (state, { payload: response }) => ({
+    //   ...state,
+    //   loading: false,
+    //   error: false,
+    //   post: response.data,
+    // }),
     [WRITE_POST_FAILURE]: (state) => ({
       ...state,
       loading: false,
