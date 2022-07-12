@@ -7,16 +7,20 @@ import { check } from '@lib/api/auth';
 import { getPost } from '@modules/posts/post';
 import { useDispatch, useSelector } from 'react-redux';
 import { initialize } from '@modules/posts/writepost';
+import CommentEditor from '@components/CommentEditor';
+import { getComments } from '@modules/comments/comments';
 
 const PostView = () => {
   const { id: postId } = useParams();
   const [isMyPost, setIsMyPost] = useState(false);
   const navigate = useNavigate();
   const { loading, post } = useSelector(({ post }) => post);
+  const { comments } = useSelector(({ comments }) => comments);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPost(postId));
+    dispatch(getComments(postId));
   }, [postId]);
 
   useEffect(() => {
@@ -57,7 +61,14 @@ const PostView = () => {
             onDeleteClick={onDeletePostClick}
             onEditClick={onEditPostClick}
           />
-          <Comment />
+          {/* {comments?.map((comment, index) => (
+            <Comment key={index} comment={comment}/>
+          ))} */}
+          {comments?.map((comment, index) => {
+            console.log('check', comment);
+            return <Comment key={index} comment={comment} />;
+          })}
+          {/* <CommentEditor /> */}
         </div>
       )}
     </>

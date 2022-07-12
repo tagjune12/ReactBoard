@@ -12,6 +12,7 @@ import {
 } from '@modules/posts/writepost';
 import Button from './common/Button';
 import { initialize } from '@modules/posts/writepost';
+import clsx from 'clsx';
 
 // 글 제목 작성
 const EditorHead = ({ content: { title } }) => {
