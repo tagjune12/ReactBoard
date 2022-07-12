@@ -134,6 +134,13 @@ export const write = async ctx => {
 
 // PATCH /api/posts:id
 // 글 수정
+/*
+{
+  title,
+  content,
+  category
+}
+*/
 export const update = async ctx => {
   const schema = Joi.object().keys({
     title: Joi.string().required(),

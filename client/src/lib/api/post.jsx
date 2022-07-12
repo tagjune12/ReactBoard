@@ -14,6 +14,15 @@ export const getPostById = (postId) => {
   return axios.get(API_URL + '/' + postId);
 };
 
+export const deletePost = async (postId) => {
+  try {
+    const response = await axios.delete(`${API_URL}/${postId}`);
+    if (response.status === 204) return response.status;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const writePost = async (content) => {
   try {
     const response = await axios.post(API_URL, content);
@@ -24,15 +33,6 @@ export const writePost = async (content) => {
     }
   } catch (error) {
     console.log(error);
-  }
-};
-
-export const deletePost = async (postId) => {
-  try {
-    const response = await axios.delete(`${API_URL}/${postId}`);
-    if (response.status === 204) return response.status;
-  } catch (e) {
-    console.log(e);
   }
 };
 
