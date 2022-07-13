@@ -22,6 +22,7 @@ const PostView = () => {
     dispatch(getPost(postId));
     dispatch(getComments(postId));
   }, [postId]);
+  // });
 
   useEffect(() => {
     check().then((response) => {
@@ -65,7 +66,7 @@ const PostView = () => {
             <Comment key={index} comment={comment} />
           ))}
 
-          {/* <CommentEditor /> */}
+          <CommentEditor />
         </div>
       )}
     </>

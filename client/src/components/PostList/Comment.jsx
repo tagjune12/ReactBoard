@@ -12,7 +12,14 @@ const CommentHeader = ({ nickname, date }) => {
 };
 
 const CommentBody = ({ content }) => {
-  return <div className="body">{content}</div>;
+  return (
+    <div
+      className="body"
+      dangerouslySetInnerHTML={{
+        __html: content,
+      }}
+    />
+  );
 };
 
 const CommentFooter = ({ reply, like }) => {

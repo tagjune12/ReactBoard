@@ -1,8 +1,8 @@
-import { write, update } from '@lib/api/post';
 import { createAction, handleActions } from 'redux-actions';
 import createRequestThunk, {
   createRequestActionTypes,
 } from '@lib/createRequestThunk';
+import { write, update } from '@lib/api/post';
 
 const INITIALIZE = 'writepost/INITIALIZE';
 
@@ -50,21 +50,12 @@ const writePost = handleActions(
       loading: true,
       error: false,
     }),
-    [WRITE_POST_SUCCCESS]: (state, { payload: response }) => {
-      console.log(response);
-      return {
-        ...state,
-        loading: false,
-        error: false,
-        post: response.data,
-      };
-    },
-    // [WRITE_POST_SUCCCESS]: (state, { payload: response }) => ({
-    //   ...state,
-    //   loading: false,
-    //   error: false,
-    //   post: response.data,
-    // }),
+    [WRITE_POST_SUCCCESS]: (state, { payload: response }) => ({
+      ...state,
+      loading: false,
+      error: false,
+      post: response.data,
+    }),
     [WRITE_POST_FAILURE]: (state) => ({
       ...state,
       loading: false,

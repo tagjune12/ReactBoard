@@ -6,7 +6,7 @@ export const getCommentList = (postId) => {
   return axios.get(`${API_URL}?post=${postId}`);
 };
 
-export const wirte = (postId, content) => {
+export const write = (postId, content) => {
   return axios.post(`${API_URL}/${postId}`, content);
 };
 

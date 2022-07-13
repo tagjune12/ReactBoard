@@ -10,8 +10,13 @@ import {
   updatePost,
   writeNewPost,
 } from '@modules/posts/writepost';
+import {
+  writeNewComment,
+  changeCommentField,
+} from '@modules/comments/writeComment';
 import Button from './common/Button';
 import { initialize } from '@modules/posts/writepost';
+
 // import clsx from 'clsx';
 
 // 글 제목 작성
@@ -49,6 +54,7 @@ const EditorBody = ({
   className,
   onModifyBtnClick,
   onWriteBtnClick,
+  type,
 }) => {
   const navigation = useNavigate();
   const editorInstance = useRef(null);
@@ -74,7 +80,11 @@ const EditorBody = ({
 
     quillEditor.on('text-change', (delta, oldContent, source) => {
       if (source === 'user') {
-        dispatch(changeField('content', quillEditor.root.innerHTML));
+        if (type === 'post') {
+          dispatch(changeField('content', quillEditor.root.innerHTML));
+        } else if (type === 'comment') {
+          dispatch(changeCommentField(quillEditor.root.innerHTML));
+        }
       }
     });
   }, []);
@@ -89,6 +99,8 @@ const EditorBody = ({
   useEffect(() => {
     if (post) {
       navigation(`/post/${post._id}`);
+    } else if (comment) {
+      editorInstance.current.root.innerHTML = '';
     } else if (error) {
       alert('오류가 발생했습니다. 다시 시도해주세요.');
     }
@@ -103,15 +115,17 @@ const EditorBody = ({
         ) : (
           <Button onClick={onWriteBtnClick}>작성</Button>
         )}
-        <Button
-          className="cancel-btn"
-          onClick={(event) => {
-            event.preventDefault();
-            navigation(-1);
-          }}
-        >
-          취소
-        </Button>
+        {type === 'post' && (
+          <Button
+            className="cancel-btn"
+            onClick={(event) => {
+              event.preventDefault();
+              navigation(-1);
+            }}
+          >
+            취소
+          </Button>
+        )}
       </div>
     </>
   );
@@ -131,13 +145,25 @@ const Editor = ({ className, article, type }) => {
 
   const onWriteBtnClick = (event) => {
     event.preventDefault();
-    dispatch(
-      writeNewPost({
-        title: article.title,
-        category: article.category,
-        content: article.content,
-      }),
-    );
+
+    if (type === 'post') {
+      dispatch(
+        writeNewPost({
+          title: article.title,
+          category: article.category,
+          content: article.content,
+        }),
+      );
+    } else if (type === 'comment') {
+      dispatch(
+        writeNewComment([
+          params.id,
+          {
+            content: article.content,
+          },
+        ]),
+      );
+    }
   };
 
   const onModifyBtnClick = (event) => {
@@ -156,7 +182,7 @@ const Editor = ({ className, article, type }) => {
 
   return (
     <div className="write-form">
-      {console.log(article)}
+      {/* {console.log(article)} */}
       <form>
         {type === 'post' && (
           <EditorHead className={className} article={article} />
@@ -166,6 +192,7 @@ const Editor = ({ className, article, type }) => {
           article={article}
           onWriteBtnClick={onWriteBtnClick}
           onModifyBtnClick={onModifyBtnClick}
+          type={type}
         />
       </form>
     </div>
