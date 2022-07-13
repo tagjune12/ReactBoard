@@ -1,4 +1,6 @@
 import React from 'react';
+import { getMonthAndDate } from '@lib/getDate';
+import Button from '@components/common/Button';
 
 const CommentHeader = ({ nickname, date }) => {
   return (
@@ -7,6 +9,8 @@ const CommentHeader = ({ nickname, date }) => {
       {/* <span className="edit">수정</span>
       <span className="delete">삭제</span> */}
       <span className="date">{date}</span>
+      <Button className={'edit-comment'}>수정</Button>
+      <Button className={'delete-comment'}>삭제</Button>
     </div>
   );
 };
@@ -38,7 +42,10 @@ const Comment = ({
     <div className="comment">
       {/* <div className="image-area">이미지</div> */}
       <div className="content-area">
-        <CommentHeader nickname={author.nickname} date={publishedDate} />
+        <CommentHeader
+          nickname={author.nickname}
+          date={getMonthAndDate(publishedDate)}
+        />
         <CommentBody content={content} />
         <CommentFooter reply={reply} like={like} />
       </div>

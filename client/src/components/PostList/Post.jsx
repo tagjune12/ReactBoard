@@ -2,23 +2,17 @@ import Button from '@components/common/Button';
 import React from 'react';
 import { AiOutlineLike } from 'react-icons/ai';
 import { BiMessageDetail } from 'react-icons/bi';
+import { getMonthAndDate } from '@lib/getDate';
 
 const PostHeader = ({
   postInfo: { title, nickname, publishedDate, comments, like },
 }) => {
-  const getMonthAndDate = () => {
-    const dateFormat = new Date(publishedDate);
-    const month = (dateFormat.getMonth() + 1).toString().padStart(2, '0');
-    const date = dateFormat.getDate().toString().padStart(2, '0');
-    return `${month}-${date}`;
-  };
-
   return (
     <div className="header">
       <h3 className="title">{title}</h3>
       <div className="post-info">
         <span className="author">{nickname}</span>
-        <span className="date">{getMonthAndDate()}</span>
+        <span className="date">{getMonthAndDate(publishedDate)}</span>
 
         <span className="comments">
           <BiMessageDetail />
