@@ -26,17 +26,6 @@ function App() {
             <Route path="/modify/:id" element={<ModifyPost />} />
           </Routes>
         </div>
-        {/* <main>
-          <Routes>
-            <Route path="/" element={<PostList />}>
-              <Route path="/post/:id" element={<PostView />} />
-            </Route>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/write" element={<WritePost />} />
-            <Route path="/modify/:id" element={<ModifyPost />} />
-          </Routes>
-        </main> */}
       </div>
     </div>
   );

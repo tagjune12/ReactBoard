@@ -1,4 +1,4 @@
-import Editor from '@components/Editor';
+import Editor from '@components/common/Editor';
 import { useSelector } from 'react-redux';
 
 const WritePost = () => {

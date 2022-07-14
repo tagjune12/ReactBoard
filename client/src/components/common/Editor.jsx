@@ -15,7 +15,7 @@ import {
   changeCommentField,
   updateComment,
 } from '@modules/comments/writeComment';
-import Button from './common/Button';
+import Button from './Button';
 import { initialize } from '@modules/posts/writepost';
 import { getComments } from '@modules/comments/comments';
 
