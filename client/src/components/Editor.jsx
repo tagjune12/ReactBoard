@@ -13,6 +13,7 @@ import {
 import {
   writeNewComment,
   changeCommentField,
+  updateComment,
 } from '@modules/comments/writeComment';
 import Button from './common/Button';
 import { initialize } from '@modules/posts/writepost';
@@ -117,7 +118,7 @@ const EditorBody = ({
         ) : (
           <Button onClick={onWriteBtnClick}>작성</Button>
         )}
-        {type === 'post' && (
+        {(type === 'post' || className === 'modify') && (
           <Button
             className="cancel-btn"
             onClick={(event) => {
@@ -170,16 +171,24 @@ const Editor = ({ className, article, type }) => {
 
   const onModifyBtnClick = (event) => {
     event.preventDefault();
-    dispatch(
-      updatePost([
-        params.id,
-        {
-          title: article.title,
-          category: article.category,
-          content: article.content,
-        },
-      ]),
-    );
+    if (type === 'post') {
+      dispatch(
+        updatePost([
+          params.id,
+          {
+            title: article.title,
+            category: article.category,
+            content: article.content,
+          },
+        ]),
+      );
+      return;
+    }
+    if (type === 'comment') {
+      // 코멘트 모듈 디스패치
+      console.log('log from comment update', article);
+      // dispatch(updateComment(article._id));
+    }
   };
 
   return (

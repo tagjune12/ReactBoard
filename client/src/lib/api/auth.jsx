@@ -24,10 +24,5 @@ export const requestLogout = async (userInfo) => {
 };
 
 export const check = async () => {
-  try {
-    const response = await axios.get(`${API_URL}/check`);
-    return response;
-  } catch (e) {
-    console.log(e);
-  }
+  return axios.get(`${API_URL}/check`);
 };

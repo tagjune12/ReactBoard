@@ -13,7 +13,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, loading, error } = useSelector(({ user }) => {
-    console.log(user);
+    // console.log(user);
     return user;
   });
 

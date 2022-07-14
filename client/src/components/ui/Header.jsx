@@ -1,7 +1,6 @@
 import '@styles/layout.scss';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-// import { logout } from '@lib/api/auth';
 import { useState, useEffect } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { userLogout } from '@modules/users/user';
@@ -21,7 +20,6 @@ const Header = () => {
       alert('오류가 발생하였습니다. 관리자에게 문의 하세요');
       return;
     } else if (!loading) {
-      localStorage.removeItem('user');
       setUser(null);
     }
   };

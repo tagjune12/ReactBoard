@@ -1,5 +1,5 @@
-import { handleActions } from 'redux-actions';
-import { requestLogin, requestLogout } from '@lib/api/auth';
+import { createAction, handleActions } from 'redux-actions';
+import { requestLogin, requestLogout, check } from '@lib/api/auth';
 import createRequestThunk, {
   createRequestActionTypes,
 } from '@lib/createRequestThunk';
@@ -11,9 +11,17 @@ const [LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE] = loginActions;
 const logoutActions = createRequestActionTypes('user/LOGOUT');
 const [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILURE] = logoutActions;
 
+const loggedInCheckActions = createRequestActionTypes('user/CHECK_LOGIN');
+const [CHECK, CHECK_SUCCESS, CHECK_FAILURE] = loggedInCheckActions;
+
+const SET_TEMP_USER = 'user/SET_TEMP_USER';
+
 // dispatch
 export const userLogin = createRequestThunk(loginActions, requestLogin);
 export const userLogout = createRequestThunk(logoutActions, requestLogout);
+
+export const setTempUser = createAction(SET_TEMP_USER, (user) => user);
+export const checkLoggedIn = createRequestThunk(loggedInCheckActions, check);
 
 // 초기 상태
 const initialState = {
@@ -24,6 +32,10 @@ const initialState = {
 
 const user = handleActions(
   {
+    [SET_TEMP_USER]: (state, { payload: user }) => ({
+      ...state,
+      user,
+    }),
     [LOGIN]: (state) => ({
       ...state,
       loading: true,
@@ -48,13 +60,31 @@ const user = handleActions(
       ...state,
       loading: true,
     }),
-    [LOGOUT_SUCCESS]: (state) => ({
+    [LOGOUT_SUCCESS]: (state) => {
+      localStorage.removeItem('user');
+      return {
+        ...state,
+        user: null,
+        loading: false,
+        error: false,
+      };
+    },
+    [LOGOUT_FAILURE]: (state) => ({
       ...state,
-      user: null,
+      loading: false,
+      error: true,
+    }),
+    [CHECK]: (state) => ({
+      ...state,
+      loading: true,
+      error: true,
+    }),
+    [CHECK_SUCCESS]: (state) => ({
+      ...state,
       loading: false,
       error: false,
     }),
-    [LOGOUT_FAILURE]: (state) => ({
+    [CHECK_FAILURE]: (state) => ({
       ...state,
       loading: false,
       error: true,

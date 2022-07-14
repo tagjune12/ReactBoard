@@ -9,12 +9,26 @@ import { Provider } from 'react-redux';
 import ReduxThunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';
+import { checkLoggedIn, setTempUser } from '@modules/users/user';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(logger, ReduxThunk)),
 );
+
+const loadUser = () => {
+  try {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) return;
+    store.dispatch(setTempUser(user));
+    store.dispatch(checkLoggedIn());
+  } catch (e) {
+    console.log('localStroage is not working');
+  }
+};
+
+loadUser();
 
 root.render(
   <Provider store={store}>

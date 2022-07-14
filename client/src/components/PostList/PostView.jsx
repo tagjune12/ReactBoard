@@ -8,20 +8,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { initialize } from '@modules/posts/writepost';
 import CommentEditor from '@components/CommentEditor';
 import CommentList from '@components/CommentList';
+import { getPost } from '@modules/posts/post';
 
 const PostView = () => {
   const { id: postId } = useParams();
   const [isMyPost, setIsMyPost] = useState(false);
   const navigate = useNavigate();
   const { loading, post } = useSelector(({ post }) => post);
+  const userObjId = useSelector(({ user }) => user.user?._id);
   const dispatch = useDispatch();
 
-  useEffect(() => {}, [postId]);
-
   useEffect(() => {
-    check().then((response) => {
-      setIsMyPost(post?.author._id === response?.data._id);
-    });
+    dispatch(getPost(postId));
+  }, [postId]);
+
+  // 수정 필요
+  useEffect(() => {
+    setIsMyPost(post?.author._id === userObjId);
+    // check().then((response) => {
+    //   setIsMyPost(post?.author._id === response?.data._id);
+    // });
   }, [post]);
 
   const onDeletePostClick = () => {
@@ -56,7 +62,7 @@ const PostView = () => {
             onDeleteClick={onDeletePostClick}
             onEditClick={onEditPostClick}
           />
-          <CommentList postId={postId} />
+          <CommentList postId={postId} userObjId={userObjId} />
 
           <CommentEditor className="comment-editor" />
         </div>
