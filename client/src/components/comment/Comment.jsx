@@ -1,13 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import { getMonthAndDate } from '@lib/getDate';
 import Button from '@components/common/Button';
-import { remove } from '@lib/api/comment';
-import { useNavigate } from 'react-router';
-import { getComments } from '@modules/comments/comments';
-import { useDispatch } from 'react-redux';
-// import Editor from '@components/Editor';
-import CommentEditor from '@components/CommentEditor';
-import { initialize } from '@modules/comments/writeComment';
 
 const CommentHeader = ({
   author,
@@ -55,38 +47,12 @@ const CommentFooter = ({ reply, like }) => {
 };
 
 const Comment = ({
-  comment: { author, content, like, postId, publishedDate, reply, _id },
-  userObjId,
+  comment: { author, content, like, publishedDate, reply },
+  isMyComment,
+  isModifying,
+  onDeleteBtnClick,
+  onEditBtnClick,
 }) => {
-  const [isMyComment, setIsMyComment] = useState(false);
-  const [isModifying, setIsModifying] = useState(false);
-  // const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    setIsMyComment(author._id === userObjId);
-  }, []);
-
-  const onDeleteBtnClick = () => {
-    // 삭제 로직
-    if (window.confirm('정말 삭제하시겠습니까?')) {
-      remove(_id).then((response) => {
-        if (response === 204) {
-          // navigate('/');
-          // dispatch(getComments(postId));
-        }
-      });
-    }
-  };
-  const onEditBtnClick = () => {
-    // 수정 로직
-    setIsModifying(true);
-    dispatch(
-      initialize({
-        content,
-      }),
-    );
-  };
   // 코멘트 모듈에 postId 들어가게 해야함
   return (
     <>
@@ -105,12 +71,7 @@ const Comment = ({
           </div>
         </div>
       )}
-      {isModifying && (
-        <div className="comment-edit-area">
-          코멘트 수정
-          <CommentEditor className="modify"></CommentEditor>
-        </div>
-      )}
+      {isModifying && <div className="comment-edit-area">코멘트 수정</div>}
     </>
   );
 };

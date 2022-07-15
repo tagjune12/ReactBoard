@@ -7,6 +7,7 @@ export const getCommentList = (postId) => {
 };
 
 export const write = (postId, content) => {
+  console.log('write comment', content);
   return axios.post(`${API_URL}/${postId}`, content);
 };
 
@@ -14,6 +15,6 @@ export const remove = (commentId) => {
   return axios.delete(`${API_URL}/${commentId}`);
 };
 
-export const update = (commentId) => {
-  return axios.patch(`${API_URL}/${commentId}`);
+export const update = (commentId, content) => {
+  return axios.patch(`${API_URL}/${commentId}`, content);
 };

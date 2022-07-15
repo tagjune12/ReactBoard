@@ -1,13 +1,9 @@
-import Editor from '@components/common/Editor';
-import { useSelector } from 'react-redux';
+import PostEditorConntainer from 'src/containers/post/PostEditorContainer';
 
 const ModifyPost = () => {
-  const post = useSelector(({ writePost }) => writePost);
-
   return (
     <>
-      {/* {loading && '로딩중'} */}
-      {!false && <Editor className="modify" article={post} type="post" />}
+      <PostEditorConntainer type="modify" />
     </>
   );
 };

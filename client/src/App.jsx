@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router';
 import PostList from '@pages/PostList';
 import Header from '@components/ui/Header';
 import OffCanvas from '@components/ui/OffCanvas';
-import PostView from '@components/PostList/PostView';
+import PostView from '@components/postlist/PostView';
 import Login from '@pages/Login';
 import SignUp from '@pages/SignUp';
 import WritePost from '@pages/WritePost';

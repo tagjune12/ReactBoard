@@ -1,4 +1,4 @@
-import { handleActions } from 'redux-actions';
+import { createAction, handleActions } from 'redux-actions';
 import createRequestThunk, {
   createRequestActionTypes,
 } from '@lib/createRequestThunk';
@@ -7,11 +7,13 @@ import { getCommentList } from '@lib/api/comment';
 const getCommentsActions = createRequestActionTypes('comments/GET_COMMENTS');
 const [GET_COMMENTS, GET_COMMENTS_SUCCESS, GET_COMMENTS_FAILURE] =
   getCommentsActions;
+const UNLOAD_COMMENTS = 'comments/UNLOAD_COMMENTS';
 
 export const getComments = createRequestThunk(
   getCommentsActions,
   getCommentList,
 );
+export const unloadComments = createAction(UNLOAD_COMMENTS);
 
 const initialState = {
   loadig: false,
@@ -21,6 +23,7 @@ const initialState = {
 
 const comments = handleActions(
   {
+    [UNLOAD_COMMENTS]: (state) => initialState,
     [GET_COMMENTS]: (state) => ({
       ...state,
       loading: true,

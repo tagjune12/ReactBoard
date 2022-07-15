@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '@modules/posts/postlist';
 
-import PostList from '@components/PostList/PostList';
+import PostList from '@components/postlist/PostList';
 import Pagination from '@components/common/Pagination';
 import Button from '@components/common/Button';
 import { Link } from 'react-router-dom';
