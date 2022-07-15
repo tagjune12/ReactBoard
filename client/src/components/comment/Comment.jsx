@@ -49,30 +49,24 @@ const CommentFooter = ({ reply, like }) => {
 const Comment = ({
   comment: { author, content, like, publishedDate, reply },
   isMyComment,
-  isModifying,
   onDeleteBtnClick,
   onEditBtnClick,
 }) => {
   // 코멘트 모듈에 postId 들어가게 해야함
   return (
-    <>
-      {!isModifying && (
-        <div className="comment">
-          <div className="content-area">
-            <CommentHeader
-              author={author}
-              date={getMonthAndDate(publishedDate)}
-              isMyComment={isMyComment}
-              onDeleteBtnClick={onDeleteBtnClick}
-              onEditBtnClick={onEditBtnClick}
-            />
-            <CommentBody content={content} />
-            <CommentFooter reply={reply} like={like} />
-          </div>
-        </div>
-      )}
-      {isModifying && <div className="comment-edit-area">코멘트 수정</div>}
-    </>
+    <div className="comment">
+      <div className="content-area">
+        <CommentHeader
+          author={author}
+          date={getMonthAndDate(publishedDate)}
+          isMyComment={isMyComment}
+          onDeleteBtnClick={onDeleteBtnClick}
+          onEditBtnClick={onEditBtnClick}
+        />
+        <CommentBody content={content} />
+        <CommentFooter reply={reply} like={like} />
+      </div>
+    </div>
   );
 };
 

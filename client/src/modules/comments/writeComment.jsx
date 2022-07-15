@@ -31,6 +31,7 @@ const initialState = {
   loading: false,
   error: false,
   content: '',
+  commentId: '',
   comment: null,
 };
 
@@ -39,6 +40,8 @@ const writeComment = handleActions(
     [INITIALIZE]: (state, { payload: originalComment }) => ({
       ...initialState,
       ...originalComment,
+      // content: originalComment.content,
+      // comment: originalComment,
     }),
     [CHANGE_FIELD]: (state, { payload: content }) => ({
       ...state,
@@ -71,7 +74,7 @@ const writeComment = handleActions(
       ...state,
       loading: false,
       error: false,
-      post: response.data,
+      comment: response.data,
     }),
     [UPDATE_COMMENT_FAILURE]: (state) => ({
       ...state,
