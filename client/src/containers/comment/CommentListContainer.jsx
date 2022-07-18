@@ -11,14 +11,18 @@ const CommentListContainer = () => {
   const dispatch = useDispatch();
   const { comments } = useSelector(({ comments }) => comments);
 
-  useEffect(() => {
+  const loadComments = () => {
     dispatch(getComments(postId));
+  };
+
+  useEffect(() => {
+    // dispatch(getComments(postId));
+    loadComments();
     console.log('CommentListContainer');
 
     return () => {
       dispatch(unloadComments());
     };
-    // }, [postId]);
   }, [postId]);
 
   return (
@@ -28,6 +32,7 @@ const CommentListContainer = () => {
           key={comment._id}
           comment={comment}
           userObjId={userObjId}
+          loadComments={loadComments}
         />
       ))}
     </>

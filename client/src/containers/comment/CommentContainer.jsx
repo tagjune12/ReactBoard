@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { remove } from '@lib/api/comment';
-// import * as writeCommentModule from '@modules/comments/writeComment';
+import { getComments } from '@modules/comments/comments';
 import { initialize } from '@modules/comments/writeComment';
 
 import CommentEditorContainer from 'src/containers/comment/CommentEditorContainer';
 import Comment from '@components/comment/Comment';
-// import { initialize } from '@modules/posts/writepost';
 import { useDispatch } from 'react-redux';
 import ReplyListContainer from '../reply/ReplyListContainer';
 import ReplyEditorContainer from '../reply/ReplyEditorContainer';
 import { AiOutlineConsoleSql } from 'react-icons/ai';
 
-const CommentContainer = ({ comment, userObjId }) => {
+const CommentContainer = ({ comment, userObjId, loadComments }) => {
   const [isMyComment, setIsMyComment] = useState(false);
   const [isModifying, setIsModifying] = useState(false);
   const [showReplies, setShowReplies] = useState(true);
@@ -29,9 +28,9 @@ const CommentContainer = ({ comment, userObjId }) => {
     // 삭제 로직
     if (window.confirm('정말 삭제하시겠습니까?')) {
       remove(commentId).then((response) => {
-        if (response === 204) {
+        if (response.status === 204) {
           // navigate('/');
-          // dispatch(getComments(postId));
+          loadComments();
         }
       });
     }
