@@ -1,6 +1,7 @@
 import Joi from 'joi';
 import Reply from '../../models/reply';
 import { mongoose } from 'mongoose';
+import Comment from '../../models/comment';
 
 const { ObjectId } = mongoose.Types;
 export const getReplyById = async (ctx, next) => {

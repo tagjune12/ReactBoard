@@ -1,5 +1,7 @@
 import { getMonthAndDate } from '@lib/getDate';
 import Button from '@components/common/Button';
+import { BiMessageDetail } from 'react-icons/bi';
+import { AiOutlineLike } from 'react-icons/ai';
 
 const CommentHeader = ({
   author,
@@ -7,17 +9,19 @@ const CommentHeader = ({
   isMyComment,
   onDeleteBtnClick,
   onEditBtnClick,
+  onWriteReplyBtnClick,
 }) => {
   return (
     <div className="header">
       <span className="username">{author.nickname}</span>
       <span className="date">{date}</span>
+      <Button onClick={onWriteReplyBtnClick}>답글 작성</Button>
       {isMyComment && (
         <>
-          <Button className={'edit-comment'} onClick={onEditBtnClick}>
+          <Button className="edit-comment" onClick={onEditBtnClick}>
             수정
           </Button>
-          <Button className={'delete-comment'} onClick={onDeleteBtnClick}>
+          <Button className="delete-comment" onClick={onDeleteBtnClick}>
             삭제
           </Button>
         </>
@@ -37,11 +41,22 @@ const CommentBody = ({ content }) => {
   );
 };
 
-const CommentFooter = ({ reply, like }) => {
+const CommentFooter = ({ reply, like, onRepliesClick }) => {
   return (
     <div>
-      <span className="reply">{reply}</span>
-      <span className="likes">{like.length}</span>
+      <span className="reply" onClick={onRepliesClick}>
+        <BiMessageDetail />
+        {reply}
+      </span>
+      <span
+        className="likes"
+        onClick={() => {
+          console.log('reply clicked2');
+        }}
+      >
+        <AiOutlineLike />
+        {like.length}
+      </span>
     </div>
   );
 };
@@ -51,6 +66,8 @@ const Comment = ({
   isMyComment,
   onDeleteBtnClick,
   onEditBtnClick,
+  onRepliesClick,
+  onWriteReplyBtnClick,
 }) => {
   // 코멘트 모듈에 postId 들어가게 해야함
   return (
@@ -62,9 +79,14 @@ const Comment = ({
           isMyComment={isMyComment}
           onDeleteBtnClick={onDeleteBtnClick}
           onEditBtnClick={onEditBtnClick}
+          onWriteReplyBtnClick={onWriteReplyBtnClick}
         />
         <CommentBody content={content} />
-        <CommentFooter reply={reply} like={like} />
+        <CommentFooter
+          reply={reply}
+          like={like}
+          onRepliesClick={onRepliesClick}
+        />
       </div>
     </div>
   );

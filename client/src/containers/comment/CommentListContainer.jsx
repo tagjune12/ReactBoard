@@ -17,7 +17,8 @@ const CommentListContainer = () => {
     return () => {
       dispatch(unloadComments());
     };
-  }, [postId]);
+    // }, [postId]);
+  }, []);
 
   return (
     <>

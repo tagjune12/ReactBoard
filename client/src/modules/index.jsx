@@ -5,6 +5,8 @@ import writePost from '@modules/posts/writepost';
 import user from '@modules/users/user';
 import comments from '@modules/comments/comments';
 import writeComment from '@modules/comments/writeComment';
+import replies from '@modules/replies/replies';
+import writeReply from './replies/writeReply';
 
 const rootReducer = combineReducers({
   user,
@@ -13,6 +15,8 @@ const rootReducer = combineReducers({
   writePost,
   comments,
   writeComment,
+  replies,
+  writeReply,
 });
 
 export default rootReducer;

@@ -7,10 +7,15 @@ import CommentEditorContainer from 'src/containers/comment/CommentEditorContaine
 import Comment from '@components/comment/Comment';
 // import { initialize } from '@modules/posts/writepost';
 import { useDispatch } from 'react-redux';
+import ReplyListContainer from '../reply/ReplyListContainer';
+import ReplyEditorContainer from '../reply/ReplyEditorContainer';
+import { AiOutlineConsoleSql } from 'react-icons/ai';
 
 const CommentContainer = ({ comment, userObjId }) => {
   const [isMyComment, setIsMyComment] = useState(false);
   const [isModifying, setIsModifying] = useState(false);
+  const [showReplies, setShowReplies] = useState(true);
+  const [writeReply, setWriteReply] = useState(false);
   const { _id: commentId } = comment;
   const dispatch = useDispatch();
 
@@ -45,17 +50,43 @@ const CommentContainer = ({ comment, userObjId }) => {
     setIsModifying(true);
   };
 
+  const onRepliesClick = () => {
+    // 답글 보기
+    setShowReplies((prev) => !prev);
+    console.log('reply clicked', showReplies);
+  };
+
+  const onWriteReplyBtnClick = () => {
+    console.log('onWriteReplyBtnClick');
+    setWriteReply(true);
+  };
+
+  // const onWriteReplyCancelBtnClick = () => {
+  //   setWriteReply(false);
+  // };
+
   return (
     <>
       {isModifying ? (
         <CommentEditorContainer type="modify" setIsModifying={setIsModifying} />
       ) : (
-        <Comment
-          comment={comment}
-          isMyComment={isMyComment}
-          onDeleteBtnClick={onDeleteBtnClick}
-          onEditBtnClick={onEditBtnClick}
-        />
+        <>
+          <Comment
+            comment={comment}
+            isMyComment={isMyComment}
+            onDeleteBtnClick={onDeleteBtnClick}
+            onEditBtnClick={onEditBtnClick}
+            onRepliesClick={onRepliesClick}
+            onWriteReplyBtnClick={onWriteReplyBtnClick}
+          />
+          {writeReply && (
+            <ReplyEditorContainer
+              commentId={commentId}
+              setWriteReply={setWriteReply}
+            />
+          )}
+          {showReplies && <ReplyListContainer commentId={commentId} />}
+        </>
       )}
     </>
   );
