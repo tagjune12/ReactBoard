@@ -4,7 +4,7 @@ import { initialize } from '@modules/posts/writepost';
 import { useParams, useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletePost } from '@lib/api/post';
-import { getPost } from '@modules/posts/post';
+import { getPost, unloadPost } from '@modules/posts/post';
 
 const PostContainer = () => {
   const { id: postId } = useParams();
@@ -36,7 +36,12 @@ const PostContainer = () => {
   };
 
   useEffect(() => {
+    console.log('postId is Changed');
     dispatch(getPost(postId));
+
+    return () => {
+      dispatch(unloadPost());
+    };
   }, [postId]);
 
   // 수정 필요

@@ -13,12 +13,13 @@ const CommentListContainer = () => {
 
   useEffect(() => {
     dispatch(getComments(postId));
+    console.log('CommentListContainer');
 
     return () => {
       dispatch(unloadComments());
     };
     // }, [postId]);
-  }, []);
+  }, [postId]);
 
   return (
     <>

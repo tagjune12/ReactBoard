@@ -68,7 +68,7 @@ const CommentEditorContainer = ({ type, setIsModifying }) => {
   useEffect(() => {
     return () => {
       dispatch(initialize());
-      dispatch(getComments(postId));
+      // dispatch(getComments(postId));
     };
   }, []);
 

@@ -1,27 +1,15 @@
 import { createAction, handleActions } from 'redux-actions';
 import { getPostById } from '@lib/api/post';
+import createRequestThunk, {
+  createRequestActionTypes,
+} from '@lib/createRequestThunk';
 
-// 액션 타입
-const READ_POST = 'post/READ_POST';
-const READ_POST_SUCCESS = 'post/READ_POST_SUCCESS';
-const READ_POST_FAILURE = 'post/READ_POST_FAILURE';
+const readPostActions = createRequestActionTypes('post/READ_POST');
+const [READ_POST, READ_POST_SUCCESS, READ_POST_FAILURE] = readPostActions;
+const UNLOAD_POST = 'post/UNLOAD_POST';
 
-// 액션 생성 함수
-const readPost = createAction(READ_POST);
-const readPostSuccess = createAction(READ_POST_SUCCESS, (post) => post);
-const readPostFailure = createAction(READ_POST_FAILURE);
-
-// dispatch
-export const getPost = (id) => async (dispatch) => {
-  dispatch(readPost());
-  try {
-    const response = await getPostById(id);
-    dispatch(readPostSuccess(response.data));
-  } catch (e) {
-    dispatch(readPostFailure(e));
-    throw e;
-  }
-};
+export const getPost = createRequestThunk(readPostActions, getPostById);
+export const unloadPost = createAction(UNLOAD_POST);
 
 // 초기상태
 const initialState = {
@@ -33,15 +21,16 @@ const initialState = {
 // reducer
 const post = handleActions(
   {
+    [UNLOAD_POST]: (state) => initialState,
     [READ_POST]: (state) => ({
       ...state,
       loading: true,
     }),
-    [READ_POST_SUCCESS]: (state, action) => ({
+    [READ_POST_SUCCESS]: (state, { payload: reponse }) => ({
       ...state,
       loading: false,
       post: {
-        ...action.payload,
+        ...reponse.data,
       },
     }),
     [READ_POST_FAILURE]: (state) => ({
