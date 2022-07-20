@@ -1,6 +1,6 @@
 import PostEditorConntainer from 'src/containers/post/PostEditorContainer';
 
-const ModifyPost = () => {
+const PostModifyPage = () => {
   return (
     <>
       <PostEditorConntainer type="modify" />
@@ -8,4 +8,4 @@ const ModifyPost = () => {
   );
 };
 
-export default ModifyPost;
+export default PostModifyPage;

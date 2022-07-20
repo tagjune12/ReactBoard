@@ -3,7 +3,7 @@ import PostContainer from 'src/containers/post/PostContainer';
 import CommentListContainer from 'src/containers/comment/CommentListContainer';
 // import CommentEditorContainer from 'src/containers/comment/CommentEditorContainer';
 
-const PostView = () => {
+const PostViewer = () => {
   return (
     <div className="post-area">
       <PostContainer />
@@ -14,4 +14,4 @@ const PostView = () => {
   );
 };
 
-export default PostView;
+export default PostViewer;

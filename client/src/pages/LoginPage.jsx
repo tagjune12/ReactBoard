@@ -1,8 +1,8 @@
 import '@styles/login.scss';
 import LoginFormContainer from 'src/containers/auth/LoginFormContainer';
 
-const Login = () => {
+const LoginPage = () => {
   return <LoginFormContainer />;
 };
 
-export default Login;
+export default LoginPage;

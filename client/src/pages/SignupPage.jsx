@@ -1,8 +1,8 @@
 import '@styles/signup.scss';
 import SignupFormContainer from 'src/containers/auth/SignupFormContainer';
 
-const SignUp = () => {
+const SignupPage = () => {
   return <SignupFormContainer />;
 };
 
-export default SignUp;
+export default SignupPage;

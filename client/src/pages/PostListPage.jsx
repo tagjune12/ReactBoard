@@ -2,7 +2,7 @@ import '@styles/postlist.scss';
 import { Outlet } from 'react-router';
 import PostListContainer from 'src/containers/postslist/PostListContainer';
 
-const PostList = () => {
+const PostListPage = () => {
   return (
     <div className="post-wrapper">
       <Outlet />
@@ -11,4 +11,4 @@ const PostList = () => {
   );
 };
 
-export default PostList;
+export default PostListPage;
