@@ -5,7 +5,7 @@ import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 
 // 본 컴포넌트
-const Editor = ({ content, onChangeField }) => {
+const Editor = ({ content, onChangeField, result }) => {
   const editorInstance = useRef(null);
   const editorContainer = useRef(null);
 
@@ -39,6 +39,21 @@ const Editor = ({ content, onChangeField }) => {
     mounted.current = true;
     editorInstance.current.root.innerHTML = content;
   }, []);
+
+  useEffect(() => {
+    console.log('Editor Updated');
+  }, [content]);
+
+  useEffect(() => {
+    return () => {
+      console.log('Editor Unload');
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log('result is change');
+    editorInstance.current.root.innerHTML = '';
+  }, [result]);
 
   return <div ref={editorContainer} />;
 };

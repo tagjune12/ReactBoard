@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getComments, unloadComments } from '@modules/comments/comments';
 
 import CommentContainer from './CommentContainer';
+import CommentEditorContainer from 'src/containers/comment/CommentEditorContainer';
 
 const CommentListContainer = () => {
   const { id: postId } = useParams();
@@ -26,7 +27,7 @@ const CommentListContainer = () => {
   }, [postId]);
 
   return (
-    <>
+    <div className="comments-and-replies">
       {comments?.map((comment) => (
         <CommentContainer
           key={comment._id}
@@ -35,7 +36,8 @@ const CommentListContainer = () => {
           loadComments={loadComments}
         />
       ))}
-    </>
+      <CommentEditorContainer loadComments={loadComments} />
+    </div>
   );
 };
 

@@ -67,7 +67,11 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
   return (
     <>
       {isModifying ? (
-        <CommentEditorContainer type="modify" setIsModifying={setIsModifying} />
+        <CommentEditorContainer
+          type="modify"
+          setIsModifying={setIsModifying}
+          loadComments={loadComments}
+        />
       ) : (
         <>
           <Comment
@@ -84,7 +88,9 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
               setWriteReply={setWriteReply}
             />
           )}
-          {showReplies && <ReplyListContainer commentId={commentId} />}
+          {Boolean(comment.reply) && showReplies && (
+            <ReplyListContainer commentId={commentId} />
+          )}
         </>
       )}
     </>

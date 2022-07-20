@@ -24,12 +24,7 @@ const PostListContainer = () => {
   };
   return (
     <div className="post-list">
-      <PostList
-        posts={posts}
-        setCurPage={setCurPage}
-        lastPage={lastPage}
-        onPageChange={onPageChange}
-      />
+      <PostList posts={posts} />
       <Pagination
         setCurPage={setCurPage}
         lastPage={lastPage}
