@@ -5,12 +5,17 @@ import { useParams, useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletePost } from '@lib/api/post';
 import { getPost, unloadPost } from '@modules/posts/post';
+import { getPosts, changePageNumber } from '@modules/posts/postlist';
 
 const PostContainer = () => {
   const { id: postId } = useParams();
   const [isMyPost, setIsMyPost] = useState(false);
   const { loading, post } = useSelector(({ post }) => post);
   const userObjId = useSelector(({ user }) => user.user?._id);
+  const { curPage, postsInThisPage } = useSelector(({ postlist }) => ({
+    curPage: postlist.curPage,
+    postsInThisPage: postlist.posts?.length,
+  }));
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -19,6 +24,14 @@ const PostContainer = () => {
       deletePost(postId).then((response) => {
         if (response === 204) {
           navigate('/');
+          if (curPage === 1) {
+            dispatch(getPosts(curPage));
+          } else {
+            if (postsInThisPage === 1) {
+              dispatch(getPosts(curPage - 1));
+              dispatch(changePageNumber(curPage - 1));
+            }
+          }
         }
       });
     }

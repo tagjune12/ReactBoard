@@ -38,6 +38,7 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
   const onEditBtnClick = () => {
     // 수정 로직
     const { content } = comment;
+    console.log('onEditBtnClick', content);
     // dispatch(writeCommentModule.initialize(content));
     dispatch(
       initialize({

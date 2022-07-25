@@ -74,8 +74,10 @@ const CommentEditorContainer = ({ type, setIsModifying, loadComments }) => {
   }, [comment]);
 
   useEffect(() => {
+    console.log('CommetEditor Load');
     return () => {
       dispatch(initialize());
+      console.log('CommetEditor Unload');
     };
   }, []);
 
@@ -85,6 +87,7 @@ const CommentEditorContainer = ({ type, setIsModifying, loadComments }) => {
         content={content}
         onChangeField={onChangeField}
         result={comment}
+        type="modify"
       />
       <div className="editor-btn-wrapper">
         {type === 'modify' ? (
