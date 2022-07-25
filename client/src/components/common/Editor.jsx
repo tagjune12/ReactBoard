@@ -5,7 +5,7 @@ import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 
 // 본 컴포넌트
-const Editor = ({ content, onChangeField, result, type = 'write' }) => {
+const Editor = ({ content, onChangeField, result, type }) => {
   const editorInstance = useRef(null);
   const editorContainer = useRef(null);
 
@@ -61,6 +61,10 @@ const Editor = ({ content, onChangeField, result, type = 'write' }) => {
   }, [result]);
 
   return <div ref={editorContainer} />;
+};
+
+Editor.defaultProps = {
+  type: 'write',
 };
 
 export default Editor;

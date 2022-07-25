@@ -87,7 +87,7 @@ const CommentEditorContainer = ({ type, setIsModifying, loadComments }) => {
         content={content}
         onChangeField={onChangeField}
         result={comment}
-        type="modify"
+        type={type}
       />
       <div className="editor-btn-wrapper">
         {type === 'modify' ? (
