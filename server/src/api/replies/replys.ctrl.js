@@ -44,9 +44,9 @@ export const checkOwnReply = (ctx, next) => {
 // GET /api/replies?comment=
 // 답글 리스트 가져오기
 export const list = async ctx => {
-  const comment = ctx.request.query.commentId;
+  const comment = ctx.request.query.comment;
   const query = {
-    ...comment
+    commentId: comment
   };
 
   try {

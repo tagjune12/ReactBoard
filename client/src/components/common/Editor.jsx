@@ -5,7 +5,7 @@ import Quill from 'quill';
 import 'quill/dist/quill.snow.css';
 
 // 본 컴포넌트
-const Editor = ({ content, onChangeField }) => {
+const Editor = ({ content, onChangeField, result, type }) => {
   const editorInstance = useRef(null);
   const editorContainer = useRef(null);
 
@@ -33,14 +33,38 @@ const Editor = ({ content, onChangeField }) => {
     });
   }, []);
 
+  // 처음 로드 됐을때 내용 초기화
   const mounted = useRef(false);
   useEffect(() => {
     if (mounted.current) return;
     mounted.current = true;
+    console.log('content', content);
     editorInstance.current.root.innerHTML = content;
   }, []);
 
+  useEffect(() => {
+    console.log('Editor Updated');
+  }, [content]);
+
+  useEffect(() => {
+    console.log('Editor Load');
+    return () => {
+      console.log('Editor Unload');
+    };
+  }, []);
+
+  useEffect(() => {
+    console.log('result is change');
+    if (type !== 'modify') {
+      editorInstance.current.root.innerHTML = '';
+    }
+  }, [result]);
+
   return <div ref={editorContainer} />;
+};
+
+Editor.defaultProps = {
+  type: 'write',
 };
 
 export default Editor;

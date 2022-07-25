@@ -43,14 +43,15 @@ export const checkOwnComment = (ctx, next) => {
 
 // GET /api/comments?post=
 export const list = async ctx => {
-  const post = ctx.request.query.postId;
+  const post = ctx.request.query.post;
+  // console.log("log", post);
   const query = {
-    ...post
+    postId: post
   };
 
   try {
     const comments = await Comment.find(query).sort({
-      _id: -1
+      _id: 1
     })
       .lean()
       .exec();

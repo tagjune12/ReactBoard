@@ -65,7 +65,9 @@ const PostEditorContainer = ({ type }) => {
   });
 
   useEffect(() => {
+    console.log('Load Post Editor');
     return () => {
+      console.log('Unload Post Editor');
       dispatch(initialize());
     };
   }, []);
@@ -77,7 +79,7 @@ const PostEditorContainer = ({ type }) => {
         category={category}
         onChangeField={onChangeField}
       />
-      <Editor content={content} onChangeField={onChangeField} />
+      <Editor content={content} onChangeField={onChangeField} type={type} />
       <div className="editor-btn-wrapper">
         {type === 'modify' ? (
           <Button onClick={onModifyBtnClick}>수정 완료</Button>

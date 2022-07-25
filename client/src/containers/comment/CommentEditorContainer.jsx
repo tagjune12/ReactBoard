@@ -7,13 +7,12 @@ import {
   writeNewComment,
   updateComment,
 } from '@modules/comments/writeComment';
-import { getComments } from '@modules/comments/comments';
 
 import Editor from '@components/common/Editor';
 import EditorForm from '@components/common/EditorForm';
 import Button from '@components/common/Button';
 
-const CommentEditorContainer = ({ type, setIsModifying }) => {
+const CommentEditorContainer = ({ type, setIsModifying, loadComments }) => {
   const dispatch = useDispatch();
   const { id: postId } = useParams();
 
@@ -27,6 +26,11 @@ const CommentEditorContainer = ({ type, setIsModifying }) => {
 
   const onWriteBtnClick = (event) => {
     event.preventDefault();
+    console.log(content);
+    if (content === '<p><br></p>' || content === '') {
+      alert('내용을 입력해 주세요');
+      return;
+    }
     dispatch(
       writeNewComment([
         postId,
@@ -51,30 +55,40 @@ const CommentEditorContainer = ({ type, setIsModifying }) => {
 
   const onCancelBtnClick = (event) => {
     event.preventDefault();
-    // dispatch(changeCommentField(''));
     setIsModifying(false);
     console.log('Do setIsModifying');
   };
 
   useEffect(() => {
-    if (comment && setIsModifying) {
-      // dispatch(changeCommentField(''));
-      setIsModifying(false);
+    console.log('CommentEdidtorContainer updated');
+    if (comment) {
+      if (setIsModifying) {
+        setIsModifying(false);
+      }
+      dispatch(changeCommentField(''));
+      dispatch(initialize());
+      loadComments();
     } else if (error) {
       alert('오류가 발생했습니다. 다시 시도해주세요.');
     }
-  });
+  }, [comment]);
 
   useEffect(() => {
+    console.log('CommetEditor Load');
     return () => {
       dispatch(initialize());
-      dispatch(getComments(postId));
+      console.log('CommetEditor Unload');
     };
   }, []);
 
   return (
     <EditorForm className="write-form">
-      <Editor content={content} onChangeField={onChangeField} />
+      <Editor
+        content={content}
+        onChangeField={onChangeField}
+        result={comment}
+        type={type}
+      />
       <div className="editor-btn-wrapper">
         {type === 'modify' ? (
           <>
