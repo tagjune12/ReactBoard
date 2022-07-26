@@ -1,6 +1,9 @@
 import Post from '../../../src/models/post';
 import { mongoose } from 'mongoose';
 import Joi from 'joi';
+import Comment from './../../models/comment';
+import Reply from './../../models/reply';
+import replies from './../replies/index';
 
 // id 유효성 체크후 post가져오기
 const { ObjectId } = mongoose.Types;
@@ -171,11 +174,22 @@ export const update = async ctx => {
 // 글 삭제
 export const remove = async ctx => {
   const { id } = ctx.request.params;
+  // console.log(ctx.state);
+
   try {
+    const comments = await Comment.find({ postId: id }).exec();
+    // console.log(comments);
+    const commentIds = comments.map(comment => comment._id.toString());
+    // console.log(commentIds);
+    const replies = await Reply.find({ commentId: commentIds });
+    // console.log(replies);
+    await Reply.deleteMany({ commentId: commentIds }).exec();
+    await Comment.deleteMany({ postId: id }).exec();
     await Post.findByIdAndRemove(id).exec();
+
     ctx.response.status = 204;
   } catch (e) {
-    ctx.response.throw(500, e);
+    ctx.throw(500, e);
   }
 }
 
