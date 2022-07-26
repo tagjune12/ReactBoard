@@ -6,8 +6,9 @@ import { useDispatch } from 'react-redux';
 
 import Reply from '../../components/reply/Reply';
 import ReplyEditorContainer from './ReplyEditorContainer';
+import { downReplyCount } from '@modules/comments/comments';
 
-const ReplyContainer = ({ reply, loadReplies }) => {
+const ReplyContainer = ({ reply, loadReplies, commentId }) => {
   const [isMyReply, setIsMyReply] = useState(false);
   const [isModifying, setIsModifying] = useState(false);
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const ReplyContainer = ({ reply, loadReplies }) => {
       try {
         remove(replyId).then((response) => {
           if (response.status === 204) console.log('삭제 완료');
+          dispatch(downReplyCount(commentId));
           loadReplies();
         });
       } catch (e) {

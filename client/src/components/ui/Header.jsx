@@ -1,5 +1,5 @@
 import '@styles/layout.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
@@ -13,6 +13,7 @@ const Header = () => {
   } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const navigate = useNavigate();
 
   const onLogOutClick = () => {
     dispatch(userLogout(user));
@@ -21,6 +22,7 @@ const Header = () => {
       return;
     } else if (!loading) {
       setUser(null);
+      navigate('/');
     }
   };
 

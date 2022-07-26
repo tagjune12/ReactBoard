@@ -10,6 +10,7 @@ import ReplyListContainer from '../reply/ReplyListContainer';
 import ReplyEditorContainer from '../reply/ReplyEditorContainer';
 import { AiOutlineConsoleSql } from 'react-icons/ai';
 import { list } from '@lib/api/reply';
+import { downCommentCount } from '@modules/posts/post';
 
 const CommentContainer = ({ comment, userObjId, loadComments }) => {
   const [isMyComment, setIsMyComment] = useState(false);
@@ -26,6 +27,7 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
       const data = response.data;
       setReplies(data);
     });
+    console.log('load Replies');
   };
 
   useEffect(() => {
@@ -42,6 +44,7 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
         if (response.status === 204) {
           // navigate('/');
           loadComments();
+          dispatch(downCommentCount());
         }
       });
     }
@@ -101,8 +104,16 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
               loadReplies={loadReplies}
             />
           )}
-          {Boolean(comment.reply) && showReplies && (
+          {/* {Boolean(comment.reply) && showReplies && (
             <ReplyListContainer replies={replies} loadReplies={loadReplies} />
+            // <ReplyListContainer commentId={commentId} />
+          )} */}
+          {replies.length > 0 && showReplies && (
+            <ReplyListContainer
+              replies={replies}
+              loadReplies={loadReplies}
+              commentId={commentId}
+            />
             // <ReplyListContainer commentId={commentId} />
           )}
         </>

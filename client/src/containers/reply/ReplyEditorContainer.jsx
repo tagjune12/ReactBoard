@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Editor from '@components/common/Editor';
 import EditorForm from '@components/common/EditorForm';
 import Button from '@components/common/Button';
+import { upReplyCount } from './../../modules/comments/comments';
 
 const ReplyEditorContainer = ({
   type,
@@ -39,6 +40,7 @@ const ReplyEditorContainer = ({
           },
         ]),
       );
+      dispatch(upReplyCount(commentId));
     } else {
       console.log('commentId 가 없습니다.');
     }

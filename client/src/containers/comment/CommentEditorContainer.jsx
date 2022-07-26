@@ -11,6 +11,7 @@ import {
 import Editor from '@components/common/Editor';
 import EditorForm from '@components/common/EditorForm';
 import Button from '@components/common/Button';
+import { upCommentCount } from '@modules/posts/post';
 
 const CommentEditorContainer = ({ type, setIsModifying, loadComments }) => {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ const CommentEditorContainer = ({ type, setIsModifying, loadComments }) => {
         },
       ]),
     );
+    dispatch(upCommentCount());
   };
 
   const onModifyBtnClick = (event) => {
@@ -66,7 +68,7 @@ const CommentEditorContainer = ({ type, setIsModifying, loadComments }) => {
         setIsModifying(false);
       }
       dispatch(changeCommentField(''));
-      dispatch(initialize());
+      // dispatch(initialize());
       loadComments();
     } else if (error) {
       alert('오류가 발생했습니다. 다시 시도해주세요.');
