@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import ReplyListContainer from '../reply/ReplyListContainer';
 import ReplyEditorContainer from '../reply/ReplyEditorContainer';
 import { AiOutlineConsoleSql } from 'react-icons/ai';
+import { list } from '@lib/api/reply';
 
 const CommentContainer = ({ comment, userObjId, loadComments }) => {
   const [isMyComment, setIsMyComment] = useState(false);
@@ -18,9 +19,19 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
   const { _id: commentId } = comment;
   const dispatch = useDispatch();
 
+  const [replies, setReplies] = useState([]);
+
+  const loadReplies = async () => {
+    await list(commentId).then((response) => {
+      const data = response.data;
+      setReplies(data);
+    });
+  };
+
   useEffect(() => {
     const { author } = comment;
     setIsMyComment(author._id === userObjId);
+    loadReplies();
   }, []);
   // });
 
@@ -84,13 +95,15 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
             onWriteReplyBtnClick={onWriteReplyBtnClick}
           />
           {writeReply && (
-            <ReplyEditorContainer
+            <ReplyEditorContainer // 댓글에 작성하는 리플 에디터
               commentId={commentId}
               setWriteReply={setWriteReply}
+              loadReplies={loadReplies}
             />
           )}
           {Boolean(comment.reply) && showReplies && (
-            <ReplyListContainer commentId={commentId} />
+            <ReplyListContainer replies={replies} loadReplies={loadReplies} />
+            // <ReplyListContainer commentId={commentId} />
           )}
         </>
       )}
