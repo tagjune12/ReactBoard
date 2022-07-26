@@ -12,7 +12,12 @@ import Editor from '@components/common/Editor';
 import EditorForm from '@components/common/EditorForm';
 import Button from '@components/common/Button';
 
-const ReplyEditorContainer = ({ type, commentId, setWriteReply }) => {
+const ReplyEditorContainer = ({
+  type,
+  commentId,
+  setWriteReply,
+  loadReplies,
+}) => {
   const dispatch = useDispatch();
 
   const { reply, replyId, content, error } = useSelector(
@@ -67,8 +72,12 @@ const ReplyEditorContainer = ({ type, commentId, setWriteReply }) => {
   });
 
   useEffect(() => {
+    console.log('Load ReplyEditor', content);
+    // onChangeField(content);
     return () => {
+      console.log('Unload ReplyEditor', content);
       dispatch(initialize());
+      loadReplies();
       // dispatch(getComments(postId));
     };
   }, []);
@@ -77,7 +86,12 @@ const ReplyEditorContainer = ({ type, commentId, setWriteReply }) => {
     <>
       <h3>리플 에디터</h3>
       <EditorForm className="write-form">
-        <Editor content={content} onChangeField={onChangeField} />
+        <Editor
+          content={content}
+          onChangeField={onChangeField}
+          result={reply}
+          type="modify"
+        />
         <div className="editor-btn-wrapper">
           {type === 'modify' ? (
             <Button onClick={onModifyBtnClick}>수정 완료</Button>

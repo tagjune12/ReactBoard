@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import Reply from '../../components/reply/Reply';
 import ReplyEditorContainer from './ReplyEditorContainer';
 
-const ReplyContainer = ({ reply }) => {
+const ReplyContainer = ({ reply, loadReplies }) => {
   const [isMyReply, setIsMyReply] = useState(false);
   const [isModifying, setIsModifying] = useState(false);
   const dispatch = useDispatch();
@@ -20,6 +20,7 @@ const ReplyContainer = ({ reply }) => {
       try {
         remove(replyId).then((response) => {
           if (response.status === 204) console.log('삭제 완료');
+          loadReplies();
         });
       } catch (e) {
         alert('리플을 삭제하는데 오류가 발생했습니다.');
@@ -31,13 +32,13 @@ const ReplyContainer = ({ reply }) => {
   const onEditBtnClick = () => {
     console.log('click Edit Reply');
     const { content, _id: replyId } = reply;
+    setIsModifying(true);
     dispatch(
       initialize({
         content,
         replyId,
       }),
     );
-    setIsModifying(true);
   };
 
   useEffect(() => {
@@ -48,7 +49,11 @@ const ReplyContainer = ({ reply }) => {
   return (
     <>
       {isModifying ? (
-        <ReplyEditorContainer type="modify" setWriteReply={setIsModifying} />
+        <ReplyEditorContainer // 리플 수정하는 리플에디터
+          type="modify"
+          setWriteReply={setIsModifying}
+          loadReplies={loadReplies}
+        />
       ) : (
         <Reply
           reply={reply}

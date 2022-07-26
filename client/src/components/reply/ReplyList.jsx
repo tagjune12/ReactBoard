@@ -1,9 +1,9 @@
 import React from 'react';
 import ReplyContainer from 'src/containers/reply/ReplyContainer';
 
-const ReplyList = ({ replies }) => {
+const ReplyList = ({ replies, loadReplies }) => {
   return replies?.map((reply, index) => (
-    <ReplyContainer key={index} reply={reply} />
+    <ReplyContainer key={reply?._id} reply={reply} loadReplies={loadReplies} />
   ));
 };
 
