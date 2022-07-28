@@ -7,11 +7,12 @@ import {
 } from '@modules/replies/writeReply';
 import { useSelector, useDispatch } from 'react-redux';
 // import { useParams } from 'react-router';
+import { upReplyCount } from '@modules/comments/comments';
+import { checkEditorFilled } from '@lib';
 
+import Button from '@components/common/Button';
 import Editor from '@components/common/Editor';
 import EditorForm from '@components/common/EditorForm';
-import Button from '@components/common/Button';
-import { upReplyCount } from './../../modules/comments/comments';
 
 const ReplyEditorContainer = ({
   type,
@@ -31,6 +32,10 @@ const ReplyEditorContainer = ({
 
   const onWriteBtnClick = (event) => {
     event.preventDefault();
+    if (checkEditorFilled(content)) {
+      alert('내용을 입력해 주세요');
+      return;
+    }
     if (commentId) {
       dispatch(
         writeNewReply([

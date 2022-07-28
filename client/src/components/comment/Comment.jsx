@@ -1,4 +1,4 @@
-import { getMonthAndDate } from '@lib/getDate';
+import { getMonthAndDate } from '@lib';
 import Button from '@components/common/Button';
 import { BiMessageDetail } from 'react-icons/bi';
 import { AiOutlineLike } from 'react-icons/ai';

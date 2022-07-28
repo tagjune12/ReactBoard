@@ -7,6 +7,7 @@ import {
 } from '@modules/posts/writepost';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
+import { checkEditorFilled } from '@lib';
 import pages from '@assets/data/page.json';
 
 import Editor from '@components/common/Editor';
@@ -29,6 +30,14 @@ const PostEditorContainer = ({ type }) => {
 
   const onWriteBtnClick = (event) => {
     event.preventDefault();
+    if (checkEditorFilled(title)) {
+      alert('제목을 입력해 주세요');
+      return;
+    }
+    if (checkEditorFilled(content)) {
+      alert('내용을 입력해 주세요');
+      return;
+    }
     dispatch(
       writeNewPost({
         title,

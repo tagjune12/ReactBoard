@@ -7,6 +7,7 @@ import {
   writeNewComment,
   updateComment,
 } from '@modules/comments/writeComment';
+import { checkEditorFilled } from '@lib';
 
 import Editor from '@components/common/Editor';
 import EditorForm from '@components/common/EditorForm';
@@ -28,8 +29,9 @@ const CommentEditorContainer = ({ type, setIsModifying, loadComments }) => {
   const onWriteBtnClick = (event) => {
     event.preventDefault();
     console.log(content);
-    if (content === '<p><br></p>' || content === '') {
-      alert('내용을 입력해 주세요');
+    // if (content === '<p><br></p>' || content === '') {
+    if (checkEditorFilled(content)) {
+      alert('댓글 내용을 입력해 주세요');
       return;
     }
     dispatch(

@@ -2,7 +2,7 @@ import Button from '@components/common/Button';
 import React from 'react';
 import { AiOutlineLike } from 'react-icons/ai';
 import { BiMessageDetail } from 'react-icons/bi';
-import { getMonthAndDate } from '@lib/getDate';
+import { getMonthAndDate } from '@lib';
 
 const PostHeader = ({
   postInfo: { title, nickname, publishedDate, comments, like },

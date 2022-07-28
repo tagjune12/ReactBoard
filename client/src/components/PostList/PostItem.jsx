@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { getMonthAndDate } from '@lib/getDate';
+import { getMonthAndDate } from '@lib';
 
 const PostItem = ({
   post: { like, category, _id, title, comments, author, publishedDate },

@@ -4,3 +4,7 @@ export const getMonthAndDate = (publishedDate) => {
   const date = dateFormat.getDate().toString().padStart(2, '0');
   return `${month}-${date}`;
 };
+
+export const checkEditorFilled = (target) => {
+  return (target === '<p><br></p>' || target === '')
+}
