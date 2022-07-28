@@ -7,6 +7,7 @@ import {
 } from '@modules/posts/writepost';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
+import pages from '@assets/data/page.json';
 
 import Editor from '@components/common/Editor';
 import EditorForm from '@components/common/EditorForm';
@@ -76,7 +77,7 @@ const PostEditorContainer = ({ type }) => {
     <EditorForm className="write-form">
       <TitleInput
         title={title}
-        category={category}
+        categories={pages}
         onChangeField={onChangeField}
       />
       <Editor content={content} onChangeField={onChangeField} type={type} />

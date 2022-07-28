@@ -1,13 +1,14 @@
+import DropDown from '@components/common/DropDown';
 import React from 'react';
 
-const TitleInput = ({ title, category, onChangeField }) => {
+const TitleInput = ({ title, categories, onChangeField }) => {
   return (
-    <>
-      <input
-        className="category-input"
-        placeholder="카테고리"
-        value={'post'}
-        // onChange={onChange}
+    <div>
+      <DropDown
+        items={categories.slice(1)}
+        selectItem={(item) => {
+          onChangeField('category', item);
+        }}
       />
       {title ? (
         <input
@@ -27,7 +28,7 @@ const TitleInput = ({ title, category, onChangeField }) => {
           }}
         />
       )}
-    </>
+    </div>
   );
 };
 
