@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '@modules/posts/postlist';
 
 import PostList from '@components/postlist/PostList';
-import { useSearchParams, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const PostListContainer = () => {
   // const [curPage, setCurPage] = useState(1);
@@ -12,21 +12,16 @@ const PostListContainer = () => {
     curPage: postlist.curPage,
     posts: postlist.posts,
   }));
-  // const [searchParams, setSearchParams] = useSearchParams();
   const { category } = useParams();
 
   useEffect(() => {
-    // console.log(searchParams);
-    // console.log(searchParams.get('category'));
-    // const category = searchParams.get('category');
-    console.log('location', category);
     dispatch(
       getPosts({
         page: curPage,
-        // category: location.category,
         category,
       }),
     );
+    console.log('From PostListContainer');
   }, [dispatch, category, curPage]);
 
   return (
