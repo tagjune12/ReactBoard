@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+
 const DropDown = ({ items, selectItem }) => {
   const [selectedItem, setSelectedItem] = useState('');
   const [isVisible, setIsVisible] = useState(false);
@@ -11,17 +13,18 @@ const DropDown = ({ items, selectItem }) => {
 
   return (
     <div>
-      <button
+      <div
         onClick={(event) => {
           event.preventDefault();
           setIsVisible((prev) => !prev);
         }}
       >
-        {selectedItem}
-      </button>
+        <span>{selectedItem}</span>
+        {isVisible ? <FiChevronUp /> : <FiChevronDown />}
+      </div>
       {isVisible &&
         items.map((item) => (
-          <li
+          <div
             key={item.category}
             onClick={() => {
               setSelectedItem(item.name);
@@ -30,7 +33,7 @@ const DropDown = ({ items, selectItem }) => {
             }}
           >
             {item.name}
-          </li>
+          </div>
         ))}
     </div>
   );

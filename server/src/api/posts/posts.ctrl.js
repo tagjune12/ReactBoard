@@ -46,7 +46,7 @@ export const checkOwnPost = (ctx, next) => {
   return next();
 }
 
-// GET /api/posts?nickname=&category=&page=
+// GET /api/posts?nickname=&category=&page=&title
 // 글 목록 가져오기
 export const list = async ctx => {
   const page = parseInt(ctx.request.query.page || '1', 10);
@@ -58,12 +58,14 @@ export const list = async ctx => {
     return;
   }
 
-  const { category, nickname } = ctx.request.query;
+  const { category, nickname, title } = ctx.request.query;
   const query = {
-    ...(nickname ? { nickname } : {}),
-    ...(category ? { category } : {})
+    // ...(nickname ? { nickname } : {}),
+    ...(nickname ? { 'author.nickname': nickname } : {}),
+    ...(category ? { category } : {}),
+    ...(title ? { title } : {}),
   };
-
+  console.log("쿼리", query);
   try {
     const POST_PER_PAGE = 5;
     const posts = await Post.find(query)
@@ -79,6 +81,7 @@ export const list = async ctx => {
       ...post,
       body: post.content.length > 200 ? post.content : `${post.content.slice(0, 200)}...`
     }));
+    console.log("결과", posts);
   } catch (e) {
     ctx.throw(500, e);
   }

@@ -15,7 +15,7 @@ const PostListContainer = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    console.log(searchParams);
+    // console.log(searchParams);
     console.log(searchParams.get('category'));
     const category = searchParams.get('category');
     dispatch(
