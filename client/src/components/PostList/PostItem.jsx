@@ -8,7 +8,7 @@ const PostItem = ({
     <div className="post-item">
       <span className="like">{like.length}</span>
       <span className="category">{category}</span>
-      <Link to={`/post/${_id}`}>
+      <Link to={`/${category}/${_id}`}>
         <span className="title">{`${title}(${comments})`}</span>
       </Link>
       <span className="author">{author.nickname}</span>

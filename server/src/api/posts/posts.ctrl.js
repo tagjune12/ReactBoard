@@ -62,7 +62,7 @@ export const list = async ctx => {
   const query = {
     // ...(nickname ? { nickname } : {}),
     ...(nickname ? { 'author.nickname': nickname } : {}),
-    ...(category ? { category } : {}),
+    ...(category && category !== 'all' ? { category } : {}),
     ...(title ? { title } : {}),
   };
   console.log("쿼리", query);
