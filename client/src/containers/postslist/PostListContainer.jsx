@@ -24,6 +24,10 @@ const PostListContainer = () => {
     console.log('From PostListContainer');
   }, [dispatch, category, curPage]);
 
+  useEffect(() => {
+    console.log('PostList 카테고리', category);
+  }, [category]);
+
   return (
     <div className="post-list">
       <PostList posts={posts} />
