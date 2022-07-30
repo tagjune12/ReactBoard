@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const PostSchema = new Schema({
-  like: { type: [Object], default: [] },
+  like: { type: [String], default: [] },
   category: { type: String, required: true },
   title: { type: String, required: true },
   content: { type: String, required: true },

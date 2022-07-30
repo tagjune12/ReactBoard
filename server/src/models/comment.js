@@ -11,7 +11,7 @@ const CommentSchema = new Schema({
   },
   content: { type: String, required: true },
   reply: { type: Number, default: 0 },
-  like: { type: [Object], default: [] },
+  like: { type: [String], default: [] },
   publishedDate: {
     type: Date,
     default: Date.now
