@@ -4,12 +4,13 @@ import { initialize } from '@modules/posts/writepost';
 import { useParams, useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletePost } from '@lib/api/post';
-import { getPost, unloadPost } from '@modules/posts/post';
+import { getPost, unloadPost, likePost } from '@modules/posts/post';
 import { getPosts, changePageNumber } from '@modules/posts/postlist';
 
 const PostContainer = () => {
   const { id: postId } = useParams();
   const [isMyPost, setIsMyPost] = useState(false);
+  const [isUserLikeThis, setIsUserLikeThis] = useState(false);
   const { loading, post } = useSelector(({ post }) => post);
   const userObjId = useSelector(({ user }) => user.user?._id);
   const { curPage, postsInThisPage } = useSelector(({ postlist }) => ({
@@ -48,6 +49,14 @@ const PostContainer = () => {
     navigate(`/modify/${postId}`);
   };
 
+  const onLikeClick = () => {
+    console.log('onLikeClick');
+    // console.log(event.target);
+    setIsUserLikeThis((prev) => !prev);
+    dispatch(likePost(postId, userObjId));
+    console.log(post);
+  };
+
   useEffect(() => {
     console.log('postId is Changed');
     dispatch(getPost(postId));
@@ -60,19 +69,30 @@ const PostContainer = () => {
   // 수정 필요
   useEffect(() => {
     setIsMyPost(post?.author._id === userObjId);
+    setIsUserLikeThis(post?.like.includes(userObjId));
   }, [post]);
 
   return (
     <>
-      {loading && '불러오는 중...'}
+      {/* {loading && '불러오는 중...'}
       {!loading && (
         <Post
           post={post}
           isMyPost={isMyPost}
           onDeleteClick={onDeletePostClick}
           onEditClick={onEditPostClick}
+          onLikeClick={onLikeClick}
+          isUserLikeThis={isUserLikeThis}
         />
-      )}
+      )} */}
+      <Post
+        post={post}
+        isMyPost={isMyPost}
+        onDeleteClick={onDeletePostClick}
+        onEditClick={onEditPostClick}
+        onLikeClick={onLikeClick}
+        isUserLikeThis={isUserLikeThis}
+      />
     </>
   );
 };

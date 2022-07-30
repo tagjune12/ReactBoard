@@ -2,11 +2,15 @@ import { createAction, handleActions } from 'redux-actions';
 import createRequestThunk, {
   createRequestActionTypes,
 } from '@lib/createRequestThunk';
-import { getCommentList } from '@lib/api/comment';
+import { getCommentList, like } from '@lib/api/comment';
 
 const getCommentsActions = createRequestActionTypes('comments/GET_COMMENTS');
+const likeCommentActions = createRequestActionTypes('post/LIKE_COMMENT');
 const [GET_COMMENTS, GET_COMMENTS_SUCCESS, GET_COMMENTS_FAILURE] =
   getCommentsActions;
+const [LIKE_COMMENT, LIKE_COMMENT_SUCCESS, LIKE_COMMENT_FAILURE] =
+  likeCommentActions;
+
 const UNLOAD_COMMENTS = 'comments/UNLOAD_COMMENTS';
 const UP_REPLY_COUNT = 'comments/UP_REPLY_COUNT';
 const DOWN_REPLY_COUNT = 'comments/DOWN_REPLY_COUNT';
@@ -15,6 +19,7 @@ export const getComments = createRequestThunk(
   getCommentsActions,
   getCommentList,
 );
+export const likeComment = createRequestThunk(likeCommentActions, like);
 export const unloadComments = createAction(UNLOAD_COMMENTS);
 export const upReplyCount = createAction(
   UP_REPLY_COUNT,
@@ -78,6 +83,33 @@ const comments = handleActions(
         comments,
       };
     },
+    [LIKE_COMMENT]: (state) => ({
+      ...state,
+      loading: true,
+    }),
+    [LIKE_COMMENT_SUCCESS]: (state, { payload: response }) => {
+      const comments = state.comments;
+      const data = response.data;
+      comments.forEach((comment, index) => {
+        if (comment._id === data._id) {
+          comments[index] = {
+            ...data,
+          };
+        }
+      });
+
+      return {
+        ...state,
+        loading: false,
+        error: false,
+        comments,
+      };
+    },
+    [LIKE_COMMENT_FAILURE]: (state) => ({
+      ...state,
+      loading: false,
+      error: true,
+    }),
   },
   initialState,
 );

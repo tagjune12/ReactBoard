@@ -19,3 +19,7 @@ export const remove = (commentId) => {
 export const update = (commentId, content) => {
   return axios.patch(`${API_URL}/${commentId}`, content);
 };
+
+export const like = (commentId, userObjId) => {
+  return axios.patch(`${API_URL}/like/${commentId}`, userObjId);
+}

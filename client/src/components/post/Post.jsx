@@ -27,7 +27,14 @@ const PostHeader = ({
   );
 };
 
-const PostBody = ({ content, isMyPost, onDeleteClick, onEditClick }) => {
+const PostBody = ({
+  content,
+  isMyPost,
+  onDeleteClick,
+  onEditClick,
+  onLikeClick,
+  isUserLikeThis,
+}) => {
   return (
     <>
       <div
@@ -38,7 +45,10 @@ const PostBody = ({ content, isMyPost, onDeleteClick, onEditClick }) => {
       />
 
       <div className="button-wrapper">
-        <AiOutlineLike className="like-btn" />
+        <AiOutlineLike
+          className={'like-btn ' + (isUserLikeThis ? 'active' : '')}
+          onClick={onLikeClick}
+        />
         {isMyPost && (
           <div className="isMyPost">
             <Button onClick={onEditClick}>수정</Button>
@@ -50,7 +60,14 @@ const PostBody = ({ content, isMyPost, onDeleteClick, onEditClick }) => {
   );
 };
 
-const Post = ({ post, isMyPost, onDeleteClick, onEditClick }) => {
+const Post = ({
+  post,
+  isMyPost,
+  onDeleteClick,
+  onEditClick,
+  onLikeClick,
+  isUserLikeThis,
+}) => {
   const postHeader = {
     title: post?.title,
     nickname: post?.author.nickname,
@@ -68,6 +85,8 @@ const Post = ({ post, isMyPost, onDeleteClick, onEditClick }) => {
         isMyPost={isMyPost}
         onDeleteClick={onDeleteClick}
         onEditClick={onEditClick}
+        onLikeClick={onLikeClick}
+        isUserLikeThis={isUserLikeThis}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { remove } from '@lib/api/comment';
-import { getComments } from '@modules/comments/comments';
+import { getComments, likeComment } from '@modules/comments/comments';
 import { initialize } from '@modules/comments/writeComment';
 
 import CommentEditorContainer from 'src/containers/comment/CommentEditorContainer';
@@ -17,6 +17,7 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
   const [isModifying, setIsModifying] = useState(false);
   const [showReplies, setShowReplies] = useState(true);
   const [writeReply, setWriteReply] = useState(false);
+  const [isUserLikeThis, setIsUserLikeThis] = useState(false);
   const { _id: commentId } = comment;
   const dispatch = useDispatch();
 
@@ -33,6 +34,7 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
   useEffect(() => {
     const { author } = comment;
     setIsMyComment(author._id === userObjId);
+
     loadReplies();
   }, []);
   // });
@@ -75,6 +77,14 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
     setWriteReply(true);
   };
 
+  const onLikeClick = () => {
+    console.log('onLikeClick');
+    // console.log(event.target);
+    setIsUserLikeThis((prev) => !prev);
+    dispatch(likeComment(commentId, userObjId));
+    // console.log(post);
+  };
+
   // const onWriteReplyCancelBtnClick = () => {
   //   setWriteReply(false);
   // };
@@ -96,6 +106,9 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
             onEditBtnClick={onEditBtnClick}
             onRepliesClick={onRepliesClick}
             onWriteReplyBtnClick={onWriteReplyBtnClick}
+            onLikeClick={onLikeClick}
+            isUserLikeThis={isUserLikeThis}
+            showReplies={showReplies}
           />
           {writeReply && (
             <ReplyEditorContainer // 댓글에 작성하는 리플 에디터

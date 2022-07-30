@@ -56,3 +56,7 @@ export const write = async (content) => {
 export const update = async (postId, post) => {
   return axios.patch(`${API_URL}/${postId}`, post);
 };
+
+export const like = (postId, userObjId) => {
+  return axios.patch(`${API_URL}/like/${postId}`, userObjId);
+}

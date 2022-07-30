@@ -1,7 +1,8 @@
 import { getMonthAndDate } from '@lib';
 import Button from '@components/common/Button';
 import { BiMessageDetail } from 'react-icons/bi';
-import { AiOutlineLike } from 'react-icons/ai';
+import { RiMessage2Line, RiMessage2Fill } from 'react-icons/ri';
+import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
 
 const CommentHeader = ({
   author,
@@ -41,20 +42,22 @@ const CommentBody = ({ content }) => {
   );
 };
 
-const CommentFooter = ({ reply, like, onRepliesClick }) => {
+const CommentFooter = ({
+  reply,
+  like,
+  onRepliesClick,
+  onLikeClick,
+  isUserLikeThis,
+  showReplies,
+}) => {
   return (
     <div>
       <span className="reply" onClick={onRepliesClick}>
-        <BiMessageDetail />
+        {showReplies ? <RiMessage2Fill /> : <RiMessage2Line />}
         {reply}
       </span>
-      <span
-        className="likes"
-        onClick={() => {
-          console.log('reply clicked2');
-        }}
-      >
-        <AiOutlineLike />
+      <span className="likes" onClick={onLikeClick}>
+        {isUserLikeThis ? <AiFillLike /> : <AiOutlineLike />}
         {like.length}
       </span>
     </div>
@@ -68,6 +71,9 @@ const Comment = ({
   onEditBtnClick,
   onRepliesClick,
   onWriteReplyBtnClick,
+  onLikeClick,
+  isUserLikeThis,
+  showReplies,
 }) => {
   // 코멘트 모듈에 postId 들어가게 해야함
   return (
@@ -86,6 +92,9 @@ const Comment = ({
           reply={reply}
           like={like}
           onRepliesClick={onRepliesClick}
+          onLikeClick={onLikeClick}
+          isUserLikeThis={isUserLikeThis}
+          showReplies={showReplies}
         />
       </div>
     </div>
