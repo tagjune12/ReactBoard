@@ -17,8 +17,9 @@ function App() {
         <OffCanvas pages={pages} />
         <div className="page-view">
           <Routes>
-            <Route path="/" element={<PostListPage />}>
-              <Route path="/post/:id" element={<PostViewer />} />
+            <Route path="/" element={<PostListPage />} />
+            <Route path="/:category" element={<PostListPage />}>
+              <Route path="/:category/:id" element={<PostViewer />} />
             </Route>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />

@@ -1,9 +1,10 @@
 import '@styles/layout.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { AiOutlineSearch } from 'react-icons/ai';
 import { userLogout } from '@modules/users/user';
+
+import SearchBar from '@components/common/SearchBar';
 
 const Header = () => {
   const {
@@ -13,6 +14,7 @@ const Header = () => {
   } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const navigate = useNavigate();
 
   const onLogOutClick = () => {
     dispatch(userLogout(user));
@@ -21,6 +23,7 @@ const Header = () => {
       return;
     } else if (!loading) {
       setUser(null);
+      navigate('/');
     }
   };
 
@@ -33,17 +36,7 @@ const Header = () => {
       <Link to="/">
         <h1 className="title">Title</h1>
       </Link>
-      <div className="search-bar">
-        <form className="search-form">
-          <input placeholder="검색" />
-          <AiOutlineSearch
-            className="search-btn"
-            onClick={() => {
-              console.log('onClick');
-            }}
-          />
-        </form>
-      </div>
+      <SearchBar />
       <div className="button-wrapper">
         {user ? (
           <>

@@ -28,7 +28,7 @@ export const updatePost = createRequestThunk(updateActions, update);
 const initialState = {
   loading: false,
   error: false,
-  category: 'post',
+  category: '잡동사니',
   title: '',
   content: '',
   post: null,

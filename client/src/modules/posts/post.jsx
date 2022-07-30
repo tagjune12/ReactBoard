@@ -8,8 +8,13 @@ const readPostActions = createRequestActionTypes('post/READ_POST');
 const [READ_POST, READ_POST_SUCCESS, READ_POST_FAILURE] = readPostActions;
 const UNLOAD_POST = 'post/UNLOAD_POST';
 
+const UP_COMMENT_COUNT = 'post/UP_COMMENT_COUNT';
+const DOWN_COMMENT_COUNT = 'post/DOWN_COMMENT_COUNT';
+
 export const getPost = createRequestThunk(readPostActions, getPostById);
 export const unloadPost = createAction(UNLOAD_POST);
+export const upCommentCount = createAction(UP_COMMENT_COUNT);
+export const downCommentCount = createAction(DOWN_COMMENT_COUNT);
 
 // 초기상태
 const initialState = {
@@ -38,6 +43,26 @@ const post = handleActions(
       loading: false,
       error: true,
     }),
+    [UP_COMMENT_COUNT]: (state) => {
+      const { post } = state;
+      return {
+        ...state,
+        post: {
+          ...post,
+          comments: post.comments + 1,
+        },
+      };
+    },
+    [DOWN_COMMENT_COUNT]: (state) => {
+      const { post } = state;
+      return {
+        ...state,
+        post: {
+          ...post,
+          comments: post.comments - 1,
+        },
+      };
+    },
   },
   initialState,
 );

@@ -23,7 +23,7 @@ const PostContainer = () => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
       deletePost(postId).then((response) => {
         if (response === 204) {
-          navigate('/');
+          navigate('/all');
           if (curPage === 1) {
             dispatch(getPosts(curPage));
           } else {

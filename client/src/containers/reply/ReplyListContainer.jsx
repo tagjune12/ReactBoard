@@ -17,7 +17,13 @@ const ReplyListContainer = ({ commentId, replies, loadReplies }) => {
   //   };
   // }, []);
 
-  return <ReplyList replies={replies} loadReplies={loadReplies} />;
+  return (
+    <ReplyList
+      replies={replies}
+      loadReplies={loadReplies}
+      commentId={commentId}
+    />
+  );
 };
 
 export default ReplyListContainer;

@@ -18,9 +18,13 @@ const PostList = ({ posts }) => {
     <>
       <PostListHead />
       <div className="post-item-wrapper">
-        {posts?.map((post, index) => (
-          <PostItem key={post._id} post={post} postIndex={index} />
-        ))}
+        {posts?.length === 0 ? (
+          <span>게시글이 없습니다.</span>
+        ) : (
+          posts?.map((post, index) => (
+            <PostItem key={post._id} post={post} postIndex={index} />
+          ))
+        )}
       </div>
     </>
   );

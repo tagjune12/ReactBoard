@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '@modules/posts/postlist';
 
 import PostList from '@components/postlist/PostList';
+import { useParams } from 'react-router-dom';
 
 const PostListContainer = () => {
   // const [curPage, setCurPage] = useState(1);
@@ -11,10 +12,21 @@ const PostListContainer = () => {
     curPage: postlist.curPage,
     posts: postlist.posts,
   }));
+  const { category } = useParams();
 
   useEffect(() => {
-    dispatch(getPosts(curPage));
-  }, [dispatch, curPage]);
+    dispatch(
+      getPosts({
+        page: curPage,
+        category,
+      }),
+    );
+    console.log('From PostListContainer');
+  }, [dispatch, category, curPage]);
+
+  useEffect(() => {
+    console.log('PostList 카테고리', category);
+  }, [category]);
 
   return (
     <div className="post-list">

@@ -5,10 +5,13 @@ const OffCanvas = ({ pages }) => {
     <nav className="navbar">
       <h3>Title</h3>
       <div className="nav-item-wrapper">
-        {pages.map((page, key) => (
-          <Link key={key} to={page.path}>
-            {page.name}
-          </Link>
+        <div key={pages[0].category}>
+          <Link to={'all'}>{pages[0].name}</Link>
+        </div>
+        {pages.slice(1).map((page, key) => (
+          <div key={page.category}>
+            <Link to={`${page.category}`}>{page.name}</Link>
+          </div>
         ))}
       </div>
     </nav>

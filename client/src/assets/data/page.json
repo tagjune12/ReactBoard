@@ -1,6 +1,14 @@
 [
   {
-    "name": "Post",
-    "path": "/"
+    "name": "All",
+    "category": "all"
+  },
+  {
+    "name": "게임",
+    "category": "game"
+  },
+  {
+    "name": "잡동사니",
+    "category": "etc"
   }
 ]

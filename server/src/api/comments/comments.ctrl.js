@@ -2,6 +2,7 @@ import Joi from 'joi';
 import Comment from '../../models/comment';
 import { mongoose } from 'mongoose';
 import Post from './../../models/post';
+import Reply from './../../models/reply';
 
 const { ObjectId } = mongoose.Types;
 export const getCommentById = async (ctx, next) => {
@@ -110,11 +111,27 @@ export const remove = async ctx => {
     post.updateOne({
       comments: post.comments - 1
     }).exec();
+    await Reply.deleteMany({ commentId: id }).exec(); // 해당 댓글과 관련된 답글 삭제
     ctx.response.status = 204;
   } catch (e) {
     ctx.throw(500, e);
   }
 }
+// export const remove = async ctx => {
+//   const { id } = ctx.request.params;
+//   const postId = ctx.state.comment.postId;
+
+//   try {
+//     const post = await Post.findById(postId).exec();
+//     await Comment.findByIdAndRemove(id).exec();
+//     post.updateOne({
+//       comments: post.comments - 1
+//     }).exec();
+//     ctx.response.status = 204;
+//   } catch (e) {
+//     ctx.throw(500, e);
+//   }
+// }
 
 
 // PATCH /api/comments/:id ==> 여기서 id는 댓글 id임
