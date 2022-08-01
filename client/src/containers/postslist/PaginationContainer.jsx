@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePageNumber } from '@modules/posts/postlist';
 
@@ -10,6 +10,7 @@ const PaginationContainer = () => {
     curPage: postlist.curPage,
   }));
   const dispatch = useDispatch();
+  // const [selected, setSelected] = useState(1);
 
   const onPrevPageClick = () => {
     const targetPage = curPage === 1 ? curPage : curPage - 1;
@@ -21,11 +22,13 @@ const PaginationContainer = () => {
   };
   const onPageChange = (targetPage) => {
     dispatch(changePageNumber(targetPage));
+    // setSelected(targetPage);
   };
 
   return (
     <Pagination
       lastPage={lastPage}
+      curPage={curPage}
       onPrevPageClick={onPrevPageClick}
       onNextPageClick={onNextPageClick}
       onPageChange={onPageChange}

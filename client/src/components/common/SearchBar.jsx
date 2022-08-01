@@ -40,7 +40,7 @@ const SearchBar = () => {
   }, [location]);
 
   return (
-    <>
+    <div className="search-bar-wrapper">
       <DropDown
         items={[
           { name: '제목', category: 'title' },
@@ -67,7 +67,7 @@ const SearchBar = () => {
           />
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

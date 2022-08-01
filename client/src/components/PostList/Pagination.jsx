@@ -3,6 +3,7 @@ import Button from '@components/common/Button';
 
 const Pagination = ({
   lastPage,
+  curPage,
   onPrevPageClick,
   onNextPageClick,
   onPageChange,
@@ -19,6 +20,7 @@ const Pagination = ({
             onClick={() => {
               onPageChange(parseInt(index + 1));
             }}
+            className={index + 1 === curPage ? 'selected' : ''}
           >
             {index + 1}
           </Button>
