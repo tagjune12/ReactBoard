@@ -1,0 +1,27 @@
+.dropdown-wrapper{
+  color: black;
+  background: white;
+  border-radius: 7px;
+  max-width: 100px;
+
+  display:flex;
+  flex-direction: column;
+  
+  cursor: pointer;
+  .selected{
+    display:flex;
+    justify-content: space-between;
+    position: relative;
+    flex: 1;
+  }
+  .option-list{
+    position:absolute;
+
+    .option{
+      &:hover{
+        background-color:var(--btn-highlight-color2);
+      }
+    }
+  }
+
+}

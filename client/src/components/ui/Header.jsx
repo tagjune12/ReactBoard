@@ -1,4 +1,3 @@
-import '@styles/layout.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
@@ -32,30 +31,32 @@ const Header = () => {
   }, [userState]);
 
   return (
-    <div className="layout-header">
-      <Link to="/">
-        <h1 className="title">Title</h1>
-      </Link>
-      <SearchBar />
-      <div className="button-wrapper">
-        {user ? (
-          <>
-            <span>{`${user.nickname}님`}</span>
-            <button className="logout-btn" onClick={onLogOutClick}>
-              로그아웃
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to="/login">
-              <button className="login-btn">로그인</button>
-            </Link>
-            <Link to="/signup">
-              <button className="sign-up-btn">회원가입</button>
-            </Link>
-          </>
-        )}
-      </div>
+    <div className="header-wrapper">
+      <header className="header">
+        <Link to="/">
+          <h1 className="title">Title</h1>
+        </Link>
+        <SearchBar />
+        <div className="button-wrapper">
+          {user ? (
+            <>
+              <span>{`${user.nickname}님`}</span>
+              <button className="logout-btn" onClick={onLogOutClick}>
+                로그아웃
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">
+                <button className="login-btn">로그인</button>
+              </Link>
+              <Link to="/signup">
+                <button className="sign-up-btn">회원가입</button>
+              </Link>
+            </>
+          )}
+        </div>
+      </header>
     </div>
   );
 };
