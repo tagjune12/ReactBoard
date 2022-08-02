@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { remove } from '@lib/api/comment';
-import { getComments, likeComment } from '@modules/comments/comments';
+import { likeComment } from '@modules/comments/comments';
 import { initialize } from '@modules/comments/writeComment';
 
 import CommentEditorContainer from 'src/containers/comment/CommentEditorContainer';
@@ -8,7 +8,6 @@ import Comment from '@components/comment/Comment';
 import { useDispatch } from 'react-redux';
 import ReplyListContainer from '../reply/ReplyListContainer';
 import ReplyEditorContainer from '../reply/ReplyEditorContainer';
-import { AiOutlineConsoleSql } from 'react-icons/ai';
 import { list } from '@lib/api/reply';
 import { downCommentCount } from '@modules/posts/post';
 
@@ -108,7 +107,7 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
             onWriteReplyBtnClick={onWriteReplyBtnClick}
             onLikeClick={onLikeClick}
             isUserLikeThis={isUserLikeThis}
-            showReplies={showReplies}
+            showReplies={showReplies && replies?.length}
           />
           {writeReply && (
             <ReplyEditorContainer // 댓글에 작성하는 리플 에디터
@@ -117,17 +116,13 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
               loadReplies={loadReplies}
             />
           )}
-          {/* {Boolean(comment.reply) && showReplies && (
-            <ReplyListContainer replies={replies} loadReplies={loadReplies} />
-            // <ReplyListContainer commentId={commentId} />
-          )} */}
-          {replies.length > 0 && showReplies && (
+
+          {replies?.length > 0 && showReplies && (
             <ReplyListContainer
               replies={replies}
               loadReplies={loadReplies}
               commentId={commentId}
             />
-            // <ReplyListContainer commentId={commentId} />
           )}
         </>
       )}

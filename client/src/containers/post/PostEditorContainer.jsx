@@ -68,7 +68,8 @@ const PostEditorContainer = ({ type }) => {
 
   useEffect(() => {
     if (post) {
-      navigate(`/post/${post._id}`);
+      const category = post.category;
+      navigate(`/${category}/${post._id}`);
     } else if (error) {
       alert('오류가 발생했습니다. 다시 시도해주세요.');
     }
