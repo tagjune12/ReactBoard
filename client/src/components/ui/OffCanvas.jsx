@@ -1,13 +1,17 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { changePageNumber } from '@modules/posts/postlist';
 
 const OffCanvas = ({ pages }) => {
   const [selected, setSelected] = useState('all');
+  const dispatch = useDispatch();
 
   const onItemClick = (event) => {
     const category = event.target.dataset?.category;
     if (!category) return;
     setSelected(category);
+    dispatch(changePageNumber(1));
   };
 
   return (

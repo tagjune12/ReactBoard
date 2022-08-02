@@ -10,14 +10,18 @@ const ReplyHead = ({
   isMyReply,
 }) => {
   return (
-    <div>
-      <span>{nickname}</span>
-      <span>{date}</span>
+    <div className="header">
+      <span className="username">{nickname}</span>
+      <span className="date">{date}</span>
       {isMyReply && (
-        <>
-          <Button onClick={onEditBtnClick}>수정</Button>
-          <Button onClick={onRemoveBtnClick}>삭제</Button>
-        </>
+        <div className="button-wrapper">
+          <span className="edit-reply" onClick={onEditBtnClick}>
+            수정
+          </span>
+          <span className="delete-reply" onClick={onRemoveBtnClick}>
+            삭제
+          </span>
+        </div>
       )}
     </div>
   );
@@ -29,6 +33,7 @@ const ReplyBody = ({ content }) => {
       dangerouslySetInnerHTML={{
         __html: content,
       }}
+      className="body"
     />
   );
 };
@@ -40,7 +45,7 @@ const Reply = ({
   isMyReply,
 }) => {
   return (
-    <div>
+    <div className="reply">
       <ReplyHead
         author={author}
         date={getMonthAndDate(publishedDate)}

@@ -2,20 +2,39 @@
   border: 1px solid black;
   padding: 20px 10px;
   background-color: white;
+  margin-top: 20px;
+
+
+  .title-form{
+    display:flex;
+    align-items: center;
+
+    margin-bottom : 15px;
+    .dropdown-wrapper{
+      border:1px solid black;
+      border-radius: 0;
+    }
+    .title-input {
+      // width가 사이즈 줄어들면 이상하게 보임
+      width: 100%;
+      max-width: 668px;
+      padding: 10px 15px;
+      margin-left: 10px;
+    }
+    
+  }
 
   .ql-editor{
     height: 300px;
   }
+
+  &.comment-editor, &.reply-editor{
+    .ql-editor{
+      height: 50px;
+    }
+  }
 }
 
-.title-input {
-  // width가 사이즈 줄어들면 이상하게 보임
-  margin-bottom : 15px;
-  width: 100%;
-  max-width: 668px;
-  padding: 10px 15px;
-  margin-right: 10px;
-}
 
 .editor-btn-wrapper {
   margin-top: 15px;
@@ -26,3 +45,4 @@
     margin-left:10px;
   }
 }
+

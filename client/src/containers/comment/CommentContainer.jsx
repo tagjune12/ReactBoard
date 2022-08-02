@@ -74,7 +74,7 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
 
   const onWriteReplyBtnClick = () => {
     console.log('onWriteReplyBtnClick');
-    setWriteReply(true);
+    setWriteReply((prev) => !prev);
   };
 
   const onLikeClick = () => {

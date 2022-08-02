@@ -3,7 +3,7 @@ import React from 'react';
 
 const TitleInput = ({ title, categories, onChangeField }) => {
   return (
-    <div>
+    <div className="title-form">
       <DropDown
         items={categories.slice(1)}
         selectItem={(item) => {

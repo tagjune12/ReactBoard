@@ -86,7 +86,7 @@ const CommentEditorContainer = ({ type, setIsModifying, loadComments }) => {
   }, []);
 
   return (
-    <EditorForm className="write-form">
+    <EditorForm className="write-form comment-editor">
       <Editor
         content={content}
         onChangeField={onChangeField}

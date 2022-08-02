@@ -13,15 +13,14 @@ const PostHeader = ({
       <div className="post-info">
         <span className="author">{nickname}</span>
         <span className="date">{getMonthAndDate(publishedDate)}</span>
-
-        <span className="comments">
+        <div className="comments">
           <BiMessageDetail />
-          {comments}
-        </span>
-        <span className="likes">
+          <span>{comments}</span>
+        </div>
+        <div className="likes">
           <AiOutlineLike />
-          {like}
-        </span>
+          <span>{like}</span>
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-import '@styles/signup.scss';
 import SignupFormContainer from 'src/containers/auth/SignupFormContainer';
 
 const SignupPage = () => {

@@ -69,11 +69,21 @@ main {
       font-size: 1.5em;
     }
     .post-info{
+      display:flex;
+      // align-items: center;
       margin-left: auto;
       margin-bottom: 5px;
 
       .author, .date, .comments, .likes{
         margin-right: 10px;
+      }
+      .comments, .likes{
+        span {
+          margin-left: 5px;
+        }
+        display:flex;
+        // align-items: baseline;
+        align-items: center;
       }
     }
   }
@@ -112,6 +122,9 @@ main {
     }
     .isMyPost{
       align-self: flex-end;
+      .btn{
+        margin: 0 5px;
+      }
     }
 
     .active{
@@ -124,33 +137,85 @@ main {
 .comment {
   margin: 10px 0;
   border: 1px solid black;
+  // border-radius: 10px;
   padding: 5px 5px;
-  display: flex;
-  align-items: center;
 
-  .image-area{
-    margin-right: 10px;
+
+  .header{
+    display: flex;
+    margin-bottom: 10px;
+    padding:10px 5px;
+    border-bottom: 2px solid gray;
+    align-items: center;
+
+    .date{
+      margin: 0 5px;
+    }
+
+    .button-wrapper{
+      display:inline-block;
+      margin-left:auto;
+      .write-comment, .edit-comment, .delete-comment{
+        cursor: pointer;
+        margin: 0 5px;
+        &:hover{
+          color:blue;
+        }
+      }
+    }
   }
 
-  .content-area{
-    flex-grow: 1;
-
-    .header{
-      display: flex;
-      margin-bottom: 10px;
-
-      .username {
-        // flex-grow:1
+  .body{
+    margin: 10px 0;
+    padding: 0 5px;
+  }
+  .footer{
+    display:flex;
+    padding: 0 5px;
+    .reply-btn, .like-btn{
+      cursor: pointer;
+      margin-right: 5px;
+      span{
+        margin-left:5px;
       }
+      
+    }
+  }
+}
 
-      .edit, .delete, .likes, .reply, .date {
-        margin-right: 10px;
+// Reply
+.reply{
+  margin: 10px 0;
+  margin-left:30px;
+  border: 1px solid black;
+  padding: 5px 5px;
+  .header{
+    display: flex;
+    margin-bottom: 10px;
+    padding:10px 5px;
+    border-bottom: 2px solid gray;
+    align-items: center;
+
+    .date{
+      margin: 0 5px;
+    }
+
+    .button-wrapper{
+      display:inline-block;
+      margin-left:auto;
+      .edit-reply, .delete-reply{
+        cursor: pointer;
+        margin: 0 5px;
+        &:hover{
+          color:blue;
+        }
       }
     }
-  
-    .body{
-      margin: 10px 0;
-    }
+  }
+
+  .body{
+    margin: 10px 0;
+    padding: 0 5px;
   }
 }
 
@@ -183,4 +248,5 @@ main {
 .write-btn-wrapper{
   display:flex;
   justify-content: flex-end;
+  
 }
