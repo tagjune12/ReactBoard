@@ -13,13 +13,54 @@
     .dropdown-wrapper{
       border:1px solid black;
       border-radius: 0;
+      width:100%;
+
+      user-select: none;
+      cursor: pointer;
+
+      .selected{
+        display:flex;
+        justify-content: space-between;
+        position: relative;
+        flex: 1;
+    
+        padding: 0 10px;
+        font-weight:bold;  
+      }
+      .option-list{
+        position:absolute;
+        border:1px solid black;
+        border-top: 0;
+        top: 160px;
+        left: 161px;
+        // width: 60px;
+        // width: inherit;
+        border-radius: 0 ;
+        background: white;
+        
+        
+        .option{
+          padding: 5px 10px;
+          &:hover{
+            background-color:var(--btn-highlight-color2);
+          }
+          &:first-child{
+            margin-top: 10px;
+          }
+          &:last-child{
+            border-radius: 0 ;
+          }
+        }
+      }
+
     }
     .title-input {
       // width가 사이즈 줄어들면 이상하게 보임
-      width: 100%;
+      // width: 100%;
       max-width: 668px;
       padding: 10px 15px;
       margin-left: 10px;
+      flex:1;
     }
     
   }
