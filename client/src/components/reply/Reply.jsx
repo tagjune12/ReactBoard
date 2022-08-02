@@ -1,6 +1,5 @@
 import React from 'react';
 import { getMonthAndDate } from '@lib';
-import Button from '@components/common/Button';
 
 const ReplyHead = ({
   author: { nickname },
