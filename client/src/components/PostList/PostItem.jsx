@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
 import { getMonthAndDate } from '@lib';
 
 const PostItem = ({
   post: { like, category, _id, title, comments, author, publishedDate },
+  isCurrentPost,
 }) => {
   return (
-    <div className="post-item">
+    <div className={clsx('post-item', isCurrentPost && 'current-post')}>
       <span className="like">{like.length}</span>
       <span className="category">{category}</span>
       <Link to={`/${category}/${_id}`}>

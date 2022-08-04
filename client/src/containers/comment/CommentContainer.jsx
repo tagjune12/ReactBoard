@@ -11,7 +11,7 @@ import ReplyEditorContainer from '../reply/ReplyEditorContainer';
 import { list } from '@lib/api/reply';
 import { downCommentCount } from '@modules/posts/post';
 
-const CommentContainer = ({ comment, userObjId, loadComments }) => {
+const CommentContainer = ({ comment, user, loadComments }) => {
   const [isMyComment, setIsMyComment] = useState(false);
   const [isModifying, setIsModifying] = useState(false);
   const [showReplies, setShowReplies] = useState(true);
@@ -32,7 +32,7 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
 
   useEffect(() => {
     const { author } = comment;
-    setIsMyComment(author._id === userObjId);
+    setIsMyComment(author._id === user?._id);
 
     loadReplies();
   }, []);
@@ -80,7 +80,7 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
     console.log('onLikeClick');
     // console.log(event.target);
     setIsUserLikeThis((prev) => !prev);
-    dispatch(likeComment(commentId, userObjId));
+    dispatch(likeComment(commentId, user?._id));
     // console.log(post);
   };
 
@@ -108,6 +108,7 @@ const CommentContainer = ({ comment, userObjId, loadComments }) => {
             onLikeClick={onLikeClick}
             isUserLikeThis={isUserLikeThis}
             showReplies={showReplies && replies?.length}
+            user={user}
           />
           {writeReply && (
             <ReplyEditorContainer // 댓글에 작성하는 리플 에디터

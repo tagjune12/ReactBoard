@@ -13,7 +13,7 @@ const PostListHead = () => {
   );
 };
 
-const PostList = ({ posts }) => {
+const PostList = ({ posts, currentPost }) => {
   return (
     <>
       <PostListHead />
@@ -22,7 +22,12 @@ const PostList = ({ posts }) => {
           <span>게시글이 없습니다.</span>
         ) : (
           posts?.map((post, index) => (
-            <PostItem key={post._id} post={post} postIndex={index} />
+            <PostItem
+              key={post._id}
+              post={post}
+              // postIndex={index}
+              isCurrentPost={post?._id === currentPost}
+            />
           ))
         )}
       </div>

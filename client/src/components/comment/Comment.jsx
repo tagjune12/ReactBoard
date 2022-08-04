@@ -10,15 +10,19 @@ const CommentHeader = ({
   onDeleteBtnClick,
   onEditBtnClick,
   onWriteReplyBtnClick,
+  user,
 }) => {
   return (
     <div className="header">
       <span className="username">{author.nickname}</span>
-      <span className="date">{date}</span>
+      {/* <span className="date">{date}</span> */}
       <div className="button-wrapper">
-        <span className="write-comment" onClick={onWriteReplyBtnClick}>
-          답글 작성
-        </span>
+        {user && (
+          <span className="write-comment" onClick={onWriteReplyBtnClick}>
+            답글 작성
+          </span>
+        )}
+
         {isMyComment && (
           <>
             <span className="edit-comment" onClick={onEditBtnClick}>
@@ -30,6 +34,7 @@ const CommentHeader = ({
           </>
         )}
       </div>
+      <span className="date">{date}</span>
     </div>
   );
 };
@@ -77,6 +82,7 @@ const Comment = ({
   onLikeClick,
   isUserLikeThis,
   showReplies,
+  user,
 }) => {
   // 코멘트 모듈에 postId 들어가게 해야함
   return (
@@ -88,6 +94,7 @@ const Comment = ({
         onDeleteBtnClick={onDeleteBtnClick}
         onEditBtnClick={onEditBtnClick}
         onWriteReplyBtnClick={onWriteReplyBtnClick}
+        user={user}
       />
       <CommentBody content={content} />
       <CommentFooter

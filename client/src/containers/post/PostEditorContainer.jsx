@@ -84,7 +84,7 @@ const PostEditorContainer = ({ type }) => {
   }, []);
 
   return (
-    <EditorForm className="write-form">
+    <EditorForm className="write-form post-editor">
       <TitleInput
         title={title}
         categories={pages}

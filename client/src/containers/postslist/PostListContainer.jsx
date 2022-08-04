@@ -4,6 +4,9 @@ import { getPosts } from '@modules/posts/postlist';
 
 import PostList from '@components/postlist/PostList';
 import { useParams } from 'react-router-dom';
+import PaginationContainer from 'src/containers/postslist/PaginationContainer';
+import Button from '@components/common/Button';
+import { Link } from 'react-router-dom';
 
 const PostListContainer = () => {
   // const [curPage, setCurPage] = useState(1);
@@ -12,6 +15,8 @@ const PostListContainer = () => {
     curPage: postlist.curPage,
     posts: postlist.posts,
   }));
+  const currentPost = useSelector(({ post }) => post.post?._id);
+  const { user } = useSelector(({ user }) => user);
   const { category } = useParams();
 
   useEffect(() => {
@@ -29,9 +34,19 @@ const PostListContainer = () => {
   }, [category]);
 
   return (
-    <div className="post-list">
-      <PostList posts={posts} />
-    </div>
+    <>
+      <div className="post-list">
+        <PostList posts={posts} currentPost={currentPost} />
+      </div>
+      <PaginationContainer />
+      {user && (
+        <div className="write-btn-wrapper">
+          <Link to="/write">
+            <Button className="post-write">글쓰기</Button>
+          </Link>
+        </div>
+      )}
+    </>
   );
 };
 

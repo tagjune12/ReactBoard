@@ -70,21 +70,16 @@ const PostContainer = () => {
   useEffect(() => {
     setIsMyPost(post?.author._id === userObjId);
     setIsUserLikeThis(post?.like.includes(userObjId));
+    // 게시글 클릭시 화면 이동
+    window.scrollTo({
+      top: 300,
+      left: 0,
+      behavior: 'auto',
+    });
   }, [post]);
 
   return (
     <>
-      {/* {loading && '불러오는 중...'}
-      {!loading && (
-        <Post
-          post={post}
-          isMyPost={isMyPost}
-          onDeleteClick={onDeletePostClick}
-          onEditClick={onEditPostClick}
-          onLikeClick={onLikeClick}
-          isUserLikeThis={isUserLikeThis}
-        />
-      )} */}
       <Post
         post={post}
         isMyPost={isMyPost}

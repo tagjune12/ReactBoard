@@ -4,66 +4,78 @@ main {
 
 .post-wrapper{
   // padding:50px 30px 30px 30px;
-  margin:50px 30px 30px 30px;
+  margin:30px;
   border: none;
   border-radius: 7px;
   background-color: white;
   padding: 20px 10px;
-  // padding-bottom: 30px;
-  // width: fit-content;
-  // width: inherit;
 
-  // 유튜브 영상 삽입시 padding이 이상하게 먹힘
-}
-
-.post-list-header{
-  display: grid;
-  width: 100%;
-  padding-top:10px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid gray;
-  grid-template-columns:  2fr 3fr 10fr 6fr 3fr ;
-  text-align: center;
-}
-
-.post-item-wrapper{
-  max-width: 803px;
-  .post-item{
+  .post-list-header{
     display: grid;
     width: 100%;
     padding-top:10px;
     padding-bottom: 10px;
-    border-bottom: 1px solid gray;
-    &:hover{
-      background-color: var(--btn-highlight-color1);
-      cursor: pointer;
-    }
+    border-bottom: 3px solid gray;
     
-    grid-template-columns: 2fr 3fr 10fr 6fr 3fr ;
-    .like, .category, .author, .date{
-      margin: 0 10px;
-      text-align: center;
-    }
-
-    .title, .author {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      font-size:100%;
-    }
+    grid-template-columns:  2fr 3fr 10fr 6fr 3fr ;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+  }
   
+  .post-item-wrapper{
+    min-height: 197px;
+    .post-item{
+      display: grid;
+      width: 100%;
+      padding-top:10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid gray;
+      &:hover{
+        background-color: var(--btn-highlight-color3);
+        cursor: pointer;
+      }
+      &.current-post{
+        background-color: var(--btn-highlight-color3);
+        font-weight: bold;
+      }
+      
+      grid-template-columns: 2fr 3fr 10fr 6fr 3fr ;
+      .like, .category, .author, .date{
+        margin: 0 10px;
+        text-align: center;
+      }
+      .title{
+        color:black
+        
+      }
+
+      .title, .author {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size:100%;
+      }
+    
+    }
   }
 }
+
+
 
 
 // Post
 .post {
   padding: 10px;
+  border: 1px solid var(--border-color1);
+  border-radius: 7px;
+  margin-bottom: 20px;
   .header{
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
     border-bottom: 2px solid black;
+    // border-bottom: 2px solid var(--btn-color2);
 
     .title{
       font-size: 1.5em;
@@ -133,89 +145,107 @@ main {
   }
 }
 
-// Comment
-.comment {
-  margin: 10px 0;
-  border: 1px solid black;
-  // border-radius: 10px;
-  padding: 5px 5px;
+.comments-and-replies{
+  padding: 20px 10px;
+  border: 1px solid var(--border-color1);
+  border-radius: 7px;
+  // Comment
+  .comment {
+    margin: 10px 0;
+    border: 1px solid var(--border-color1);
+    border-radius: 7px;
+    padding: 5px 5px;
 
 
-  .header{
-    display: flex;
-    margin-bottom: 10px;
-    padding:10px 5px;
-    border-bottom: 2px solid gray;
-    align-items: center;
+    .header{
+      display: flex;
+      margin-bottom: 10px;
+      padding:10px 5px;
+      border-bottom: 2px solid var(--btn-color2);
+      align-items: center;
 
-    .date{
-      margin: 0 5px;
-    }
+      .username{
+        font-weight: bold;
+      }
 
-    .button-wrapper{
-      display:inline-block;
-      margin-left:auto;
-      .write-comment, .edit-comment, .delete-comment{
-        cursor: pointer;
-        margin: 0 5px;
-        &:hover{
-          color:blue;
+      .date{
+        margin-right: 5px;
+        // margin-left:auto;
+      }
+
+      .button-wrapper{
+        display:inline-block;
+        margin-left:auto;
+        .write-comment, .edit-comment, .delete-comment{
+          cursor: pointer;
+          margin: 0 5px;
+          &:hover{
+            color:blue;
+          }
         }
       }
     }
-  }
 
-  .body{
-    margin: 10px 0;
-    padding: 0 5px;
-  }
-  .footer{
-    display:flex;
-    padding: 0 5px;
-    .reply-btn, .like-btn{
-      cursor: pointer;
-      margin-right: 5px;
-      span{
-        margin-left:5px;
-      }
-      
+    .body{
+      margin: 10px 0;
+      padding: 0 5px;
     }
-  }
-}
-
-// Reply
-.reply{
-  margin: 10px 0;
-  margin-left:30px;
-  border: 1px solid black;
-  padding: 5px 5px;
-  .header{
-    display: flex;
-    margin-bottom: 10px;
-    padding:10px 5px;
-    border-bottom: 2px solid gray;
-    align-items: center;
-
-    .date{
-      margin: 0 5px;
-    }
-
-    .button-wrapper{
-      display:inline-block;
-      margin-left:auto;
-      .edit-reply, .delete-reply{
+    .footer{
+      display:flex;
+      padding: 0 5px;
+      .reply-btn, .like-btn{
         cursor: pointer;
-        margin: 0 5px;
-        &:hover{
-          color:blue;
+        margin-right: 5px;
+        span{
+          margin-left:5px;
+        }
+        
+      }
+    }
+  }
+
+  // Reply
+  .reply{
+    margin: 10px 0;
+    margin-left:30px;
+    border: 1px solid var(--border-color1);
+    border-radius: 7px;
+    padding: 5px 5px;
+    
+    .header{
+      display: flex;
+      margin-bottom: 10px;
+      padding:10px 5px;
+      border-bottom: 2px solid var(--btn-color2);
+      align-items: center;
+
+      .username{
+        font-weight: bold;
+      }
+
+      .date{
+        margin-right: 5px;
+        margin-left:auto;
+        
+      }
+
+      .button-wrapper{
+        display:inline-block;
+        margin-left:auto;
+        .edit-reply, .delete-reply{
+          cursor: pointer;
+          margin: 0 5px;
+          &:hover{
+            color:blue;
+          }
         }
       }
     }
-  }
 
-  .body{
-    margin: 10px 0;
-    padding: 0 5px;
+    .body{
+      margin: 10px 0;
+      padding: 0 5px;
+    }
   }
 }
 

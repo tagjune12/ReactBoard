@@ -1,4 +1,4 @@
-import LoginFormContainer from 'src/containers/auth/LoginFormContainer';
+import LoginFormContainer from '@containers/auth/LoginFormContainer';
 
 const LoginPage = () => {
   return <LoginFormContainer />;

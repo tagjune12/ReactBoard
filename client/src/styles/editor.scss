@@ -1,8 +1,9 @@
 .write-form{
-  border: 1px solid black;
+  border: 1px solid var(--border-color1);
   padding: 20px 10px;
   background-color: white;
   margin-top: 20px;
+  border-radius: 15px;
 
 
   .title-form{
@@ -28,16 +29,15 @@
         font-weight:bold;  
       }
       .option-list{
+
         position:absolute;
         border:1px solid black;
         border-top: 0;
-        top: 160px;
-        left: 161px;
-        // width: 60px;
-        // width: inherit;
+
+        top: 449px;
+                
         border-radius: 0 ;
         background: white;
-        
         
         .option{
           padding: 5px 10px;
@@ -57,7 +57,7 @@
     .title-input {
       // width가 사이즈 줄어들면 이상하게 보임
       // width: 100%;
-      max-width: 668px;
+      // max-width: 668px;
       padding: 10px 15px;
       margin-left: 10px;
       flex:1;
@@ -66,18 +66,35 @@
   }
 
   .ql-editor{
-    height: 300px;
+    height: 600px;
+    .ql-video{
+      // margin-left: auto;
+      // margin-right: auto;
+      // margin:auto; // 동영상 중앙 정렬
+      width: 640px;
+      height: 360px;
+
+    }
   }
 
   &.comment-editor{
     margin-bottom: 20px;
+    
   }
 
+  &.post-editor{
+    margin-bottom: 30px;
+  }
+  &.reply-editor{
+    margin-left:30px;
+  }
   &.comment-editor, &.reply-editor{
+    border: 1px solid var(--border-color1);
     .ql-editor{
       height: 50px;
     }
   }
+  
 }
 
 

@@ -8,7 +8,8 @@ import CommentEditorContainer from 'src/containers/comment/CommentEditorContaine
 
 const CommentListContainer = () => {
   const { id: postId } = useParams();
-  const userObjId = useSelector(({ user }) => user.user?._id);
+  // const userObjId = useSelector(({ user }) => user.user?._id);
+  const { user } = useSelector(({ user }) => user);
   const dispatch = useDispatch();
   const { comments } = useSelector(({ comments }) => comments);
 
@@ -32,11 +33,11 @@ const CommentListContainer = () => {
         <CommentContainer
           key={comment._id}
           comment={comment}
-          userObjId={userObjId}
+          user={user}
           loadComments={loadComments}
         />
       ))}
-      <CommentEditorContainer loadComments={loadComments} />
+      {user && <CommentEditorContainer loadComments={loadComments} />}
     </div>
   );
 };

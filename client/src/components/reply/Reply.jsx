@@ -11,7 +11,6 @@ const ReplyHead = ({
   return (
     <div className="header">
       <span className="username">{nickname}</span>
-      <span className="date">{date}</span>
       {isMyReply && (
         <div className="button-wrapper">
           <span className="edit-reply" onClick={onEditBtnClick}>
@@ -22,6 +21,7 @@ const ReplyHead = ({
           </span>
         </div>
       )}
+      <span className="date">{date}</span>
     </div>
   );
 };

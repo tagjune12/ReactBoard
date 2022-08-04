@@ -34,7 +34,7 @@ const Header = () => {
     <div className="header-wrapper">
       <header className="header">
         <Link to="/">
-          <h1 className="title">Title</h1>
+          <h1 className="title">WA!</h1>
         </Link>
         <SearchBar />
         <div className="button-wrapper">
