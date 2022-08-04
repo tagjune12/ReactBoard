@@ -21,20 +21,22 @@ function App() {
         <div className="sub-title">아무거나 써도 좋습니다!</div>
       </div>
       <NavBar pages={pages} />
-      <div className="main-content">
-        <div className="page-view">
-          <Routes>
-            <Route path="/" element={<PostListPage />} />
-            <Route path="/:category" element={<PostListPage />}>
-              <Route path="/:category/:id" element={<PostViewer />} />
-            </Route>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
-            <Route path="/write" element={<WritePostPage />} />
-            <Route path="/modify/:id" element={<PostModifyPage />} />
-          </Routes>
+      <main>
+        <div className="main-content">
+          <div className="page-view">
+            <Routes>
+              <Route path="/" element={<PostListPage />} />
+              <Route path="/:category" element={<PostListPage />}>
+                <Route path="/:category/:id" element={<PostViewer />} />
+              </Route>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignupPage />} />
+              <Route path="/write" element={<WritePostPage />} />
+              <Route path="/modify/:id" element={<PostModifyPage />} />
+            </Routes>
+          </div>
         </div>
-      </div>
+      </main>
       <Footer />
     </div>
   );

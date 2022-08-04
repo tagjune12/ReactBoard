@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changePageNumber } from '@modules/posts/postlist';
 
 import Pagination from '@components/postlist/Pagination';
+import SearchBar from '@components/common/SearchBar';
 
 const PaginationContainer = () => {
   const { lastPage, curPage } = useSelector(({ postlist }) => ({
@@ -25,13 +26,16 @@ const PaginationContainer = () => {
   };
 
   return (
-    <Pagination
-      lastPage={lastPage}
-      curPage={curPage}
-      onPrevPageClick={onPrevPageClick}
-      onNextPageClick={onNextPageClick}
-      onPageChange={onPageChange}
-    />
+    <>
+      <Pagination
+        lastPage={lastPage}
+        curPage={curPage}
+        onPrevPageClick={onPrevPageClick}
+        onNextPageClick={onNextPageClick}
+        onPageChange={onPageChange}
+      />
+      <SearchBar className="category-search" />
+    </>
   );
 };
 

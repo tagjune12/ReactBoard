@@ -5,8 +5,9 @@ import { useDispatch } from 'react-redux';
 import { getPosts } from '@modules/posts/postlist';
 import { useSearchParams, useParams, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import clsx from 'clsx';
 
-const SearchBar = () => {
+const SearchBar = ({ className }) => {
   const dispatch = useDispatch();
   // const [searchParams, setSearchParams] = useSearchParams();
   const [searchValue, setSearchValue] = useState();
@@ -40,14 +41,16 @@ const SearchBar = () => {
   }, [location]);
 
   return (
-    <div className="search-bar-wrapper">
-      <DropDown
-        items={[
-          { name: '제목', category: 'title' },
-          { name: '작성자', category: 'nickname' },
-        ]}
-        selectItem={setSearchKey}
-      />
+    <div className={clsx('search-bar-wrapper', className)}>
+      {className && (
+        <DropDown
+          items={[
+            { name: '제목', category: 'title' },
+            { name: '작성자', category: 'nickname' },
+          ]}
+          selectItem={setSearchKey}
+        />
+      )}
       <div className="search-bar">
         <form
           className="search-form"
@@ -57,7 +60,10 @@ const SearchBar = () => {
             console.log('onSubmit');
           }}
         >
-          <input placeholder="검색" onChange={onWordChange} />
+          <input
+            placeholder={className ? '카테고리별 검색' : '검색'}
+            onChange={onWordChange}
+          />
           <AiOutlineSearch
             className="search-btn"
             onClick={() => {
