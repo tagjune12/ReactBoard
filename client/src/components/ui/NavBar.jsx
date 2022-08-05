@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { changePageNumber } from '@modules/posts/postlist';
+import { changeCategory, changePageNumber } from '@modules/posts/postlist';
 
 const NavBar = ({ pages }) => {
   const [selected, setSelected] = useState('all');
@@ -13,20 +13,21 @@ const NavBar = ({ pages }) => {
     const category = event.target.dataset?.category;
     if (!category) return;
     setSelected(category);
+    dispatch(changeCategory(category));
     dispatch(changePageNumber(1));
   };
 
-  useEffect(() => {
-    // console.log('NavBar', location);
-    const { pathname } = location;
-    if (pathname === '/') {
-      setIsVisible(true);
-      return;
-    }
-    const categories = pages.map((page) => page.category);
-    // console.log('NavBar', pathname, categories, pathname.split('/'));
-    setIsVisible(categories.includes(pathname.split('/')[1]));
-  }, [location]);
+  // useEffect(() => {
+  //   // console.log('NavBar', location);
+  //   const { pathname } = location;
+  //   if (pathname === '/') {
+  //     setIsVisible(true);
+  //     return;
+  //   }
+  //   const categories = pages.map((page) => page.category);
+  //   // console.log('NavBar', pathname, categories, pathname.split('/'));
+  //   setIsVisible(categories.includes(pathname.split('/')[1]));
+  // }, [location]);
 
   return (
     <>

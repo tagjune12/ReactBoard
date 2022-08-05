@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import { userLogout } from '@modules/users/user';
 
 import SearchBar from '@components/common/SearchBar';
+import NavBar from './NavBar';
 
-const Header = () => {
+const Header = ({ pages }) => {
   const {
     user: userState,
     error,
@@ -36,7 +37,8 @@ const Header = () => {
         <Link to="/">
           <h1 className="title">WA!</h1>
         </Link>
-        <SearchBar />
+        {/* <SearchBar /> */}
+        <NavBar pages={pages} />
         <div className="button-wrapper">
           {user ? (
             <>

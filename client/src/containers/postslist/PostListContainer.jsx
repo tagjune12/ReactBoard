@@ -11,13 +11,14 @@ import { Link } from 'react-router-dom';
 const PostListContainer = () => {
   // const [curPage, setCurPage] = useState(1);
   const dispatch = useDispatch();
-  const { curPage, posts } = useSelector(({ postlist }) => ({
+  const { curPage, posts, category } = useSelector(({ postlist }) => ({
     curPage: postlist.curPage,
     posts: postlist.posts,
+    category: postlist.category,
   }));
   const currentPost = useSelector(({ post }) => post.post?._id);
   const { user } = useSelector(({ user }) => user);
-  const { category } = useParams();
+  // const { category } = useParams();
 
   useEffect(() => {
     dispatch(

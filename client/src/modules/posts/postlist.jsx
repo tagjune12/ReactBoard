@@ -8,20 +8,26 @@ import createRequestThunk, {
 const loadPostsActions = createRequestActionTypes('postlist/LOAD_POSTS');
 const [LOAD_POSTS, LOAD_POSTS_SUCCESS, LOAD_POSTS_FAILURE] = loadPostsActions;
 const CHANGE_PAGE_NUMBER = 'postlist/CHANGE_PAGE_NUMBER';
+const CHANGE_CATEGORY = 'postlist/CHANGE_CATEGORY';
 
 export const getPosts = createRequestThunk(loadPostsActions, getPostList);
 export const changePageNumber = createAction(
   CHANGE_PAGE_NUMBER,
   (pageNumber) => pageNumber,
 );
+export const changeCategory = createAction(
+  CHANGE_CATEGORY,
+  (category) => category,
+);
 
 // 초기 상태
 const initialState = {
   loading: false,
+  error: false,
   posts: null,
   lastPage: 1,
   curPage: 1,
-  error: false,
+  category: 'all',
 };
 
 // 리듀서
@@ -45,6 +51,10 @@ const postlist = handleActions(
     [CHANGE_PAGE_NUMBER]: (state, { payload: curPage }) => ({
       ...state,
       curPage,
+    }),
+    [CHANGE_CATEGORY]: (state, { payload: category }) => ({
+      ...state,
+      category,
     }),
   },
   initialState,

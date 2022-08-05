@@ -15,12 +15,12 @@ import pages from '@assets/data/page.json';
 function App() {
   return (
     <div className="App">
-      <Header />
+      <Header pages={pages} />
       <div className="thumbnail">
         <div className="main-title">Write Anything!</div>
         <div className="sub-title">아무거나 써도 좋습니다!</div>
       </div>
-      <NavBar pages={pages} />
+      {/* <NavBar pages={pages} /> */}
       <main>
         <div className="main-content">
           <div className="page-view">
