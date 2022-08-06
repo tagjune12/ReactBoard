@@ -3,6 +3,7 @@ import React from 'react';
 import { AiOutlineLike } from 'react-icons/ai';
 import { BiMessageDetail } from 'react-icons/bi';
 import { getMonthAndDate } from '@lib';
+import { Helmet } from 'react-helmet-async';
 
 const PostHeader = ({
   postInfo: { title, nickname, publishedDate, comments, like },
@@ -77,17 +78,22 @@ const Post = ({
   const postBody = post?.content;
 
   return (
-    <div className="post">
-      <PostHeader postInfo={postHeader} />
-      <PostBody
-        content={postBody}
-        isMyPost={isMyPost}
-        onDeleteClick={onDeleteClick}
-        onEditClick={onEditClick}
-        onLikeClick={onLikeClick}
-        isUserLikeThis={isUserLikeThis}
-      />
-    </div>
+    <>
+      <Helmet>
+        <title>게시글-{post ? post.title : ''}</title>
+      </Helmet>
+      <div className="post">
+        <PostHeader postInfo={postHeader} />
+        <PostBody
+          content={postBody}
+          isMyPost={isMyPost}
+          onDeleteClick={onDeleteClick}
+          onEditClick={onEditClick}
+          onLikeClick={onLikeClick}
+          isUserLikeThis={isUserLikeThis}
+        />
+      </div>
+    </>
   );
 };
 
