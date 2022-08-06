@@ -40,10 +40,6 @@ const Editor = ({ content, onChangeField, result, type }) => {
     console.log('content', content, editorInstance.current.root.innerHTML);
   }, []);
 
-  // useEffect(() => {
-  //   console.log('Editor Updated');
-  // }, [content]);
-
   useEffect(() => {
     console.log('Editor Load');
     console.log('result is ', result);

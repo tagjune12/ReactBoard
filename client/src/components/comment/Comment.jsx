@@ -1,5 +1,4 @@
 import { getMonthAndDate } from '@lib';
-import Button from '@components/common/Button';
 import { RiMessage2Line, RiMessage2Fill } from 'react-icons/ri';
 import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
 
@@ -15,7 +14,6 @@ const CommentHeader = ({
   return (
     <div className="header">
       <span className="username">{author.nickname}</span>
-      {/* <span className="date">{date}</span> */}
       <div className="button-wrapper">
         {user && (
           <span className="write-comment" onClick={onWriteReplyBtnClick}>

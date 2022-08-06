@@ -1,15 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '@modules/posts/postlist';
 
 import PostList from '@components/postlist/PostList';
-import { useParams } from 'react-router-dom';
 import PaginationContainer from 'src/containers/postslist/PaginationContainer';
 import Button from '@components/common/Button';
 import { Link } from 'react-router-dom';
 
 const PostListContainer = () => {
-  // const [curPage, setCurPage] = useState(1);
   const dispatch = useDispatch();
   const { curPage, posts, category } = useSelector(({ postlist }) => ({
     curPage: postlist.curPage,
@@ -18,7 +16,6 @@ const PostListContainer = () => {
   }));
   const currentPost = useSelector(({ post }) => post.post?._id);
   const { user } = useSelector(({ user }) => user);
-  // const { category } = useParams();
 
   useEffect(() => {
     dispatch(

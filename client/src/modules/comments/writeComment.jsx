@@ -40,8 +40,6 @@ const writeComment = handleActions(
     [INITIALIZE]: (state, { payload: originalComment }) => ({
       ...initialState,
       ...originalComment,
-      // content: originalComment.content,
-      // comment: originalComment,
     }),
     [CHANGE_FIELD]: (state, { payload: content }) => ({
       ...state,

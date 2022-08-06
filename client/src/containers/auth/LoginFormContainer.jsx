@@ -10,7 +10,7 @@ const LoginFormContainer = () => {
     password: '',
   });
 
-  const { user, loading, error } = useSelector(({ user }) => user);
+  const { loading, error } = useSelector(({ user }) => user);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

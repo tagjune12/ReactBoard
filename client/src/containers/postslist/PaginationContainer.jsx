@@ -22,7 +22,6 @@ const PaginationContainer = () => {
   };
   const onPageChange = (targetPage) => {
     dispatch(changePageNumber(targetPage));
-    // setSelected(targetPage);
   };
 
   return (

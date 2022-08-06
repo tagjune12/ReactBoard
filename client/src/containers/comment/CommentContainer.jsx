@@ -36,14 +36,12 @@ const CommentContainer = ({ comment, user, loadComments }) => {
 
     loadReplies();
   }, []);
-  // });
 
   const onDeleteBtnClick = () => {
     // 삭제 로직
     if (window.confirm('정말 삭제하시겠습니까?')) {
       remove(commentId).then((response) => {
         if (response.status === 204) {
-          // navigate('/');
           loadComments();
           dispatch(downCommentCount());
         }
@@ -54,14 +52,12 @@ const CommentContainer = ({ comment, user, loadComments }) => {
     // 수정 로직
     const { content } = comment;
     console.log('onEditBtnClick', content);
-    // dispatch(writeCommentModule.initialize(content));
     dispatch(
       initialize({
         content,
         commentId,
       }),
     );
-    // dispatch(initialize(comment));
     setIsModifying(true);
   };
 
@@ -78,15 +74,9 @@ const CommentContainer = ({ comment, user, loadComments }) => {
 
   const onLikeClick = () => {
     console.log('onLikeClick');
-    // console.log(event.target);
     setIsUserLikeThis((prev) => !prev);
     dispatch(likeComment(commentId, user?._id));
-    // console.log(post);
   };
-
-  // const onWriteReplyCancelBtnClick = () => {
-  //   setWriteReply(false);
-  // };
 
   return (
     <>

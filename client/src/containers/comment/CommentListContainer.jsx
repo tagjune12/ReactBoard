@@ -8,7 +8,6 @@ import CommentEditorContainer from 'src/containers/comment/CommentEditorContaine
 
 const CommentListContainer = () => {
   const { id: postId } = useParams();
-  // const userObjId = useSelector(({ user }) => user.user?._id);
   const { user } = useSelector(({ user }) => user);
   const dispatch = useDispatch();
   const { comments } = useSelector(({ comments }) => comments);
@@ -18,7 +17,6 @@ const CommentListContainer = () => {
   };
 
   useEffect(() => {
-    // dispatch(getComments(postId));
     loadComments();
     console.log('CommentListContainer');
 

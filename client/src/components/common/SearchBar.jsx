@@ -1,18 +1,16 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import DropDown from './DropDown';
 import { useDispatch } from 'react-redux';
 import { getPosts } from '@modules/posts/postlist';
-import { useSearchParams, useParams, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import clsx from 'clsx';
 
 const SearchBar = ({ className }) => {
   const dispatch = useDispatch();
-  // const [searchParams, setSearchParams] = useSearchParams();
   const [searchValue, setSearchValue] = useState();
   const [searchKey, setSearchKey] = useState();
-  // const { category } = useParams();
   const location = useLocation();
 
   const onWordChange = (event) => {

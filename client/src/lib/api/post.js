@@ -2,26 +2,13 @@ import axios from 'axios';
 
 const API_URL = `/api/posts`;
 
-// export const getPostList = (page = 1, username, category) => {
-//   return axios.get(
-//     `${API_URL}?page=${page}${username ? `&username=${username}` : ''}${
-//       category ? `&category=${category}` : ''
-//     }`,
-//   );
-// };
 export const getPostList = (query) => {
   const queryString = Object.entries(query).reduce((result, entry) => {
     const [key, value] = entry;
     return value ? result.concat(`${key}=${value}`) : result;
   }, []).join("&");
-  //
   console.log('쿼리스트링', queryString);
-  // axios.get(
-  //   `${API_URL}?${queryString}`,
-  // ).then(response => {
-  //   console.log('결과', response.data);
-  // })
-  //
+
   return axios.get(
     `${API_URL}?${queryString}`,
   );
@@ -45,7 +32,6 @@ export const write = async (content) => {
     const response = await axios.post(API_URL, content);
 
     if (response.status === 200) {
-      // console.log('response', response);
       return response;
     }
   } catch (error) {

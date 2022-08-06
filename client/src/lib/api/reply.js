@@ -7,7 +7,6 @@ export const list = async (commentId) => {
 }
 
 export const write = (commentId, content) => {
-  // console.log('write comment', content);
   return axios.post(`${API_URL}/${commentId}`, content);
 };
 

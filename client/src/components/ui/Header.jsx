@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { userLogout } from '@modules/users/user';
 
-import SearchBar from '@components/common/SearchBar';
 import NavBar from './NavBar';
 
 const Header = ({ pages }) => {

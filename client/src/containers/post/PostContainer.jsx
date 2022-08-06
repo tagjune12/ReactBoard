@@ -51,7 +51,6 @@ const PostContainer = () => {
 
   const onLikeClick = () => {
     console.log('onLikeClick');
-    // console.log(event.target);
     setIsUserLikeThis((prev) => !prev);
     dispatch(likePost(postId, userObjId));
     console.log(post);

@@ -25,7 +25,6 @@ const PostList = ({ posts, currentPost }) => {
             <PostItem
               key={post._id}
               post={post}
-              // postIndex={index}
               isCurrentPost={post?._id === currentPost}
             />
           ))

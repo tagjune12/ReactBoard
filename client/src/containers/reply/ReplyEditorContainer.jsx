@@ -6,7 +6,6 @@ import {
   updateReply,
 } from '@modules/replies/writeReply';
 import { useSelector, useDispatch } from 'react-redux';
-// import { useParams } from 'react-router';
 import { upReplyCount } from '@modules/comments/comments';
 import { checkEditorFilled } from '@lib';
 
@@ -80,18 +79,15 @@ const ReplyEditorContainer = ({
 
   useEffect(() => {
     console.log('Load ReplyEditor', content);
-    // onChangeField(content);
     return () => {
       console.log('Unload ReplyEditor', content);
       dispatch(initialize());
       loadReplies();
-      // dispatch(getComments(postId));
     };
   }, []);
 
   return (
     <>
-      {/* <h3>리플 에디터</h3> */}
       <EditorForm className="write-form reply-editor">
         <Editor
           content={content}
