@@ -31,8 +31,8 @@ const Header = ({ pages }) => {
   }, [userState]);
 
   return (
-    <div className="header-wrapper">
-      <header className="header">
+    <header className="header-wrapper">
+      <div className="header">
         <Link to="/">
           <h1 className="title">WA!</h1>
         </Link>
@@ -57,8 +57,8 @@ const Header = ({ pages }) => {
             </>
           )}
         </div>
-      </header>
-    </div>
+      </div>
+    </header>
   );
 };
 

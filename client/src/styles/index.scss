@@ -1,15 +1,15 @@
 //기본 세팅
 @import "normalize.css";
 @import 'variables.css';
+@import 'layout.scss';
 
 // 페이지
 @import 'login.scss';
-@import 'postlist.scss';
 @import 'signup.scss';
+@import 'postlist.scss';
+@import 'editor.scss';
 
 // 컴포넌트
-@import 'header.scss';
-@import 'editor.scss';
 @import 'dropdown.scss';
-// @import 'comment.scss';
 @import 'searchbar.scss';
+@import 'quill/dist/quill.snow.css';

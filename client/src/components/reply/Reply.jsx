@@ -11,16 +11,18 @@ const ReplyHead = ({
   return (
     <div className="header">
       <span className="username">{nickname}</span>
-      {isMyReply && (
-        <div className="button-wrapper">
-          <span className="edit-reply" onClick={onEditBtnClick}>
-            수정
-          </span>
-          <span className="delete-reply" onClick={onRemoveBtnClick}>
-            삭제
-          </span>
-        </div>
-      )}
+      <div className="button-wrapper">
+        {isMyReply && (
+          <>
+            <span className="edit-reply" onClick={onEditBtnClick}>
+              수정
+            </span>
+            <span className="delete-reply" onClick={onRemoveBtnClick}>
+              삭제
+            </span>
+          </>
+        )}
+      </div>
       <span className="date">{date}</span>
     </div>
   );

@@ -8,7 +8,6 @@ export const getCommentList = (postId) => {
 };
 
 export const write = (postId, content) => {
-  // console.log('write comment', content);
   return axios.post(`${API_URL}/${postId}`, content);
 };
 

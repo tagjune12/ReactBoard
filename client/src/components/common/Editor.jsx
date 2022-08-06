@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react';
 import Quill from 'quill';
-import 'quill/dist/quill.snow.css';
 
 // 본 컴포넌트
 const Editor = ({ content, onChangeField, result, type }) => {

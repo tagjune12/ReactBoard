@@ -1,7 +1,3 @@
-main {
-  width: 100%;
-}
-
 .post-wrapper {
   // padding:50px 30px 30px 30px;
   margin: 30px;
@@ -9,306 +5,308 @@ main {
   border-radius: 7px;
   background-color: white;
   padding: 20px 10px;
-
-  .post-list-header {
-    display: grid;
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-bottom: 3px solid gray;
-
-    grid-template-columns: 2fr 3fr 10fr 6fr 3fr;
-    text-align: center;
-    font-weight: bold;
-    margin-top: 20px;
-  }
-
-  .post-item-wrapper {
-    min-height: 197px;
-
-    .post-item {
+  // 글 목록
+  .post-list {
+    .post-list-header {
       display: grid;
       width: 100%;
       padding-top: 10px;
       padding-bottom: 10px;
-      border-bottom: 1px solid gray;
-
-      &:hover {
-        background-color: var(--btn-highlight-color3);
-        cursor: pointer;
-      }
-
-      &.current-post {
-        background-color: var(--btn-highlight-color3);
-        font-weight: bold;
-      }
+      border-bottom: 3px solid gray;
 
       grid-template-columns: 2fr 3fr 10fr 6fr 3fr;
-
-      .like,
-      .category,
-      .author,
-      .date {
-        margin: 0 10px;
-        text-align: center;
-      }
-
-      .title {
-        color: black
-      }
-
-      .title,
-      .author {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-size: 100%;
-      }
-
-    }
-  }
-}
-
-
-
-
-// Post
-.post {
-  padding: 10px;
-  border: 1px solid var(--border-color1);
-  border-radius: 7px;
-  margin-bottom: 20px;
-
-  .header {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    border-bottom: 2px solid black;
-    // border-bottom: 2px solid var(--btn-color2);
-
-    .title {
-      font-size: 1.5em;
+      text-align: center;
+      font-weight: bold;
+      margin-top: 20px;
     }
 
-    .post-info {
-      display: flex;
-      // align-items: center;
-      margin-left: auto;
-      margin-bottom: 5px;
+    .post-item-wrapper {
+      min-height: 197px;
 
-      .author,
-      .date,
-      .comments,
-      .likes {
-        margin-right: 10px;
-      }
+      .post-item {
+        display: grid;
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid gray;
 
-      .comments,
-      .likes {
-        span {
-          margin-left: 5px;
+        &:hover {
+          background-color: var(--btn-highlight-color3);
+          cursor: pointer;
         }
 
-        display:flex;
-        // align-items: baseline;
-        align-items: center;
+        &.current-post {
+          background-color: var(--btn-highlight-color3);
+          font-weight: bold;
+        }
+
+        grid-template-columns: 2fr 3fr 10fr 6fr 3fr;
+
+        .like,
+        .category,
+        .author,
+        .date {
+          margin: 0 10px;
+          text-align: center;
+        }
+
+        .title {
+          color: black
+        }
+
+        .title,
+        .author {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 100%;
+        }
+
       }
     }
   }
 
-  .body {
-    min-height: 300px;
-
-    .ql-video {
-      width: 640px;
-      min-height: 360px;
-      max-width: 100%;
-    }
-  }
-
-
-  .button-wrapper {
+  // pagination
+  .pagination {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    margin: 20px 0;
 
-    .like-btn {
-      align-self: center;
-      border: 3px solid var(--btn-color1);
-      width: 80px;
-      height: 30px;
-      padding: 5px;
-      border-radius: 7px;
+    .prev,
+    .next {
+      margin: 0 5px;
+    }
+
+    .btn {
+      background: none;
+      border: 2px solid var(--btn-color2);
+      margin: 0 2px;
+      color: var(--btn-color2);
 
       &:hover {
-        cursor: pointer;
-        color: white;
+        border: 2px solid var(--btn-highlight-color1);
         background-color: var(--btn-highlight-color1);
+        color: white;
       }
     }
 
-    .isMyPost {
-      align-self: flex-end;
-
-      .btn {
-        margin: 0 5px;
-      }
-    }
-
-    .active {
-      color: red;
-    }
-  }
-}
-
-.comments-and-replies {
-  padding: 20px 10px;
-  border: 1px solid var(--border-color1);
-  border-radius: 7px;
-
-  // Comment
-  .comment {
-    margin: 10px 0;
-    border: 1px solid var(--border-color1);
-    border-radius: 7px;
-    padding: 5px 5px;
-
-
-    .header {
-      display: flex;
-      margin-bottom: 10px;
-      padding: 10px 5px;
-      border-bottom: 2px solid var(--btn-color2);
-      align-items: center;
-
-      .username {
-        font-weight: bold;
-      }
-
-      .date {
-        margin-right: 5px;
-        // margin-left:auto;
-      }
-
-      .button-wrapper {
-        display: inline-block;
-        margin-left: auto;
-
-        .write-comment,
-        .edit-comment,
-        .delete-comment {
-          cursor: pointer;
-          margin: 0 5px;
-
-          &:hover {
-            color: blue;
-          }
-        }
-      }
-    }
-
-    .body {
-      margin: 10px 0;
-      padding: 0 5px;
-    }
-
-    .footer {
-      display: flex;
-      padding: 0 5px;
-
-      .reply-btn,
-      .like-btn {
-        cursor: pointer;
-        margin-right: 5px;
-
-        span {
-          margin-left: 5px;
-        }
-
-      }
-    }
-  }
-
-  // Reply
-  .reply {
-    margin: 10px 0;
-    margin-left: 30px;
-    border: 1px solid var(--border-color1);
-    border-radius: 7px;
-    padding: 5px 5px;
-
-    .header {
-      display: flex;
-      margin-bottom: 10px;
-      padding: 10px 5px;
-      border-bottom: 2px solid var(--btn-color2);
-      align-items: center;
-
-      .username {
-        font-weight: bold;
-      }
-
-      .date {
-        margin-right: 5px;
-        margin-left: auto;
-
-      }
-
-      .button-wrapper {
-        display: inline-block;
-        margin-left: auto;
-
-        .edit-reply,
-        .delete-reply {
-          cursor: pointer;
-          margin: 0 5px;
-
-          &:hover {
-            color: blue;
-          }
-        }
-      }
-    }
-
-    .body {
-      margin: 10px 0;
-      padding: 0 5px;
-    }
-  }
-}
-
-// pagination
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-
-  .prev,
-  .next {
-    margin: 0 5px;
-  }
-
-  .btn {
-    background: none;
-    border: 2px solid var(--btn-color2);
-    margin: 0 2px;
-    color: var(--btn-color2);
-
-    &:hover {
+    .btn.selected {
       border: 2px solid var(--btn-highlight-color1);
       background-color: var(--btn-highlight-color1);
       color: white;
     }
   }
 
-  .btn.selected {
-    border: 2px solid var(--btn-highlight-color1);
-    background-color: var(--btn-highlight-color1);
-    color: white;
+  // Post
+  .post-area {
+    .post {
+      padding: 10px;
+      border: 1px solid var(--border-color1);
+      border-radius: 7px;
+      margin-bottom: 20px;
+
+      .header {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        border-bottom: 2px solid black;
+        // border-bottom: 2px solid var(--btn-color2);
+
+        .title {
+          font-size: 1.5em;
+        }
+
+        .post-info {
+          display: flex;
+          // align-items: center;
+          margin-left: auto;
+          margin-bottom: 5px;
+
+          .author,
+          .date,
+          .comments,
+          .likes {
+            margin-right: 10px;
+          }
+
+          .comments,
+          .likes {
+            span {
+              margin-left: 5px;
+            }
+
+            display:flex;
+            // align-items: baseline;
+            align-items: center;
+          }
+        }
+      }
+
+      .body {
+        min-height: 300px;
+
+        .ql-video {
+          width: 640px;
+          min-height: 360px;
+          max-width: 100%;
+        }
+      }
+
+
+      .button-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        .like-btn {
+          align-self: center;
+          border: 3px solid var(--btn-color1);
+          width: 80px;
+          height: 30px;
+          padding: 5px;
+          border-radius: 7px;
+
+          &:hover {
+            cursor: pointer;
+            color: white;
+            background-color: var(--btn-highlight-color1);
+          }
+        }
+
+        .isMyPost {
+          align-self: flex-end;
+
+          .btn {
+            margin: 0 5px;
+          }
+        }
+
+        .active {
+          color: red;
+        }
+      }
+    }
+
+    .comments-and-replies {
+      padding: 20px 10px;
+      border: 1px solid var(--border-color1);
+      border-radius: 7px;
+
+      // Comment
+      .comment {
+        margin: 10px 0;
+        border: 1px solid var(--border-color1);
+        border-radius: 7px;
+        padding: 5px 5px;
+
+
+        .header {
+          display: flex;
+          margin-bottom: 10px;
+          padding: 10px 5px;
+          border-bottom: 2px solid var(--btn-color2);
+          align-items: center;
+
+          .username {
+            font-weight: bold;
+          }
+
+          .date {
+            margin-right: 5px;
+            // margin-left:auto;
+          }
+
+          .button-wrapper {
+            display: inline-block;
+            margin-left: auto;
+
+            .write-comment,
+            .edit-comment,
+            .delete-comment {
+              cursor: pointer;
+              margin: 0 5px;
+
+              &:hover {
+                color: blue;
+              }
+            }
+          }
+        }
+
+        .body {
+          margin: 10px 0;
+          padding: 0 5px;
+        }
+
+        .footer {
+          display: flex;
+          padding: 0 5px;
+
+          .reply-btn,
+          .like-btn {
+            cursor: pointer;
+            margin-right: 5px;
+
+            span {
+              margin-left: 5px;
+            }
+
+          }
+        }
+      }
+
+      // Reply
+      .reply {
+        margin: 10px 0;
+        margin-left: 30px;
+        border: 1px solid var(--border-color1);
+        border-radius: 7px;
+        padding: 5px 5px;
+
+        .header {
+          display: flex;
+          margin-bottom: 10px;
+          padding: 10px 5px;
+          border-bottom: 2px solid var(--btn-color2);
+          align-items: center;
+
+          .username {
+            font-weight: bold;
+          }
+
+          .date {
+            margin-right: 5px;
+            // margin-left: auto;
+
+          }
+
+          .button-wrapper {
+            display: inline-block;
+            margin-left: auto;
+
+            .edit-reply,
+            .delete-reply {
+              cursor: pointer;
+              margin: 0 5px;
+
+              &:hover {
+                color: blue;
+              }
+            }
+          }
+        }
+
+        .body {
+          margin: 10px 0;
+          padding: 0 5px;
+        }
+      }
+    }
   }
-}
 
-.write-btn-wrapper {
-  display: flex;
-  justify-content: flex-end;
+  // 글 쓰기 버튼
+  .write-btn-wrapper {
+    display: flex;
+    justify-content: flex-end;
 
+  }
 }
