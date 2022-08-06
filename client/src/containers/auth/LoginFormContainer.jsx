@@ -31,7 +31,7 @@ const LoginFormContainer = () => {
       return;
     } else if (!loading) {
       alert('로그인 성공');
-      navigate(-1);
+      navigate('/all');
     }
   };
 

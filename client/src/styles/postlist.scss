@@ -2,61 +2,69 @@ main {
   width: 100%;
 }
 
-.post-wrapper{
+.post-wrapper {
   // padding:50px 30px 30px 30px;
-  margin:30px;
+  margin: 30px;
   border: none;
   border-radius: 7px;
   background-color: white;
   padding: 20px 10px;
 
-  .post-list-header{
+  .post-list-header {
     display: grid;
     width: 100%;
-    padding-top:10px;
+    padding-top: 10px;
     padding-bottom: 10px;
     border-bottom: 3px solid gray;
-    
-    grid-template-columns:  2fr 3fr 10fr 6fr 3fr ;
+
+    grid-template-columns: 2fr 3fr 10fr 6fr 3fr;
     text-align: center;
     font-weight: bold;
     margin-top: 20px;
   }
-  
-  .post-item-wrapper{
+
+  .post-item-wrapper {
     min-height: 197px;
-    .post-item{
+
+    .post-item {
       display: grid;
       width: 100%;
-      padding-top:10px;
+      padding-top: 10px;
       padding-bottom: 10px;
       border-bottom: 1px solid gray;
-      &:hover{
+
+      &:hover {
         background-color: var(--btn-highlight-color3);
         cursor: pointer;
       }
-      &.current-post{
+
+      &.current-post {
         background-color: var(--btn-highlight-color3);
         font-weight: bold;
       }
-      
-      grid-template-columns: 2fr 3fr 10fr 6fr 3fr ;
-      .like, .category, .author, .date{
+
+      grid-template-columns: 2fr 3fr 10fr 6fr 3fr;
+
+      .like,
+      .category,
+      .author,
+      .date {
         margin: 0 10px;
         text-align: center;
       }
-      .title{
-        color:black
-        
+
+      .title {
+        color: black
       }
 
-      .title, .author {
+      .title,
+      .author {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-size:100%;
+        font-size: 100%;
       }
-    
+
     }
   }
 }
@@ -70,29 +78,37 @@ main {
   border: 1px solid var(--border-color1);
   border-radius: 7px;
   margin-bottom: 20px;
-  .header{
+
+  .header {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
     border-bottom: 2px solid black;
     // border-bottom: 2px solid var(--btn-color2);
 
-    .title{
+    .title {
       font-size: 1.5em;
     }
-    .post-info{
-      display:flex;
+
+    .post-info {
+      display: flex;
       // align-items: center;
       margin-left: auto;
       margin-bottom: 5px;
 
-      .author, .date, .comments, .likes{
+      .author,
+      .date,
+      .comments,
+      .likes {
         margin-right: 10px;
       }
-      .comments, .likes{
+
+      .comments,
+      .likes {
         span {
           margin-left: 5px;
         }
+
         display:flex;
         // align-items: baseline;
         align-items: center;
@@ -100,55 +116,55 @@ main {
     }
   }
 
-  .body{
+  .body {
     min-height: 300px;
-    // width:100%;
-    // padding-bottom: 56.25%;
-    .ql-video {
-      
-      // max-width:640px;
-      // max-height:360px;
 
-      width:640px;
-      height:360px
+    .ql-video {
+      width: 640px;
+      min-height: 360px;
+      max-width: 100%;
     }
   }
 
-  
-  .button-wrapper{
-    display:flex;
+
+  .button-wrapper {
+    display: flex;
     flex-direction: column;
-    
-    .like-btn{
+
+    .like-btn {
       align-self: center;
       border: 3px solid var(--btn-color1);
       width: 80px;
       height: 30px;
       padding: 5px;
       border-radius: 7px;
-      &:hover{
+
+      &:hover {
         cursor: pointer;
-        color:white;
+        color: white;
         background-color: var(--btn-highlight-color1);
       }
     }
-    .isMyPost{
+
+    .isMyPost {
       align-self: flex-end;
-      .btn{
+
+      .btn {
         margin: 0 5px;
       }
     }
 
-    .active{
-      color:red;
+    .active {
+      color: red;
     }
   }
 }
 
-.comments-and-replies{
+.comments-and-replies {
   padding: 20px 10px;
   border: 1px solid var(--border-color1);
   border-radius: 7px;
+
   // Comment
   .comment {
     margin: 10px 0;
@@ -157,92 +173,103 @@ main {
     padding: 5px 5px;
 
 
-    .header{
+    .header {
       display: flex;
       margin-bottom: 10px;
-      padding:10px 5px;
+      padding: 10px 5px;
       border-bottom: 2px solid var(--btn-color2);
       align-items: center;
 
-      .username{
+      .username {
         font-weight: bold;
       }
 
-      .date{
+      .date {
         margin-right: 5px;
         // margin-left:auto;
       }
 
-      .button-wrapper{
-        display:inline-block;
-        margin-left:auto;
-        .write-comment, .edit-comment, .delete-comment{
+      .button-wrapper {
+        display: inline-block;
+        margin-left: auto;
+
+        .write-comment,
+        .edit-comment,
+        .delete-comment {
           cursor: pointer;
           margin: 0 5px;
-          &:hover{
-            color:blue;
+
+          &:hover {
+            color: blue;
           }
         }
       }
     }
 
-    .body{
+    .body {
       margin: 10px 0;
       padding: 0 5px;
     }
-    .footer{
-      display:flex;
+
+    .footer {
+      display: flex;
       padding: 0 5px;
-      .reply-btn, .like-btn{
+
+      .reply-btn,
+      .like-btn {
         cursor: pointer;
         margin-right: 5px;
-        span{
-          margin-left:5px;
+
+        span {
+          margin-left: 5px;
         }
-        
+
       }
     }
   }
 
   // Reply
-  .reply{
+  .reply {
     margin: 10px 0;
-    margin-left:30px;
+    margin-left: 30px;
     border: 1px solid var(--border-color1);
     border-radius: 7px;
     padding: 5px 5px;
-    
-    .header{
+
+    .header {
       display: flex;
       margin-bottom: 10px;
-      padding:10px 5px;
+      padding: 10px 5px;
       border-bottom: 2px solid var(--btn-color2);
       align-items: center;
 
-      .username{
+      .username {
         font-weight: bold;
       }
 
-      .date{
+      .date {
         margin-right: 5px;
-        margin-left:auto;
-        
+        margin-left: auto;
+
       }
 
-      .button-wrapper{
-        display:inline-block;
-        margin-left:auto;
-        .edit-reply, .delete-reply{
+      .button-wrapper {
+        display: inline-block;
+        margin-left: auto;
+
+        .edit-reply,
+        .delete-reply {
           cursor: pointer;
           margin: 0 5px;
-          &:hover{
-            color:blue;
+
+          &:hover {
+            color: blue;
           }
         }
       }
     }
 
-    .body{
+    .body {
       margin: 10px 0;
       padding: 0 5px;
     }
@@ -250,33 +277,38 @@ main {
 }
 
 // pagination
-.pagination{
-  display:flex;
+.pagination {
+  display: flex;
   justify-content: center;
   margin: 20px 0;
-  .prev, .next{
+
+  .prev,
+  .next {
     margin: 0 5px;
   }
-  .btn{
+
+  .btn {
     background: none;
     border: 2px solid var(--btn-color2);
     margin: 0 2px;
     color: var(--btn-color2);
-    &:hover{
+
+    &:hover {
       border: 2px solid var(--btn-highlight-color1);
       background-color: var(--btn-highlight-color1);
       color: white;
     }
   }
-  .btn.selected{
+
+  .btn.selected {
     border: 2px solid var(--btn-highlight-color1);
     background-color: var(--btn-highlight-color1);
     color: white;
   }
 }
 
-.write-btn-wrapper{
-  display:flex;
+.write-btn-wrapper {
+  display: flex;
   justify-content: flex-end;
-  
+
 }

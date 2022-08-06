@@ -68,7 +68,7 @@ const PostContainer = () => {
 
   // 수정 필요
   useEffect(() => {
-    setIsMyPost(post?.author._id === userObjId);
+    setIsMyPost(post?.author._id === userObjId && userObjId);
     setIsUserLikeThis(post?.like.includes(userObjId));
     // 게시글 클릭시 화면 이동
     window.scrollTo({
