@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '@modules/posts/postlist';
 
-// import PostList from '@components/postlist/PostList';
+import PostList from '@components/posts/PostList';
 import PaginationContainer from '@containers/posts/PaginationContainer';
 import Button from '@components/common/Button';
 import { Link } from 'react-router-dom';
@@ -34,7 +34,7 @@ const PostListContainer = () => {
   return (
     <>
       <div className="post-list">
-        {/* <PostList posts={posts} currentPost={currentPost} /> */}
+        <PostList posts={posts} currentPost={currentPost} />
       </div>
       <PaginationContainer />
       {user && (

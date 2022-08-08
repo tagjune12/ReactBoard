@@ -1,5 +1,5 @@
 import React from 'react';
-import PostItem from '@components/postlist/PostItem';
+import PostItem from '@components/posts/PostItem';
 
 const PostListHead = () => {
   return (

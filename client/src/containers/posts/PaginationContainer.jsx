@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changePageNumber } from '@modules/posts/postlist';
 
-// import Pagination from '@components/postlist/Pagination';
+import Pagination from '@components/posts/Pagination';
 import SearchBar from '@components/common/SearchBar';
 
 const PaginationContainer = () => {
@@ -26,13 +26,13 @@ const PaginationContainer = () => {
 
   return (
     <>
-      {/* <Pagination
+      <Pagination
         lastPage={lastPage}
         curPage={curPage}
         onPrevPageClick={onPrevPageClick}
         onNextPageClick={onNextPageClick}
         onPageChange={onPageChange}
-      /> */}
+      />
       <SearchBar className="category-search" />
     </>
   );
