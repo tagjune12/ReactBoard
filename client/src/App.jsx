@@ -5,7 +5,6 @@ import SignupPage from '@pages/SignupPage';
 import WritePostPage from '@pages/WritePostPage';
 import PostModifyPage from '@pages/PostModifyPage';
 import Header from '@components/ui/Header';
-import NavBar from '@components/ui/NavBar';
 import PostViewer from '@components/post/PostViewer';
 import Footer from '@components/ui/Footer';
 
