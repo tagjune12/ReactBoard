@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '@modules/posts/postlist';
 
 import PostList from '@components/postlist/PostList';
-import PaginationContainer from '@containers/postlist/PaginationContainer';
+import PaginationContainer from '@containers/posts/PaginationContainer';
 import Button from '@components/common/Button';
 import { Link } from 'react-router-dom';
 
