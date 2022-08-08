@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogin } from '@modules/users/user';
 import LoginForm from '@components/auth/LoginForm';
+import { useEffect } from 'react';
 
 const LoginFormContainer = () => {
   const [loginInfo, setLoginInfo] = useState({
@@ -10,7 +11,7 @@ const LoginFormContainer = () => {
     password: '',
   });
 
-  const { loading, error } = useSelector(({ user }) => user);
+  const { error, user } = useSelector(({ user }) => user);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -26,14 +27,19 @@ const LoginFormContainer = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(userLogin(loginInfo));
+  };
+
+  useEffect(() => {
+    if (!user && !error) return;
+    console.log('login form', error);
     if (error) {
       alert('로그인 실패');
       return;
-    } else if (!loading) {
+    } else {
       alert('로그인 성공');
       navigate('/all');
     }
-  };
+  }, [error, user]);
 
   return <LoginForm onChange={onChange} onSubmit={onSubmit} />;
 };
