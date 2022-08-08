@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
-import DropDown from './DropDown';
+// import DropDown from './DropDown';
+import DropDown from '@components/common/DropDown';
 import { useDispatch } from 'react-redux';
 import { getPosts } from '@modules/posts/postlist';
 import { useLocation } from 'react-router-dom';

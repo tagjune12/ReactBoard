@@ -2,9 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPosts } from '@modules/posts/postlist';
 
-// import PostList from '@components/postlist/PostList';
-import PostList from 'src/components/postlist/PostList';
-import PaginationContainer from 'src/containers/postslist/PaginationContainer';
+import PostList from '@components/postlist/PostList';
+import PaginationContainer from '@containers/postlist/PaginationContainer';
 import Button from '@components/common/Button';
 import { Link } from 'react-router-dom';
 

@@ -4,8 +4,8 @@ import { remove } from '@lib/api/reply';
 import { initialize } from '@modules/replies/writeReply';
 import { useDispatch } from 'react-redux';
 
-import Reply from '../../components/reply/Reply';
-import ReplyEditorContainer from './ReplyEditorContainer';
+import Reply from '@components/reply/Reply';
+import ReplyEditorContainer from '@containers/reply/ReplyEditorContainer';
 import { downReplyCount } from '@modules/comments/comments';
 
 const ReplyContainer = ({ reply, loadReplies, commentId }) => {

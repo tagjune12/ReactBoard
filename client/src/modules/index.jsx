@@ -6,7 +6,7 @@ import user from '@modules/users/user';
 import comments from '@modules/comments/comments';
 import writeComment from '@modules/comments/writeComment';
 import replies from '@modules/replies/replies';
-import writeReply from './replies/writeReply';
+import writeReply from '@modules/replies/writeReply';
 
 const rootReducer = combineReducers({
   user,

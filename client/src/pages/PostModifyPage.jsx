@@ -1,4 +1,4 @@
-import PostEditorConntainer from 'src/containers/post/PostEditorContainer';
+import PostEditorConntainer from '@containers/post/PostEditorContainer';
 import { Helmet } from 'react-helmet-async';
 
 const PostModifyPage = () => {

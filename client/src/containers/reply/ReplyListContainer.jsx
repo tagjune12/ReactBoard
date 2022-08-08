@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ReplyList from '@components/reply/ReplyList';
 
 const ReplyListContainer = ({ commentId, replies, loadReplies }) => {

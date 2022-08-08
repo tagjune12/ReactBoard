@@ -1,5 +1,5 @@
-import PostContainer from 'src/containers/post/PostContainer';
-import CommentListContainer from 'src/containers/comment/CommentListContainer';
+import PostContainer from '@containers/post/PostContainer';
+import CommentListContainer from '@containers/comment/CommentListContainer';
 
 const PostViewer = () => {
   return (

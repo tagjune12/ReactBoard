@@ -3,11 +3,11 @@ import { remove } from '@lib/api/comment';
 import { likeComment } from '@modules/comments/comments';
 import { initialize } from '@modules/comments/writeComment';
 
-import CommentEditorContainer from 'src/containers/comment/CommentEditorContainer';
+import CommentEditorContainer from '@containers/comment/CommentEditorContainer';
 import Comment from '@components/comment/Comment';
 import { useDispatch } from 'react-redux';
-import ReplyListContainer from '../reply/ReplyListContainer';
-import ReplyEditorContainer from '../reply/ReplyEditorContainer';
+import ReplyListContainer from '@containers/reply/ReplyListContainer';
+import ReplyEditorContainer from '@containers/reply/ReplyEditorContainer';
 import { list } from '@lib/api/reply';
 import { downCommentCount } from '@modules/posts/post';
 

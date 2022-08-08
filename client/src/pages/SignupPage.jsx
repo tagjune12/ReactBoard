@@ -1,4 +1,4 @@
-import SignupFormContainer from 'src/containers/auth/SignupFormContainer';
+import SignupFormContainer from '@containers/auth/SignupFormContainer';
 import { Helmet } from 'react-helmet-async';
 
 const SignupPage = () => {

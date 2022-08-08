@@ -3,8 +3,8 @@ import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { getComments, unloadComments } from '@modules/comments/comments';
 
-import CommentContainer from './CommentContainer';
-import CommentEditorContainer from 'src/containers/comment/CommentEditorContainer';
+import CommentContainer from '@containers/comment/CommentContainer';
+import CommentEditorContainer from '@containers/comment/CommentEditorContainer';
 
 const CommentListContainer = () => {
   const { id: postId } = useParams();

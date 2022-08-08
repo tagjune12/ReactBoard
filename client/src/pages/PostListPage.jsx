@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router';
-import PostListContainer from 'src/containers/postslist/PostListContainer';
+import PostListContainer from '@containers/postlist/PostListContainer';
 
 const PostListPage = () => {
   return (
