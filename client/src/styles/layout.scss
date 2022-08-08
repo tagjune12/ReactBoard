@@ -99,7 +99,8 @@ body,
     &::before {
       // 배경만 투명화 하기 위한 가상 요소
       content: "";
-      background-image: url('../assets/images/thumbnail.jpg');
+      // background-image: url('../assets/images/thumbnail.jpg');
+      background-image: url('https://www.ukrgate.com/eng/wp-content/uploads/2021/02/The-Ukrainian-Book-Institute-Purchases-380.9-Thousand-Books-for-Public-Libraries1.jpeg');
       opacity: 0.4;
 
       background-repeat: no-repeat;
