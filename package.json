@@ -1,0 +1,26 @@
+{
+  "name": "reactblog",
+  "version": "1.0.0",
+  "description": "리액트로 만든 블로그",
+  "main": "index.js",
+  "scripts": {
+    "client-build": "cd client && npm ci && npm run build && cd ..",
+    "server-build": "cd server && npm ci && npm run build && cd ..",
+    "heroku-prebuild": "npm run client-build && npm run server-build",
+    "server-start": "cd server && npm start && cd ..",
+    "client-start": "cd client && npm start && cd ..",
+    "start": "npm run server-start && npm client-start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tagjune12/ReactBlog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tagjune12/ReactBlog/issues"
+  },
+  "homepage": "https://github.com/tagjune12/ReactBlog#readme"
+}
