@@ -14,7 +14,7 @@ const router = new Router();
 
 const { PORT, MONGO_URI, MONGO_URI_DEV } = process.env;
 
-const DB_URI = process.env.NODE_ENV === 'production' ? MONGO_URI : MONGO_URI_DEV;
+const DB_URI = process.env.NODE_ENV === 'development' ? MONGO_URI_DEV : MONGO_URI;
 
 db.connect(DB_URI).then(() => {
   console.log('Connected to MongoDB');
