@@ -15,7 +15,7 @@ export const register = async (registerInfo) => {
 
     return response;
   } catch (e) {
-    console.log(e);
+    // console.log(e);
   }
 };
 

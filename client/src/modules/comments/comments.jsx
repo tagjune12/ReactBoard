@@ -72,12 +72,12 @@ const comments = handleActions(
     [DOWN_REPLY_COUNT]: (state, { payload: commentId }) => {
       const { comments } = state;
       comments.forEach((comment) => {
-        console.log(commentId, comment._id, commentId === comment._id);
+        // console.log(commentId, comment._id, commentId === comment._id);
         if (commentId === comment._id) {
           comment.reply -= 1;
         }
       });
-      console.log('from Module comments', comments);
+      // console.log('from Module comments', comments);
       return {
         ...state,
         comments,
