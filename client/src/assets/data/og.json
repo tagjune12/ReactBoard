@@ -2,5 +2,5 @@
   "description": "아무거나 써도 좋은 게시판",
   "keywords": "",
   "site_name": "Write Anything!",
-  "imgsrc": "/favicon.png"
+  "imgsrc": "https://write-anything.herokuapp.com/favicon.png"
 }
