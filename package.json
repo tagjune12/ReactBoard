@@ -9,7 +9,6 @@
     "heroku-prebuild": "npm run client-build && npm run server-build",
     "client-env": "cd client && heroku-dotenv push && cd ..",
     "server-env": "cd server && heroku-dotenv push && cd ..",
-    "heroku-postbuild": "npm run client-env && npm run server-env",
     "start": "cd server && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
