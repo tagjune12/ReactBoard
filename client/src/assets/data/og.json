@@ -2,5 +2,5 @@
   "description": "아무거나 써도 좋은 게시판",
   "keywords": "",
   "site_name": "Write Anything!",
-  "imgsrc": "%PUBLIC_URL%/favicon.png"
+  "imgsrc": "/favicon.png"
 }
