@@ -8,11 +8,11 @@ const SEO = ({ title }) => {
     <Helmet>
       <title>{title}</title>
 
-      <meta property="og:type" content="website" />
+      {/* <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:site_name" content={og.site_name} />
       <meta property="og:description" content={og.description} />
-      <meta property="og:image" content={og.imgsrc} />
+      <meta property="og:image" content={og.imgsrc} /> */}
 
       {/* <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
