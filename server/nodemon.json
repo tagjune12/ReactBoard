@@ -1,0 +1,6 @@
+{
+  "ext": "js, json",
+  "execMap": {
+    "js": "cross-env NODE_ENV=development node"
+  }
+}

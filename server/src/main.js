@@ -9,13 +9,14 @@ import serve from 'koa-static';
 import path from 'path';
 import send from 'koa-send';
 
-
 const app = new Koa();
 const router = new Router();
 
-const { PORT, MONGO_URI } = process.env;
+const { PORT, MONGO_URI, MONGO_URI_DEV } = process.env;
 
-db.connect(MONGO_URI).then(() => {
+const DB_URI = process.env.NODE_ENV === 'production' ? MONGO_URI : MONGO_URI_DEV;
+
+db.connect(DB_URI).then(() => {
   console.log('Connected to MongoDB');
 }).catch(e => {
   console.log(e);

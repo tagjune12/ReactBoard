@@ -14,9 +14,9 @@ import { HelmetProvider } from 'react-helmet-async';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const middleware =
-  process.env.REACT_APP_ENV === 'production'
-    ? applyMiddleware(ReduxThunk)
-    : applyMiddleware(logger, ReduxThunk);
+  process.env.REACT_APP_ENV === 'development'
+    ? applyMiddleware(logger, ReduxThunk)
+    : applyMiddleware(ReduxThunk);
 const store = createStore(rootReducer, composeWithDevTools(middleware));
 
 const loadUser = () => {
