@@ -31,7 +31,7 @@ const LoginFormContainer = () => {
 
   useEffect(() => {
     if (!user && !error) return;
-    console.log('login form', error);
+    // console.log('login form', error);
     if (error) {
       alert('로그인 실패');
       return;

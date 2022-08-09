@@ -36,19 +36,11 @@ const Editor = ({ content, onChangeField, result, type }) => {
     if (mounted.current) return;
     mounted.current = true;
     editorInstance.current.root.innerHTML = content;
-    console.log('content', content, editorInstance.current.root.innerHTML);
+    // console.log('content', content, editorInstance.current.root.innerHTML);
   }, []);
 
   useEffect(() => {
-    console.log('Editor Load');
-    console.log('result is ', result);
-    return () => {
-      console.log('Editor Unload');
-    };
-  }, []);
-
-  useEffect(() => {
-    console.log('result is change', result);
+    // console.log('result is change', result);
     if (type !== 'modify') {
       editorInstance.current.root.innerHTML = '';
     }

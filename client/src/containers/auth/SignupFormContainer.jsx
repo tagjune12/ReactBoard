@@ -39,7 +39,7 @@ const SignupFormContainer = () => {
           naviage('/');
         } else {
           alert('오류가 발생했습니다. 다시 시도해 주세요');
-          console.log((response.status, response.statusText));
+          // console.log((response.status, response.statusText));
         }
       });
     }

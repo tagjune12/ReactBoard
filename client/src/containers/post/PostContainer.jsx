@@ -50,14 +50,14 @@ const PostContainer = () => {
   };
 
   const onLikeClick = () => {
-    console.log('onLikeClick');
+    // console.log('onLikeClick');
     setIsUserLikeThis((prev) => !prev);
     dispatch(likePost(postId, userObjId));
-    console.log(post);
+    // console.log(post);
   };
 
   useEffect(() => {
-    console.log('postId is Changed');
+    // console.log('postId is Changed');
     dispatch(getPost(postId));
 
     return () => {

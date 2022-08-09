@@ -31,12 +31,12 @@ const SearchBar = ({ className }) => {
       query['category'] = category;
     }
     dispatch(getPosts(query));
-    console.log('query from SearchBar', query);
+    // console.log('query from SearchBar', query);
   };
 
   useEffect(() => {
     const category = location.pathname.replace('/', '');
-    console.log('카테고리 localtion', category);
+    // console.log('카테고리 localtion', category);
   }, [location]);
 
   return (
@@ -56,7 +56,7 @@ const SearchBar = ({ className }) => {
           onSubmit={(event) => {
             event.preventDefault();
             searchPosts();
-            console.log('onSubmit');
+            // console.log('onSubmit');
           }}
         >
           <input
@@ -67,7 +67,7 @@ const SearchBar = ({ className }) => {
             className="search-btn"
             onClick={() => {
               searchPosts();
-              console.log('onClick');
+              // console.log('onClick');
             }}
           />
         </form>

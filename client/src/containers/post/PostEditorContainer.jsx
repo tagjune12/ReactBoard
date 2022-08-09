@@ -76,14 +76,14 @@ const PostEditorContainer = ({ type }) => {
   });
 
   useEffect(() => {
-    console.log('Load Post Editor');
+    // console.log('Load Post Editor');
     window.scrollTo({
       top: 300,
       left: 0,
       behavior: 'auto',
     });
     return () => {
-      console.log('Unload Post Editor');
+      // console.log('Unload Post Editor');
       dispatch(initialize());
     };
   }, []);

@@ -28,7 +28,7 @@ const CommentEditorContainer = ({ type, setIsModifying, loadComments }) => {
 
   const onWriteBtnClick = (event) => {
     event.preventDefault();
-    console.log(content);
+    // console.log(content);
     if (checkEditorFilled(content)) {
       alert('댓글 내용을 입력해 주세요');
       return;
@@ -59,11 +59,11 @@ const CommentEditorContainer = ({ type, setIsModifying, loadComments }) => {
   const onCancelBtnClick = (event) => {
     event.preventDefault();
     setIsModifying(false);
-    console.log('Do setIsModifying');
+    // console.log('Do setIsModifying');
   };
 
   useEffect(() => {
-    console.log('CommentEdidtorContainer updated');
+    // console.log('CommentEdidtorContainer updated');
     if (comment) {
       if (setIsModifying) {
         setIsModifying(false);
@@ -76,10 +76,10 @@ const CommentEditorContainer = ({ type, setIsModifying, loadComments }) => {
   }, [comment]);
 
   useEffect(() => {
-    console.log('CommetEditor Load');
+    // console.log('CommetEditor Load');
     return () => {
       dispatch(initialize());
-      console.log('CommetEditor Unload');
+      // console.log('CommetEditor Unload');
     };
   }, []);
 

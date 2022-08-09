@@ -26,7 +26,7 @@ const loadUser = () => {
     store.dispatch(setTempUser(user));
     store.dispatch(checkLoggedIn());
   } catch (e) {
-    console.log('localStroage is not working');
+    // console.log('localStroage is not working');
   }
 };
 

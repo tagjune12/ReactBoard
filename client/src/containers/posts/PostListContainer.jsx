@@ -24,11 +24,11 @@ const PostListContainer = () => {
         category,
       }),
     );
-    console.log('From PostListContainer');
+    // console.log('From PostListContainer');
   }, [dispatch, category, curPage]);
 
   useEffect(() => {
-    console.log('PostList 카테고리', category);
+    // console.log('PostList 카테고리', category);
   }, [category]);
 
   return (
