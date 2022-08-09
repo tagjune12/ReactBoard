@@ -1,12 +1,10 @@
 import PostEditorConntainer from '@containers/post/PostEditorContainer';
-import { Helmet } from 'react-helmet-async';
+import SEO from '@components/common/SEO';
 
 const PostModifyPage = () => {
   return (
     <>
-      <Helmet>
-        <title>게시글 수정</title>
-      </Helmet>
+      <SEO title="게시글 수정" />
       <PostEditorConntainer type="modify" />
     </>
   );

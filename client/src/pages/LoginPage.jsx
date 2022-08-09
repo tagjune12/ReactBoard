@@ -1,12 +1,10 @@
 import LoginFormContainer from '@containers/auth/LoginFormContainer';
-import { Helmet } from 'react-helmet-async';
+import SEO from '@components/common/SEO';
 
 const LoginPage = () => {
   return (
     <>
-      <Helmet>
-        <title>로그인</title>
-      </Helmet>
+      <SEO title="로그인-WA!" />
       <LoginFormContainer />
     </>
   );

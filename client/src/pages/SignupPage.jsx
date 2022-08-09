@@ -1,12 +1,10 @@
 import SignupFormContainer from '@containers/auth/SignupFormContainer';
-import { Helmet } from 'react-helmet-async';
+import SEO from '@components/common/SEO';
 
 const SignupPage = () => {
   return (
     <>
-      <Helmet>
-        <title>회원가입</title>
-      </Helmet>
+      <SEO title="회원가입" />
       <SignupFormContainer />
     </>
   );

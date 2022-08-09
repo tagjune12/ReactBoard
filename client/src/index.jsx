@@ -13,10 +13,11 @@ import { checkLoggedIn, setTempUser } from '@modules/users/user';
 import { HelmetProvider } from 'react-helmet-async';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(logger, ReduxThunk)),
-);
+const middleware =
+  process.env.REACT_APP_ENV === 'production'
+    ? applyMiddleware(ReduxThunk)
+    : applyMiddleware(logger, ReduxThunk);
+const store = createStore(rootReducer, composeWithDevTools(middleware));
 
 const loadUser = () => {
   try {

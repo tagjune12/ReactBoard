@@ -10,6 +10,6 @@ module.exports = {
         source: "jsconfig",
         tsConfigPath: "jsconfig.json",
       },
-    },
+    }
   ],
 };
