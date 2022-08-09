@@ -10,6 +10,7 @@
     "axios": "^0.27.2",
     "clsx": "^1.2.1",
     "craco-alias": "^3.0.1",
+    "heroku-dotenv": "^0.4.1",
     "node-sass": "^7.0.1",
     "quill": "^1.3.7",
     "react": "^18.2.0",
