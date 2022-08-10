@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { userLogout } from '@modules/users/user';
 
 import NavBar from '@components/ui/NavBar';
+import Button from '@components/common/Button';
 
 const Header = ({ pages }) => {
   const {
@@ -42,17 +43,22 @@ const Header = ({ pages }) => {
           {user ? (
             <>
               <span>{`${user.nickname}님`}</span>
-              <button className="logout-btn" onClick={onLogOutClick}>
+              <Button className="logout-btn" onClick={onLogOutClick}>
                 로그아웃
-              </button>
+              </Button>
+              {/* <button className="logout-btn" onClick={onLogOutClick}>
+                로그아웃
+              </button> */}
             </>
           ) : (
             <>
               <Link to="/login">
-                <button className="login-btn">로그인</button>
+                {/* <button className="login-btn">로그인</button> */}
+                <Button className="login-btn">로그인</Button>
               </Link>
               <Link to="/signup">
-                <button className="sign-up-btn">회원가입</button>
+                {/* <button className="sign-up-btn">회원가입</button> */}
+                <Button className="sign-up-btn">회원가입</Button>
               </Link>
             </>
           )}

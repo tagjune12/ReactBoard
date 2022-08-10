@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import clsx from 'clsx';
 
 const StyledButton = styled.button`
   border: none;
@@ -13,10 +14,7 @@ const StyledButton = styled.button`
 const Button = ({ className, onClick, children }) => {
   return (
     <>
-      <StyledButton
-        className={`${className ? className : ''} btn`}
-        onClick={onClick}
-      >
+      <StyledButton className={clsx(className, 'btn')} onClick={onClick}>
         {children}
       </StyledButton>
     </>

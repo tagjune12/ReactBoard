@@ -51,7 +51,6 @@ const CommentContainer = ({ comment, user, loadComments }) => {
   const onEditBtnClick = () => {
     // 수정 로직
     const { content } = comment;
-    // console.log('onEditBtnClick', content);
     dispatch(
       initialize({
         content,
@@ -64,16 +63,13 @@ const CommentContainer = ({ comment, user, loadComments }) => {
   const onRepliesClick = () => {
     // 답글 보기
     setShowReplies((prev) => !prev);
-    // console.log('reply clicked', showReplies);
   };
 
   const onWriteReplyBtnClick = () => {
-    // console.log('onWriteReplyBtnClick');
     setWriteReply((prev) => !prev);
   };
 
   const onLikeClick = () => {
-    // console.log('onLikeClick');
     setIsUserLikeThis((prev) => !prev);
     dispatch(likeComment(commentId, user?._id));
   };

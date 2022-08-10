@@ -18,8 +18,6 @@ const CommentListContainer = () => {
 
   useEffect(() => {
     loadComments();
-    // console.log('CommentListContainer');
-
     return () => {
       dispatch(unloadComments());
     };

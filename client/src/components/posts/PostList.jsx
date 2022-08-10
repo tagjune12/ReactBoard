@@ -34,4 +34,4 @@ const PostList = ({ posts, currentPost }) => {
   );
 };
 
-export default PostList;
+export default React.memo(PostList);

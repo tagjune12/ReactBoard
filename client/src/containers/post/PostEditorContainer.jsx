@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   changeField,
   updatePost,
@@ -24,13 +24,16 @@ const PostEditorContainer = ({ type }) => {
     ({ writePost }) => writePost,
   );
 
+  const [categoryInputData, setCategoryInputData] = useState(category);
+  const [titleInputData, setTitleInputData] = useState(title);
+
   const onChangeField = (key, value) => {
     dispatch(changeField(key, value));
   };
 
   const onWriteBtnClick = (event) => {
     event.preventDefault();
-    if (checkEditorFilled(title)) {
+    if (checkEditorFilled(titleInputData)) {
       alert('제목을 입력해 주세요');
       return;
     }
@@ -40,8 +43,8 @@ const PostEditorContainer = ({ type }) => {
     }
     dispatch(
       writeNewPost({
-        title,
-        category,
+        title: titleInputData,
+        category: categoryInputData,
         content,
       }),
     );
@@ -53,8 +56,8 @@ const PostEditorContainer = ({ type }) => {
       updatePost([
         params.id,
         {
-          title,
-          category,
+          title: titleInputData,
+          category: categoryInputData,
           content,
         },
       ]),
@@ -91,9 +94,11 @@ const PostEditorContainer = ({ type }) => {
   return (
     <EditorForm className="write-form post-editor">
       <TitleInput
-        title={title}
+        title={titleInputData}
         categories={pages}
-        onChangeField={onChangeField}
+        // onChangeField={onChangeField}
+        setCategory={setCategoryInputData}
+        setTitle={setTitleInputData}
       />
       <Editor content={content} onChangeField={onChangeField} type={type} />
       <div className="editor-btn-wrapper">
