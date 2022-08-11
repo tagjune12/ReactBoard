@@ -79,22 +79,22 @@
       margin: 0 5px;
     }
 
-    .btn {
-      background: none;
-      border: 2px solid var(--btn-color2);
-      margin: 0 2px;
-      color: var(--btn-color2);
+    // .btn {
+    //   background: none;
+    //   border: 2px solid var(--btn-color2);
+    //   margin: 0 2px;
+    //   color: var(--btn-color2);
 
-      &:hover {
-        border: 2px solid var(--btn-highlight-color1);
-        background-color: var(--btn-highlight-color1);
-        color: white;
-      }
-    }
+    //   &:hover {
+    //     border: 2px solid var(--btn-highlight-color1);
+    //     background-color: var(--btn-highlight-color1);
+    //     color: white;
+    //   }
+    // }
 
     .btn.selected {
-      border: 2px solid var(--btn-highlight-color1);
-      background-color: var(--btn-highlight-color1);
+      border: 2px solid var(--main-color3);
+      background-color: var(--main-color3);
       color: white;
     }
   }
