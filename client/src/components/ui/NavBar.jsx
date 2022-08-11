@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { changeCategory, changePageNumber } from '@modules/posts/postlist';
+import clsx from 'clsx';
 
 const NavBar = ({ pages }) => {
   const [selected, setSelected] = useState('all');
@@ -21,9 +22,10 @@ const NavBar = ({ pages }) => {
         {pages.map((page) => (
           <Link to={`${page.category}`} key={page.category}>
             <div
-              className={
-                'nav-item ' + (selected === page.category ? 'selected' : '')
-              }
+              className={clsx(
+                'nav-item ',
+                selected === page.category && 'selected',
+              )}
               data-category={page.category}
             >
               {page.name}

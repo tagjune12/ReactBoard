@@ -37,7 +37,6 @@ const Header = ({ pages }) => {
         <Link to="/">
           <h1 className="title">WA!</h1>
         </Link>
-        {/* <SearchBar /> */}
         <NavBar pages={pages} />
         <div className="button-wrapper">
           {user ? (
@@ -46,18 +45,13 @@ const Header = ({ pages }) => {
               <Button className="logout-btn" onClick={onLogOutClick}>
                 로그아웃
               </Button>
-              {/* <button className="logout-btn" onClick={onLogOutClick}>
-                로그아웃
-              </button> */}
             </>
           ) : (
             <>
               <Link to="/login">
-                {/* <button className="login-btn">로그인</button> */}
                 <Button className="login-btn">로그인</Button>
               </Link>
               <Link to="/signup">
-                {/* <button className="sign-up-btn">회원가입</button> */}
                 <Button className="sign-up-btn">회원가입</Button>
               </Link>
             </>

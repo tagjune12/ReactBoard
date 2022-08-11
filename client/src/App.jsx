@@ -18,26 +18,28 @@ function App() {
       <SEO title="Write Anything!" />
       <div className="App">
         <Header pages={pages} />
-        <div className="thumbnail">
-          <div className="main-title">Write Anything!</div>
-          <div className="sub-title">아무거나 써도 좋습니다!</div>
-        </div>
-        <main>
-          <div className="main-content">
-            <div className="page-view">
-              <Routes>
-                <Route path="/" element={<PostListPage />} />
-                <Route path="/:category" element={<PostListPage />}>
-                  <Route path="/:category/:id" element={<PostViewer />} />
-                </Route>
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/signup" element={<SignupPage />} />
-                <Route path="/write" element={<WritePostPage />} />
-                <Route path="/modify/:id" element={<PostModifyPage />} />
-              </Routes>
-            </div>
+        <div className="layout-container">
+          <div className="thumbnail">
+            <div className="main-title">Write Anything!</div>
+            <div className="sub-title">아무거나 써도 좋습니다!</div>
           </div>
-        </main>
+          <main>
+            <div className="main-content">
+              <div className="page-view">
+                <Routes>
+                  <Route path="/" element={<PostListPage />} />
+                  <Route path="/:category" element={<PostListPage />}>
+                    <Route path="/:category/:id" element={<PostViewer />} />
+                  </Route>
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/signup" element={<SignupPage />} />
+                  <Route path="/write" element={<WritePostPage />} />
+                  <Route path="/modify/:id" element={<PostModifyPage />} />
+                </Routes>
+              </div>
+            </div>
+          </main>
+        </div>
         <Footer />
       </div>
     </>

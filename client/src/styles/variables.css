@@ -11,4 +11,8 @@
   --btn-highlight-color2: #23CFBF;
   --btn-highlight-color3: #76d1c8;
   --border-color1: rgb(184, 184, 184);
+  --bs-gutter-x: 3rem;
+
+  /* screen */
+  --screen-lg: 1400px;
 }
