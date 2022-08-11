@@ -384,5 +384,5 @@ a {
 
 button:hover {
   cursor: pointer;
-  background-color: var(--btn-highlight-color1);
+  /* background-color: var(--btn-highlight-color1); */
 }
