@@ -6,7 +6,7 @@
     border: 1px solid var(--border-color1);
     border-radius: 7px;
     // margin: 30px 0;
-    margin: 2.7rem 0;
+    margin: 2rem 0;
     padding: 0 10px;
 
     .title{
@@ -15,7 +15,7 @@
     .signup-form{
       display:grid;
       grid-template-rows: repeat(5,1fr);
-      margin-bottom: 5px;
+      margin-bottom: 8px;
       padding: 10px 20px;
       #userId, #nickname, #password, #password-check{
         margin: 5px 0;
