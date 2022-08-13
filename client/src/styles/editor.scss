@@ -5,9 +5,9 @@
   margin-top: 20px;
   border-radius: 15px;
 
-  @media (min-width:1000px) {
-    width: 1000px;
-  }
+  // @media (min-width:1000px) {
+  //   width: 1000px;
+  // }
 
   .title-form{
     display:flex;
@@ -87,6 +87,7 @@
 
   &.post-editor{
     margin-bottom: 30px;
+    // margin: 0 auto auto 30px;
   }
   &.reply-editor{
     margin-left:30px;

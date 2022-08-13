@@ -32,12 +32,12 @@
         border-bottom: 1px solid gray;
 
         &:hover {
-          background-color: var(--btn-highlight-color3);
+          background-color: var(--main-color1);
           cursor: pointer;
         }
 
         &.current-post {
-          background-color: var(--btn-highlight-color3);
+          background-color: var(--main-color3);
           font-weight: bold;
         }
 
@@ -79,18 +79,18 @@
       margin: 0 5px;
     }
 
-    // .btn {
-    //   background: none;
-    //   border: 2px solid var(--btn-color2);
-    //   margin: 0 2px;
-    //   color: var(--btn-color2);
+    .btn {
+      background: none;
+      border: 2px solid var(--main-color2);
+      margin: 0 2px;
+      color: var(--main-color2);
 
-    //   &:hover {
-    //     border: 2px solid var(--btn-highlight-color1);
-    //     background-color: var(--btn-highlight-color1);
-    //     color: white;
-    //   }
-    // }
+      &:hover {
+        border: 2px solid var(--main-color1);
+        background-color: var(--main-color1);
+        color: white;
+      }
+    }
 
     .btn.selected {
       border: 2px solid var(--main-color3);
@@ -161,7 +161,7 @@
 
         .like-btn {
           align-self: center;
-          border: 3px solid var(--btn-color1);
+          border: 3px solid var(--main-color1);
           width: 80px;
           height: 30px;
           padding: 5px;
@@ -170,7 +170,7 @@
           &:hover {
             cursor: pointer;
             color: white;
-            background-color: var(--btn-highlight-color1);
+            background-color: var(--main-color2);
           }
         }
 
@@ -242,7 +242,6 @@
         .footer {
           display: flex;
           padding: 0 5px;
-
           .reply-btn,
           .like-btn {
             cursor: pointer;

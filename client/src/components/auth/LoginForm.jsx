@@ -4,7 +4,7 @@ import Button from '@components/common/Button';
 const LoginForm = ({ onSubmit, onChange }) => {
   return (
     <div className="login">
-      <div className="login-form-wrapper">
+      <div className="login-form-continer">
         <h1 className="title">LOGIN</h1>
         <form className="login-form" onSubmit={onSubmit}>
           <input

@@ -3,8 +3,8 @@ import { AiFillGithub } from 'react-icons/ai';
 
 const Footer = () => {
   return (
-    <footer className="footer-wrapper">
-      <div className="footer">
+    <footer className="footer">
+      <div className="footer-container">
         <a
           className="info"
           href="https://github.com/tagjune12"

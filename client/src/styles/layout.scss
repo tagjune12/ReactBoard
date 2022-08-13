@@ -1,15 +1,10 @@
-*{
+* {
   box-sizing: border-box;
 }
 
 // mixins
 @mixin container {
-  // display: flex;
-  // align-items: center;
-  // justify-content: space-between;
-  // flex-wrap: wrap;
   width: 100%;
-  // margin: 0 auto;
   margin-left: auto;
   margin-right: auto;
   padding: 0 calc(var(--bs-gutter-x)*0.5);
@@ -18,17 +13,19 @@
     max-width: 1320px;
   }
 }
+
 // styles
 html,
 body,
 #root,
 .App {
-  height: 100%;
+  // height: 100%;
 }
 
 .App {
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
+  // flex:1;
 
   // 헤더
   .header-wrapper {
@@ -54,7 +51,7 @@ body,
       @include container();
 
       .title {
-        color: black;
+        color: var(--main-color3);
       }
 
       .navbar {
@@ -104,7 +101,8 @@ body,
           padding: 2px 10px;
           background-color: var(--main-color3);
           color: white;
-          &:hover{
+
+          &:hover {
             background-color: var(--main-color1);
           }
         }
@@ -118,7 +116,7 @@ body,
   }
 
   .layout-container {
-    // @include container;
+    height:100%;
     // 썸네일
     .thumbnail {
       display: flex;
@@ -129,7 +127,7 @@ body,
 
       min-height: 278px;
       position: relative;
-      
+
 
       &::before {
         // 배경만 투명화 하기 위한 가상 요소
@@ -137,16 +135,16 @@ body,
         // background-image: url('../assets/images/thumbnail.jpg');
         background-image: url('https://www.ukrgate.com/eng/wp-content/uploads/2021/02/The-Ukrainian-Book-Institute-Purchases-380.9-Thousand-Books-for-Public-Libraries1.jpeg');
         opacity: 0.4;
-        
+
         background-repeat: no-repeat;
         background-size: cover;
-        
+
         position: absolute;
         top: 0px;
         left: 0px;
         right: 0px;
         bottom: 0px;
-        
+
       }
 
       .main-title {
@@ -169,45 +167,29 @@ body,
 
     // 메인
     main {
-      flex: 1;
-      width: 100%;
-
-      .main-content {
-        display: flex;
-        justify-content: center;
-        min-height: 50vh;
-        align-items: center;
-
-        .page-view {
-          // width: 100vw;
-          max-width: 1200px;
-
-        }
-      }
+      @include container();
     }
   }
 
   // 푸터
-  .footer-wrapper {
+  footer.footer {
     background-color: #24292f;
-    display:flex;
-    justify-content: center;
-    .footer {
+    // position:relative;
+    .footer-container {
       display: grid;
       grid-template-rows: 1fr 1fr;
-      // color: white;
       color: #E0E0E0;
-      padding: 20px 0;
       justify-content: center;
-      // align-items: center;
       @include container();
-      margin: 1.5rem 0;
+
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
       .info {
         justify-self: center;
         font-size: 40px;
-
+        color:var(--main-color2);
         &:visited {
-          color: white;
+          color: var(--main-color2);
         }
       }
 
