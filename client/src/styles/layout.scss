@@ -62,6 +62,7 @@ body,
           padding: 20px 0px;
           font-size: large;
           font-weight: bold;
+          align-items: center;
 
           a:visited {
             color: black;
@@ -183,10 +184,11 @@ body,
       color: #E0E0E0;
       justify-content: center;
       @include container();
-
-      padding-top: 1.5rem;
-      padding-bottom: 1.5rem;
+      $padding-gap: 1.05rem;
+      padding-top: $padding-gap;
+      padding-bottom: $padding-gap;
       .info {
+        padding-top: 7px;
         justify-self: center;
         font-size: 40px;
         color:var(--main-color2);
