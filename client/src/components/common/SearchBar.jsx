@@ -1,24 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
-// import DropDown from './DropDown';
 import DropDown from '@components/common/DropDown';
 import { useDispatch } from 'react-redux';
 import { getPosts } from '@modules/posts/postlist';
 import { useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import clsx from 'clsx';
 
 const SearchBar = ({ className }) => {
   const dispatch = useDispatch();
-  const [searchValue, setSearchValue] = useState();
   const [searchKey, setSearchKey] = useState();
+  const searchbarRef = useRef('');
   const location = useLocation();
 
-  const onWordChange = (event) => {
-    const word = event.target.value;
-    setSearchValue(word);
-  };
   const searchPosts = () => {
+    const searchValue = searchbarRef.current.value;
     if (!searchValue) {
       alert('검색어가 없습니다');
       return;
@@ -31,12 +27,10 @@ const SearchBar = ({ className }) => {
       query['category'] = category;
     }
     dispatch(getPosts(query));
-    // console.log('query from SearchBar', query);
   };
 
   useEffect(() => {
-    const category = location.pathname.replace('/', '');
-    // console.log('카테고리 localtion', category);
+    searchbarRef.current.value = '';
   }, [location]);
 
   return (
@@ -56,18 +50,16 @@ const SearchBar = ({ className }) => {
           onSubmit={(event) => {
             event.preventDefault();
             searchPosts();
-            // console.log('onSubmit');
           }}
         >
           <input
             placeholder={className ? '카테고리별 검색' : '검색'}
-            onChange={onWordChange}
+            ref={searchbarRef}
           />
           <AiOutlineSearch
             className="search-btn"
             onClick={() => {
               searchPosts();
-              // console.log('onClick');
             }}
           />
         </form>

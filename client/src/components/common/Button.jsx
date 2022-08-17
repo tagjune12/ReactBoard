@@ -7,10 +7,10 @@ const StyledButton = styled.button`
   border-radius: 5px;
   height: 36px;
   padding: 2px 10px;
-  background-color: var(--main-color2);
+  background-color: #3e71ad;
   color: white;
   &:hover {
-    background-color: var(--main-color1);
+    background-color: #4782c8;
   }
 `;
 

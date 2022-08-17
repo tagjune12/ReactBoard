@@ -1,7 +1,6 @@
 import DropDown from '@components/common/DropDown';
 import React from 'react';
 
-// const TitleInput = ({ title, categories, onChangeField }) => {
 const TitleInput = ({ title, categories, setCategory, setTitle }) => {
   return (
     <div className="title-form">

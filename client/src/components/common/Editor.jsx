@@ -36,11 +36,9 @@ const Editor = ({ content, onChangeField, result, type }) => {
     if (mounted.current) return;
     mounted.current = true;
     editorInstance.current.root.innerHTML = content;
-    // console.log('content', content, editorInstance.current.root.innerHTML);
   }, []);
 
   useEffect(() => {
-    // console.log('result is change', result);
     if (type !== 'modify') {
       editorInstance.current.root.innerHTML = '';
     }

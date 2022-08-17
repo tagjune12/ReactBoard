@@ -1,12 +1,10 @@
 .login {
   display: flex;
   justify-content: center;
-  // margin: auto 0;
   .login-form-continer {
     width: 400px;
-    border: 1px solid var(--border-color1);
+    border: 1px solid $--border-color1;
     border-radius: 7px;
-    // margin: 30px 0;
     margin: 3.45rem 0;
     padding: 0 10px;
 
@@ -25,7 +23,7 @@
         margin: 5px 0;
         height: 30px;
         border: none;
-        border-bottom: 2px solid var(--border-color1);
+        border-bottom: 2px solid $--border-color1;
         width: 100%;
 
         &:focus {

@@ -1,7 +1,8 @@
 //기본 세팅
 @import "normalize.css";
-@import 'variables.css';
+@import 'variables.scss';
 @import 'layout.scss';
+@use 'mixins.scss';
 
 // 페이지
 @import 'login.scss';

@@ -2,7 +2,7 @@
   display:flex;
   align-items: center;
   min-width: 40vw;
-  border: 1px solid var(--border-color1);
+  border: 1px solid $--border-color1;
   border-radius: 5px;
   padding: 5px 00;
   &.category-search{

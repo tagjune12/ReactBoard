@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
   changeField,
   updatePost,
@@ -27,10 +27,12 @@ const PostEditorContainer = ({ type }) => {
   const [categoryInputData, setCategoryInputData] = useState(category);
   const [titleInputData, setTitleInputData] = useState(title);
 
-  const onChangeField = (key, value) => {
-    dispatch(changeField(key, value));
-  };
-
+  const onChangeField = useCallback(
+    (key, value) => {
+      dispatch(changeField(key, value));
+    },
+    [dispatch],
+  );
   const onWriteBtnClick = (event) => {
     event.preventDefault();
     if (checkEditorFilled(titleInputData)) {
@@ -79,14 +81,12 @@ const PostEditorContainer = ({ type }) => {
   });
 
   useEffect(() => {
-    // console.log('Load Post Editor');
     window.scrollTo({
       top: 300,
       left: 0,
       behavior: 'auto',
     });
     return () => {
-      // console.log('Unload Post Editor');
       dispatch(initialize());
     };
   }, []);
@@ -96,7 +96,6 @@ const PostEditorContainer = ({ type }) => {
       <TitleInput
         title={titleInputData}
         categories={pages}
-        // onChangeField={onChangeField}
         setCategory={setCategoryInputData}
         setTitle={setTitleInputData}
       />
