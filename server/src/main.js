@@ -18,7 +18,7 @@ const DB_URI = process.env.NODE_ENV === 'development' ? MONGO_URI_DEV : MONGO_UR
 
 db.connect(DB_URI).then(() => {
   console.log('Connected to MongoDB');
-}).catch(e => {
+}).catch(error => {
   console.log(error);
 })
 
