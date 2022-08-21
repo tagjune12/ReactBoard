@@ -3,7 +3,6 @@ import axios from 'axios';
 const API_URL = `/api/comments`;
 
 export const getCommentList = (postId) => {
-  // console.log("getCommentList", postId);
   return axios.get(`${API_URL}?post=${postId}`);
 };
 

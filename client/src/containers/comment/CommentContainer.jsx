@@ -27,7 +27,6 @@ const CommentContainer = ({ comment, user, loadComments }) => {
       const data = response.data;
       setReplies(data);
     });
-    // console.log('load Replies');
   };
 
   useEffect(() => {

@@ -22,7 +22,7 @@ export const getCommentById = async (ctx, next) => {
 
     ctx.state.comment = comment;
     return next();
-  } catch (e) {
+  } catch (error) {
     ctx.throw(500, e);
   }
 
@@ -57,7 +57,7 @@ export const list = async ctx => {
       .lean()
       .exec();
     ctx.response.body = comments;
-  } catch (e) {
+  } catch (error) {
     ctx.throw(500, e);
   }
 };
@@ -94,7 +94,7 @@ export const write = async ctx => {
   try {
     await comment.save();
     ctx.response.body = comment;
-  } catch (e) {
+  } catch (error) {
     ctx.throw(500, e);
   }
 }
@@ -113,7 +113,7 @@ export const remove = async ctx => {
     }).exec();
     await Reply.deleteMany({ commentId: id }).exec(); // 해당 댓글과 관련된 답글 삭제
     ctx.response.status = 204;
-  } catch (e) {
+  } catch (error) {
     ctx.throw(500, e);
   }
 }
@@ -128,7 +128,7 @@ export const remove = async ctx => {
 //       comments: post.comments - 1
 //     }).exec();
 //     ctx.response.status = 204;
-//   } catch (e) {
+//   } catch (error) {
 //     ctx.throw(500, e);
 //   }
 // }
@@ -160,7 +160,7 @@ export const update = async ctx => {
       new: true
     }).exec();
     ctx.response.body = comment;
-  } catch (e) {
+  } catch (error) {
     ctx.throw(500, e);
   }
 }
@@ -182,7 +182,7 @@ export const like = async ctx => {
       new: true
     }).exec();
     ctx.response.body = comment;
-  } catch (e) {
+  } catch (error) {
     ctx.throw(500, e);
   }
 }

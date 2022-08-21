@@ -1,41 +1,19 @@
+$gap: 3rem;
+
 .login {
   display: flex;
   justify-content: center;
+
   .login-form-continer {
-    width: 400px;
-    border: 1px solid $--border-color1;
-    border-radius: 7px;
-    margin: 3.45rem 0;
-    padding: 0 10px;
+    @include submit-form-container(3.45rem);
 
-    .title {
-      text-align: center;
-    }
-    $gap: 3rem;
     .login-form {
-      display: grid;
-      grid-template-rows: repeat(3, 1fr);
-      margin-bottom: 5px;
-      padding: 10px 20px;
-      margin-top:$gap;
-      #userId,
+      @include form-layout(3, 5px);
+      margin-top: $gap;
+
+
       #password {
-        margin: 5px 0;
-        height: 30px;
-        border: none;
-        border-bottom: 2px solid $--border-color1;
-        width: 100%;
-
-        &:focus {
-          outline: none;
-        }
-      }
-      #password{
-        margin-bottom:$gap;
-      }
-
-      .login-btn {
-        margin: 15px 0 10px 0;
+        margin-bottom: $gap;
       }
     }
   }

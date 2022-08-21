@@ -7,11 +7,11 @@ import NavBar from '@components/ui/NavBar';
 import Button from '@components/common/Button';
 
 const Header = ({ pages }) => {
-  const {
-    user: userState,
-    error,
-    loading,
-  } = useSelector((state) => state.user);
+  const { userState, error, loading } = useSelector(({ user, loading }) => ({
+    userState: user.user,
+    error: user.error,
+    loading: loading['user/LOGOUT'],
+  }));
   const dispatch = useDispatch();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   const navigate = useNavigate();

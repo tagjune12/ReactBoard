@@ -24,7 +24,7 @@ const jwtMiddleware = async (ctx, next) => {
       });
     }
     return next();
-  } catch (e) {
+  } catch (error) {
     return next();
   }
 }

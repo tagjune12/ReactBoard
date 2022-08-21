@@ -44,7 +44,7 @@ export const register = async ctx => {
       maxAge: 1000 * 60 * 60 * 24 * 7, // 7일
       httpOnly: true
     });
-  } catch (e) {
+  } catch (error) {
     ctx.throw(500, e);
   }
 };
@@ -93,7 +93,7 @@ export const login = async ctx => {
       maxAge: 1000 * 60 * 60 * 24 * 7, // 7일
       httpOnly: true
     });
-  } catch (e) {
+  } catch (error) {
     ctx.throw(500, e);
   }
 };

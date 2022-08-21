@@ -25,7 +25,6 @@ export const checkLoggedIn = createRequestThunk(loggedInCheckActions, check);
 
 // 초기 상태
 const initialState = {
-  loading: false,
   error: false,
   user: null,
 };
@@ -38,7 +37,6 @@ const user = handleActions(
     }),
     [LOGIN]: (state) => ({
       ...state,
-      loading: true,
       error: false,
     }),
     [LOGIN_SUCCESS]: (state, { payload: { data: user } }) => {
@@ -46,47 +44,39 @@ const user = handleActions(
 
       return {
         ...state,
-        loading: false,
         error: false,
         user,
       };
     },
     [LOGIN_FAILURE]: (state) => ({
       ...state,
-      loading: false,
       error: true,
     }),
     [LOGOUT]: (state) => ({
       ...state,
-      loading: true,
     }),
     [LOGOUT_SUCCESS]: (state) => {
       localStorage.removeItem('user');
       return {
         ...state,
         user: null,
-        loading: false,
         error: false,
       };
     },
     [LOGOUT_FAILURE]: (state) => ({
       ...state,
-      loading: false,
       error: true,
     }),
     [CHECK]: (state) => ({
       ...state,
-      loading: true,
       error: true,
     }),
     [CHECK_SUCCESS]: (state) => ({
       ...state,
-      loading: false,
       error: false,
     }),
     [CHECK_FAILURE]: (state) => ({
       ...state,
-      loading: false,
       error: true,
     }),
   },

@@ -8,27 +8,24 @@
   justify-content: center;
   height: 32px;
   padding: 3px 0;
-
   user-select: none;
   cursor: pointer;
+  position: relative;
 
   .selected {
     display: flex;
     justify-content: space-between;
-    position: relative;
     flex: 1;
-
     padding: 0 10px;
     font-weight: bold;
   }
 
   .option-list {
     position: absolute;
-    top: 754px;
+    top: 27px;
     width: 100px;
     border-radius: 0 0 7px 7px;
     background: white;
-
 
     .option {
       padding: 5px 10px;

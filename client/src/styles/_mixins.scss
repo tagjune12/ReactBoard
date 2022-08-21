@@ -1,0 +1,57 @@
+// mixins
+@mixin container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 $--bs-gutter-x*0.5;
+
+  @media (min-width: $--screen-lg) {
+    max-width: 1320px;
+  }
+};
+
+@mixin btn {
+  border: none;
+  border-radius: 5px;
+  height: 36px;
+  padding: 2px 10px;
+  background-color: $--main-color2;
+  color: white;
+  &:hover {
+    background-color: $--main-color1;
+  }
+}
+
+@mixin submit-form-container($top-down-margin){
+  width: 400px;
+  border: 1px solid $--border-color1;
+  border-radius: 7px;
+  margin: $top-down-margin 0;
+  padding: 0 10px;
+
+  .title{
+    text-align: center;
+  }
+}
+
+@mixin form-layout($rows, $bottom-gap) {
+  display: grid;
+  grid-template-rows: repeat($rows, 1fr);
+  margin-bottom: $bottom-gap;
+  padding: 10px 20px;
+
+  input {
+    margin: 5px 0;
+    height: 30px;
+    border: none;
+    border-bottom: 2px solid $--border-color1;
+  
+    &:focus{
+      outline: none;
+    }
+  }
+
+  button {
+    margin: 15px 0 10px 0;
+  }
+}

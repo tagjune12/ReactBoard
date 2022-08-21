@@ -28,7 +28,6 @@ export const writeNewComment = createRequestThunk(writeActions, write);
 export const updateComment = createRequestThunk(updateActions, update);
 
 const initialState = {
-  loading: false,
   error: false,
   content: '',
   commentId: '',
@@ -48,35 +47,29 @@ const writeComment = handleActions(
 
     [WRITE_COMMENT]: (state) => ({
       ...state,
-      loading: true,
       error: false,
     }),
     [WRITE_COMMENT_SUCCCESS]: (state, { payload: response }) => ({
       ...state,
-      loading: false,
       error: false,
       comment: response.data,
     }),
     [WRITE_COMMENT_FAILURE]: (state) => ({
       ...state,
-      loading: false,
       error: true,
     }),
 
     [UPDATE_COMMENT]: (state) => ({
       ...state,
-      loading: true,
       error: false,
     }),
     [UPDATE_COMMENT_SUCCCESS]: (state, { payload: response }) => ({
       ...state,
-      loading: false,
       error: false,
       comment: response.data,
     }),
     [UPDATE_COMMENT_FAILURE]: (state) => ({
       ...state,
-      loading: false,
       error: true,
     }),
   },

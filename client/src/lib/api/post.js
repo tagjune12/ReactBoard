@@ -7,7 +7,6 @@ export const getPostList = (query) => {
     const [key, value] = entry;
     return value ? result.concat(`${key}=${value}`) : result;
   }, []).join("&");
-  // console.log('쿼리스트링', queryString);
 
   return axios.get(
     `${API_URL}?${queryString}`,
@@ -22,8 +21,8 @@ export const deletePost = async (postId) => {
   try {
     const response = await axios.delete(`${API_URL}/${postId}`);
     if (response.status === 204) return response.status;
-  } catch (e) {
-    // console.log(e);
+  } catch (error) {
+    throw (error);
   }
 };
 
@@ -35,7 +34,7 @@ export const write = async (content) => {
       return response;
     }
   } catch (error) {
-    // console.log(error);
+    throw (error);
   }
 };
 

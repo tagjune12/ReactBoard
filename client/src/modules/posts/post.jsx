@@ -21,7 +21,6 @@ export const downCommentCount = createAction(DOWN_COMMENT_COUNT);
 
 // 초기상태
 const initialState = {
-  loading: false,
   error: false,
   post: null,
 };
@@ -32,18 +31,15 @@ const post = handleActions(
     [UNLOAD_POST]: (state) => initialState,
     [READ_POST]: (state) => ({
       ...state,
-      loading: true,
     }),
     [READ_POST_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      loading: false,
       post: {
         ...response.data,
       },
     }),
     [READ_POST_FAILURE]: (state) => ({
       ...state,
-      loading: false,
       error: true,
     }),
     [UP_COMMENT_COUNT]: (state) => {
@@ -68,11 +64,9 @@ const post = handleActions(
     },
     [LIKE_POST]: (state) => ({
       ...state,
-      loading: true,
     }),
     [LIKE_POST_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      loading: false,
       error: false,
       post: {
         ...response.data,
@@ -80,7 +74,6 @@ const post = handleActions(
     }),
     [LIKE_POST_FAILURE]: (state) => ({
       ...state,
-      loading: false,
       error: true,
     }),
   },

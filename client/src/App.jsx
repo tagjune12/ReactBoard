@@ -11,6 +11,7 @@ import SEO from '@components/common/SEO';
 
 import '@styles/index.scss';
 import pages from '@assets/data/page.json';
+import MoveToTopButton from '@components/common/MoveToTopButton';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
               <Route path="/modify/:id" element={<PostModifyPage />} />
             </Routes>
           </main>
+          <MoveToTopButton />
         </div>
         <Footer />
       </div>

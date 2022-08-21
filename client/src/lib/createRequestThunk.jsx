@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions';
+import { startLoading, finishLoading } from '@modules/loading';
 
 export const createRequestActionTypes = (type) => {
   const SUCCESS = `${type}_SUCCESS`;
@@ -15,16 +16,18 @@ const createRequestThunk = (types, request) => {
   const fail = createAction(TYPE_FAILURE);
 
   return (params) => async (dispatch) => {
+    dispatch(startLoading(TYPE));
     dispatch(start());
     try {
       const response = Array.isArray(params)
         ? await request(...params)
         : await request(params);
       dispatch(success(response));
-    } catch (e) {
-      dispatch(fail(e));
-      throw e;
+    } catch (error) {
+      dispatch(fail(error));
+      throw error;
     }
+    dispatch(finishLoading(TYPE));
   };
 };
 

@@ -27,7 +27,6 @@ export const writeNewReply = createRequestThunk(writeActions, write);
 export const updateReply = createRequestThunk(updateActions, update);
 
 const initialState = {
-  loading: false,
   error: false,
   content: '',
   replyId: '',
@@ -47,35 +46,29 @@ const writeReply = handleActions(
 
     [WRITE_REPLY]: (state) => ({
       ...state,
-      loading: true,
       error: false,
     }),
     [WRITE_REPLY_SUCCCESS]: (state, { payload: response }) => ({
       ...state,
-      loading: false,
       error: false,
       reply: response.data,
     }),
     [WRITE_REPLY_FAILURE]: (state) => ({
       ...state,
-      loading: false,
       error: true,
     }),
 
     [UPDATE_REPLY]: (state) => ({
       ...state,
-      loading: true,
       error: false,
     }),
     [UPDATE_REPLY_SUCCCESS]: (state, { payload: response }) => ({
       ...state,
-      loading: false,
       error: false,
       reply: response.data,
     }),
     [UPDATE_REPLY_FAILURE]: (state) => ({
       ...state,
-      loading: false,
       error: true,
     }),
   },

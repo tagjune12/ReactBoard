@@ -1,10 +1,10 @@
 //기본 세팅
 @import "normalize.css";
 @import 'variables.scss';
-@import 'layout.scss';
-@use 'mixins.scss';
+@import 'mixins.scss';
 
 // 페이지
+@import 'layout.scss';
 @import 'login.scss';
 @import 'signup.scss';
 @import 'postlist.scss';
@@ -14,3 +14,5 @@
 @import 'dropdown.scss';
 @import 'searchbar.scss';
 @import 'quill/dist/quill.snow.css';
+@import 'loading.scss';
+@import 'buttons.scss';

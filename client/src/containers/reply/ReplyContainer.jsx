@@ -16,23 +16,20 @@ const ReplyContainer = ({ reply, loadReplies, commentId }) => {
 
   const onRemoveBtnClick = () => {
     const replyId = reply?._id;
-    // console.log('click Remove Reply');
     if (window.confirm('정말 댓글을 삭제하시겠습니까?')) {
       try {
         remove(replyId).then((response) => {
-          // if (response.status === 204) console.log('삭제 완료');
           dispatch(downReplyCount(commentId));
           loadReplies();
         });
-      } catch (e) {
+      } catch (error) {
         alert('리플을 삭제하는데 오류가 발생했습니다.');
-        throw e;
+        throw error;
       }
     }
   };
 
   const onEditBtnClick = () => {
-    // console.log('click Edit Reply');
     const { content, _id: replyId } = reply;
     setIsModifying(true);
     dispatch(

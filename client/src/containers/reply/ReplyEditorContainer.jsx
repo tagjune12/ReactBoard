@@ -46,7 +46,6 @@ const ReplyEditorContainer = ({
       );
       dispatch(upReplyCount(commentId));
     } else {
-      // console.log('commentId 가 없습니다.');
     }
   };
 
@@ -65,7 +64,6 @@ const ReplyEditorContainer = ({
   const onCancelBtnClick = (event) => {
     event.preventDefault();
     dispatch(changeReplyField(''));
-    // console.log('onCancelBtnClick in ReplyEditor');
     setWriteReply(false);
   };
 
@@ -78,9 +76,7 @@ const ReplyEditorContainer = ({
   });
 
   useEffect(() => {
-    // console.log('Load ReplyEditor', content);
     return () => {
-      // console.log('Unload ReplyEditor', content);
       dispatch(initialize());
       loadReplies();
     };

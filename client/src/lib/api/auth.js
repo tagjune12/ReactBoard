@@ -14,8 +14,8 @@ export const register = async (registerInfo) => {
     const response = await axios.post(`${API_URL}/register`, registerInfo);
 
     return response;
-  } catch (e) {
-    // console.log(e);
+  } catch (error) {
+    throw (error);
   }
 };
 

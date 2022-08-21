@@ -11,7 +11,7 @@ const PostContainer = () => {
   const { id: postId } = useParams();
   const [isMyPost, setIsMyPost] = useState(false);
   const [isUserLikeThis, setIsUserLikeThis] = useState(false);
-  const { loading, post } = useSelector(({ post }) => post);
+  const { post } = useSelector(({ post }) => post);
   const userObjId = useSelector(({ user }) => user.user?._id);
   const { curPage, postsInThisPage } = useSelector(({ postlist }) => ({
     curPage: postlist.curPage,
@@ -50,14 +50,15 @@ const PostContainer = () => {
   };
 
   const onLikeClick = () => {
-    // console.log('onLikeClick');
+    if (!userObjId) {
+      alert('추천은 로그인 했을 때만 가능합니다!');
+      return;
+    }
     setIsUserLikeThis((prev) => !prev);
     dispatch(likePost(postId, userObjId));
-    // console.log(post);
   };
 
   useEffect(() => {
-    // console.log('postId is Changed');
     dispatch(getPost(postId));
 
     return () => {
@@ -65,7 +66,6 @@ const PostContainer = () => {
     };
   }, [postId]);
 
-  // 수정 필요
   useEffect(() => {
     setIsMyPost(post?.author._id === userObjId && userObjId);
     setIsUserLikeThis(post?.like.includes(userObjId));

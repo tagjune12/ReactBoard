@@ -4,7 +4,7 @@ import Button from '@components/common/Button';
 const SignupForm = ({ onSubmit, onChange, passwordCheck }) => {
   return (
     <div className="signup">
-      <div className="signup-form-wrapper">
+      <div className="signup-form-container">
         <h1 className="title">SIGN UP</h1>
         <form className="signup-form" onSubmit={onSubmit}>
           <input

@@ -1,0 +1,33 @@
+@keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+
+.loading-container{
+  display:grid;
+  grid-template-rows: 2;
+  justify-content: center;
+  height: 539px;
+  .icon{
+    justify-self: center;
+    align-self: center;
+    color: $--main-color1;
+    font-size: 3rem;
+
+    animation: rotate 3s linear infinite;
+  }
+  span{
+    margin: 1rem;
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+}

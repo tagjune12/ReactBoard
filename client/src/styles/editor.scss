@@ -1,102 +1,80 @@
-.write-form{
+.write-form {
   border: 1px solid $--border-color1;
   padding: 20px 10px;
   background-color: white;
   margin-top: 20px;
   border-radius: 15px;
 
-  .title-form{
-    display:flex;
+  .title-form {
+    display: flex;
     align-items: center;
+    margin-bottom: 15px;
 
-    margin-bottom : 15px;
-    .dropdown-wrapper{
-      border:1px solid black;
+    .dropdown-wrapper {
+      border: 1px solid black;
       border-radius: 0;
-      width:100%;
+      width: 100%;
 
-      user-select: none;
-      cursor: pointer;
-
-      .selected{
-        display:flex;
-        justify-content: space-between;
-        position: relative;
-        flex: 1;
-    
-        padding: 0 10px;
-        font-weight:bold;  
-      }
-      .option-list{
-
-        position:absolute;
-        border:1px solid black;
+      .option-list {
+        border: 1px solid black;
         border-top: 0;
+        border-radius: 0;
 
-        top: 376px;
-                
-        border-radius: 0 ;
-        background: white;
-        
-        .option{
-          padding: 5px 10px;
-          &:hover{
-            background-color:$--main-color3;
-          }
-          &:first-child{
-            margin-top: 10px;
-          }
-          &:last-child{
-            border-radius: 0 ;
+        .option {
+          &:last-child {
+            border-radius: 0;
           }
         }
       }
-
     }
+
     .title-input {
       padding: 10px 15px;
       margin-left: 10px;
-      flex:1;
+      flex: 1;
     }
-    
+
   }
 
-  .ql-editor{
+  .ql-editor {
     height: 600px;
-    .ql-video{
+
+    .ql-video {
       width: 640px;
       height: 360px;
     }
   }
 
-  &.comment-editor{
+  &.comment-editor {
     margin-bottom: 20px;
-    
+
   }
 
-  &.post-editor{
+  &.post-editor {
     margin-bottom: 30px;
   }
-  &.reply-editor{
-    margin-left:30px;
+
+  &.reply-editor {
+    margin-left: 30px;
   }
-  &.comment-editor, &.reply-editor{
+
+  &.comment-editor,
+  &.reply-editor {
     border: 1px solid $--border-color1;
-    .ql-editor{
+
+    .ql-editor {
       height: 50px;
     }
   }
-  
-}
 
+}
 
 .editor-btn-wrapper {
   margin-top: 15px;
-  display:flex;
+  display: flex;
   justify-content: flex-end;
 
-  .cancel-btn{
-    margin-left:10px;
+  .cancel-btn {
+    margin-left: 10px;
   }
 }
-

@@ -21,7 +21,7 @@ export const getReplyById = async (ctx, next) => {
 
     ctx.state.reply = reply;
     return next();
-  } catch (e) {
+  } catch (error) {
     ctx.throw(500, e);
   }
 
@@ -56,7 +56,7 @@ export const list = async ctx => {
       .lean()
       .exec();
     ctx.response.body = replies;
-  } catch (e) {
+  } catch (error) {
     ctx.throw(500, e);
   }
 };
@@ -94,7 +94,7 @@ export const write = async ctx => {
   try {
     await reply.save();
     ctx.response.body = reply;
-  } catch (e) {
+  } catch (error) {
     ctx.throw(500, e);
   }
 }
@@ -106,7 +106,7 @@ export const remove = async ctx => {
   try {
     await Reply.findByIdAndRemove(id).exec();
     ctx.response.status = 204;
-  } catch (e) {
+  } catch (error) {
     ctx.response.throw(500, e);
   }
 }
@@ -138,7 +138,7 @@ export const update = async ctx => {
       new: true
     }).exec();
     ctx.response.body = reply;
-  } catch (e) {
+  } catch (error) {
     ctx.throw(500, e);
   }
 }

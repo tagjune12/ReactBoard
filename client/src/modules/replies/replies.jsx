@@ -13,7 +13,6 @@ export const getReplies = createRequestThunk(getRepliesActions, list);
 export const unloadReplies = createAction(UNLOAD_REPLIES);
 
 const initialState = {
-  loading: false,
   error: false,
   replies: null,
 };
@@ -23,18 +22,15 @@ const replies = handleActions(
     [UNLOAD_REPLIES]: (state) => initialState,
     [GET_REPLIES]: (state) => ({
       ...state,
-      loading: true,
       error: false,
     }),
     [GET_REPLIES_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      loading: false,
       error: false,
       replies: response.data,
     }),
     [GET_REPLIES_FAILURE]: (state) => ({
       ...state,
-      loading: false,
       error: true,
     }),
   },

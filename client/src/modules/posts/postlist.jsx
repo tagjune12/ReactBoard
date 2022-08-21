@@ -22,7 +22,6 @@ export const changeCategory = createAction(
 
 // 초기 상태
 const initialState = {
-  loading: false,
   error: false,
   posts: null,
   lastPage: 1,
@@ -35,17 +34,14 @@ const postlist = handleActions(
   {
     [LOAD_POSTS]: (state) => ({
       ...state,
-      loading: true,
     }),
     [LOAD_POSTS_SUCCESS]: (state, { payload: response }) => ({
       ...state,
-      loading: false,
       posts: response.data,
       lastPage: parseInt(response.headers['last-page']),
     }),
     [LOAD_POSTS_FAILURE]: (state) => ({
       ...state,
-      loading: false,
       error: true,
     }),
     [CHANGE_PAGE_NUMBER]: (state, { payload: curPage }) => ({

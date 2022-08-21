@@ -5,15 +5,19 @@ import { getPosts } from '@modules/posts/postlist';
 import PostList from '@components/posts/PostList';
 import PaginationContainer from '@containers/posts/PaginationContainer';
 import Button from '@components/common/Button';
+import Loading from '@components/common/Loading';
 import { Link } from 'react-router-dom';
 
 const PostListContainer = () => {
   const dispatch = useDispatch();
-  const { curPage, posts, category } = useSelector(({ postlist }) => ({
-    curPage: postlist.curPage,
-    posts: postlist.posts,
-    category: postlist.category,
-  }));
+  const { curPage, posts, category, loading } = useSelector(
+    ({ postlist, loading }) => ({
+      curPage: postlist.curPage,
+      posts: postlist.posts,
+      category: postlist.category,
+      loading: loading['postlist/LOAD_POSTS'],
+    }),
+  );
   const currentPost = useSelector(({ post }) => post.post?._id);
   const { user } = useSelector(({ user }) => user);
 
@@ -28,16 +32,22 @@ const PostListContainer = () => {
 
   return (
     <>
-      <div className="post-list">
-        <PostList posts={posts} currentPost={currentPost} />
-      </div>
-      <PaginationContainer />
-      {user && (
-        <div className="write-btn-wrapper">
-          <Link to="/write">
-            <Button className="post-write">글쓰기</Button>
-          </Link>
-        </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <div className="post-list">
+            <PostList posts={posts} currentPost={currentPost} />
+          </div>
+          <PaginationContainer />
+          {user && (
+            <div className="write-btn-wrapper">
+              <Link to="/write">
+                <Button className="post-write">글쓰기</Button>
+              </Link>
+            </div>
+          )}
+        </>
       )}
     </>
   );
