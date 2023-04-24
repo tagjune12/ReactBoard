@@ -3,4 +3,4 @@
 https://write-anything.netlify.app/
 
 프로젝트 설명
-https://www.notion.so/Write-anything-ad4b840df3c049feb12eb458974d8f23?pvs=4
+https://heavenly-judge-599.notion.site/Write-anything-ad4b840df3c049feb12eb458974d8f23
