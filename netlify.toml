@@ -1,2 +1,5 @@
-# Redirects from what the browser requests to what we serve
-/ /http://localhost:4000 301
+[[redirects]]
+  from = "/proxy/*"
+  to = "https://write-anything.netlify.app/:splat"
+  status = 200
+  force = true

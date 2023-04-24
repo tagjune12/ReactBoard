@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = `/api/posts`;
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+const API_URL = `${PROXY}/api/posts`;
 
 export const getPostList = (query) => {
   const queryString = Object.entries(query).reduce((result, entry) => {
