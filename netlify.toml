@@ -1,0 +1,5 @@
+[[redirects]]
+from = "/proxy/*"
+  to = "http://https://write-anything.netlify.app:4000"
+  status = 200
+  force = false
