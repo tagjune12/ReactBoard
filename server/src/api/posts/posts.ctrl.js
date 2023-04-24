@@ -25,7 +25,7 @@ export const getPostById = async (ctx, next) => {
     ctx.state.post = post;
     return next();
   } catch (error) {
-    ctx.throw(500, e);
+    ctx.throw(500, error);
   }
 
   return next();
@@ -83,7 +83,7 @@ export const list = async ctx => {
     }));
     console.log("결과", posts);
   } catch (error) {
-    ctx.throw(500, e);
+    ctx.throw(500, error);
   }
 };
 
@@ -134,7 +134,7 @@ export const write = async ctx => {
     await post.save();
     ctx.response.body = post;
   } catch (error) {
-    ctx.throw(500, e);
+    ctx.throw(500, error);
   }
 }
 
@@ -169,7 +169,7 @@ export const update = async ctx => {
     }).exec();
     ctx.response.body = post;
   } catch (error) {
-    ctx.throw(500, e);
+    ctx.throw(500, error);
   }
 }
 
@@ -192,7 +192,7 @@ export const remove = async ctx => {
 
     ctx.response.status = 204;
   } catch (error) {
-    ctx.throw(500, e);
+    ctx.throw(500, error);
   }
 }
 
@@ -214,6 +214,6 @@ export const like = async ctx => {
     }).exec();
     ctx.response.body = post;
   } catch (error) {
-    ctx.throw(500, e);
+    ctx.throw(500, error);
   }
 }
