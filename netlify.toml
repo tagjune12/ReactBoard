@@ -1,5 +1,2 @@
-[[redirects]]
-from = "/proxy/*"
-  to = "http://https://write-anything.netlify.app:4000"
-  status = 200
-  force = false
+# Redirects from what the browser requests to what we serve
+/https://write-anything.netlify.app /http://localhost:4000 301
